@@ -5,8 +5,8 @@ import Card from '../components/Card.astro';
 
 <Layout title="Accountability Bunnies">
 	<main>
-		<h1 id="app-title">Accountability</h1>
-		<h2 id="app-subtitle">Bunnies</h2>
+		<h1 class="headings" id="app-title">Accountability</h1>
+		<h2 class="sub-headings" id="app-subtitle">Bunnies</h2>
 
 		<ul role="list" class="link-card-grid">
 			<Card
@@ -34,8 +34,17 @@ import Card from '../components/Card.astro';
 </Layout>
 
 <style>
-	#app-title {
-		font-size: 80px;
+	.headings {
+		font-size: 40px;
+		font-family: "Alfa Slab One", serif;
+  		font-weight: 400;
+  		font-style: normal;
+	}
+	.sub-headings {
+		font-size: 64px;
+  		font-family: "Annie Use Your Telescope", cursive;
+  		font-weight: 400;
+  		font-style: normal;
 	}
 	main {
 		margin: auto;

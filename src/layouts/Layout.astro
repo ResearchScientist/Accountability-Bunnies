@@ -32,16 +32,16 @@ const { title } = Astro.props;
 		text-decoration: none;
 		color: black;
 	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: var(--background-colour);
-		background-size: 224px;
+	html,body {
+		width: 100vw;
+		height: 100vh;
+		background-color: var(--background-colour);
 	}
 	main {
-		margin: auto;
+		margin: 0 auto;
 		padding: 1rem;
-		width: 800px;
-		max-width: calc(100% - 2rem);
+		width: 350px;
+		/* max-width: 350px; */
 		font-size: 20px;
 		line-height: 1.6;
 	}

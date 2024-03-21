@@ -5,10 +5,10 @@ import Layout from '../layouts/Layout.astro';
 <Layout title="Main Menu">
 	<main>
 		<nav>
-            <a href="#">motivation</a>
-            <a href="#">check ins</a>
-            <a href="#">goals / actions</a>
-            <a href="#">bunny farm</a>
+            <a href="/motivation">motivation</a>
+            <a href="/check-ins">check ins</a>
+            <a href="/goals-actions">goals / actions</a>
+            <a href="/bunny-farm">bunny farm</a>
         </nav>
 	</main>
 </Layout>
@@ -16,12 +16,14 @@ import Layout from '../layouts/Layout.astro';
 <style>
     nav {
         width: 100%;
-        height: 100%;
+        height: 400px;
         display: flex;
         flex-direction: column;
-        background-color: rgb(210,210,210);
+        justify-content: space-between;
     }
     nav a {
+        display: inline-block;
+        margin: 0 auto;
         font-size: 40px;
   		font-family: "Annie Use Your Telescope", cursive;
   		font-weight: 400;

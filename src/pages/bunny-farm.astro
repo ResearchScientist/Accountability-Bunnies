@@ -6,6 +6,20 @@ import HeaderBack from '../components/HeaderBack.astro';
 <Layout title="Bunny Farm">
 	<HeaderBack title="bunny farm"/>
 	<main>
-		<h1>Bunny Farm</h1>
+		<img id="farm" src="/public/farm.svg" alt="Line illustration of a farm and sun.">
 	</main>
 </Layout>
+
+<style>
+	#farm {
+		padding: 0 90px 0 0;
+		grid-column: 1/-1;
+		grid-row: 1;
+		justify-self: center;
+	}
+	main {
+		display: grid;
+		grid-template-columns: 1fr;
+		grid-template-rows: 300px 1fr;
+	}
+</style>

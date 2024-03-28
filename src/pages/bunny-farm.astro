@@ -8,12 +8,12 @@ import HeaderBack from '../components/HeaderBack.astro';
 	<main>
 		<img id="farm" src="/farm.svg" alt="Line illustration of a farm and sun."/>
 		<div id="bunny-pen">
-			<!-- <div class="bunny-left">
-				<img class="bunny" src="/bunnyBlue.svg" alt="blue bunny"/>
-			</div> -->
-			<img class="bunny hop" src="/bunnyBlue.svg" alt="blue bunny"/>
-			<img class="bunny bunny-hop-green" src="/bunnyGreen.svg" alt="green bunny"/>
-			<img class="bunny bunny-hop" src="/bunnyBlue.svg" alt="blue bunny"/>
+			<img class="bunny" src="/bunnyBlue.svg" alt="blue bunny"/>
+			<img class="bunny" src="/bunnyGreen.svg" alt="green bunny"/>
+			<img class="bunny" src="/bunnyYellow.svg" alt="yellow bunny"/>
+			<img class="bunny" src="/bunnyLightBlue.svg" alt="light blue bunny"/>
+			<img class="bunny" src="/bunnyOrange.svg" alt="orange bunny"/>
+			<img class="bunny" src="/bunnyLightOrange.svg" alt="lignt orange bunny"/>
 		</div>
 	</main>
 </Layout>
@@ -35,26 +35,37 @@ import HeaderBack from '../components/HeaderBack.astro';
 	#bunny-pen {
 		width: 100%;
 		height: 100%;
-		/* display: inline-block; */
 		position: relative;
 		grid-column: 1;
 		grid-row: 2;
 		overflow: hidden;
 	}
-	/* .bunny-left {
-		width: 58px;
-		height: 110px;
-		position: absolute;
-		top: 0;
-		left: 0;
-		animation: 5s linear infinite move-left;
-		background-color: green;
-	} */
 	.bunny {
 		width: 58px;
 		position: absolute;
 		top: 0;
 		left: 0;
+	}
+	.bunny:nth-last-of-type(1) {
+		left: 85%;
+	}
+	.bunny:nth-last-of-type(2) {
+		left: 8%;
+	}
+	.bunny:nth-last-of-type(3) {
+		left: 0%;
+	}
+	.bunny:nth-last-of-type(4) {
+		top: 20%;
+		left: 30%;
+	}
+	.bunny:nth-last-of-type(5) {
+		top: 50%;
+		left: 60%;
+	}
+	.bunny:nth-last-of-type(6) {
+		top: 75%;
+		left: 25%;
 	}
 	.hop {
 		animation: 9s ease-in-out infinite hop;
@@ -62,22 +73,10 @@ import HeaderBack from '../components/HeaderBack.astro';
 	.bunny-hop {
 		animation: 1.1s ease-in alternate infinite bunny-hop;
 	}
-	.bunny-hop-green {
-		animation: 3s linear infinite bunny-hop-green;
-		/* transform: translate(-58px,0px); */
-	}
 	@keyframes bunny-hop {
 		0% {transform: translate(0px,30px);}
 		50% {transform: translate(10px,0px);}
 		100% {transform: translate(20px,30px);}
-	}
-	@keyframes move-left {
-		0% {transform: translate(800px,50px);}
-		10% {transform: translate(742px,50px);}
-		20% {transform: translate(742px,50px);}
-		50% {transform: translate(742px,50px);}
-		60% {transform: translate(742px,50px);}
-		100% {transform: translate(742px,50px);}
 	}
 	/* @keyframes hop {
 		0% {transform: translate(700px,50px);}
@@ -106,13 +105,5 @@ import HeaderBack from '../components/HeaderBack.astro';
 		47.5% {transform: translate(200px,50px);}
 		51.25% {transform: translate(100px,0px);}
 		51.25% {transform: translate(75px,0px);}
-	}
-	@keyframes bunny-hop-green {
-		0% {
-			transform: translateX(0px);
-		}
-		100% {
-			transform: translate(800px,800px);
-		}
 	}
 </style>

@@ -16,14 +16,8 @@ import Layout from '../layouts/Layout.astro';
 			</nav>
 		</section>
 		<section class="splash-screen">
-			im a splash
-		</section>
-		<section>
-			<header>
-				header here
-			</header>
 			<h1 class="headings" id="app-title">Ac<span class="text-accent">count</span>ability</h1>
-			<!-- <h2 class="sub-headings" id="app-subtitle">Bunnies</h2> -->
+			<h2 class="sub-headings" id="app-subtitle">Bunnies</h2>
 			<img class="bunny-face" src="/bunnyface.svg" alt="line art of a bunny"/>
 			<a id='lets-go' href="/main-menu">let's go</a>
 		</section>
@@ -36,20 +30,21 @@ import Layout from '../layouts/Layout.astro';
 		height: 100%;
 		grid-column: 1/-1;
 		grid-row: 1/-1;
-		transform: translateY(0dvh);
-		transition: all .4s ease-in-out;
-	}
-	.splash-screen {
-		transform: translateY(80dvh);
-		background-color: orange;
-	}
-	.main-menu {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		transform: translateY(10dvh);
-		background-color: green;
+		transform: translateY(0dvh);
+		transition: all .75s ease-in-out;
+		box-shadow: 0px 0px 20px rgba(0,0,0,.5);
+	}
+	.splash-screen {
+		transform: translateY(-102dvh);
+		background-color: var(--background-colour);
+	}
+	.main-menu {
+		/* transform: translateY(10dvh); */
+		/* background-color: green; */
 	}
 	.main-menu nav {
 		height: 400px;

@@ -4,19 +4,31 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Accountability Bunnies">
 	<main>
-		<h1 class="headings" id="app-title">Ac<span class="text-accent">count</span>ability</h1>
-		<h2 class="sub-headings" id="app-subtitle">Bunnies</h2>
-		<img class="bunny-face" src="/bunnyface.svg" alt="line art of a bunny"/>
-		<a id='lets-go' href="/main-menu">let's go</a>
+		<section>
+			<header>
+				header here
+			</header>
+			<h1 class="headings" id="app-title">Ac<span class="text-accent">count</span>ability</h1>
+			<h2 class="sub-headings" id="app-subtitle">Bunnies</h2>
+			<img class="bunny-face" src="/bunnyface.svg" alt="line art of a bunny"/>
+			<a id='lets-go' href="/main-menu">let's go</a>
+		</section>
 	</main>
 </Layout>
 
 <style>
-	main {
-		margin: -100px 0 0;
-	}
-	main img {
+	main section img {
 		margin: 50px 0 0;
+	}
+	section {
+		width: 100%;
+		height: 100%;
+		background-color: green;
+		transform: translateY(100dvh);
+		transition: all .4s ease-in-out;
+	}
+	.main-menu {
+		transform: translateY(0dvh);
 	}
 	#lets-go {
 		width: 80px;

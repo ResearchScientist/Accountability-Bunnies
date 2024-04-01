@@ -40,6 +40,21 @@ const { title } = Astro.props;
 		text-decoration: none;
 		color: black;
 	}
+	button {
+		width: 158px;
+		outline: none;
+		drop-shadow: none;
+		border: none;
+		font-size: 40px;
+  		font-family: "Annie Use Your Telescope", cursive;
+  		font-weight: 400;
+  		font-style: normal;
+        text-align: center;
+		background-color: var(--background-colour);
+	}
+	button:hover {
+		color: gray;
+	}
 	html {
 		background-color: var(--deep-background-colour);
 	}
@@ -53,10 +68,6 @@ const { title } = Astro.props;
 		height: 100%;
 		grid-column: 2/-2;
 		grid-row: 1/-1;
-        /* display: flex; 
-		flex-direction: column;
-        align-items: center;
-		justify-content: center; */
 		overflow: hidden;
 		background-color: var(--background-colour);
 	}

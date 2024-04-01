@@ -68,7 +68,10 @@ const { title } = Astro.props;
 		height: 100%;
 		grid-column: 2/-2;
 		grid-row: 1/-1;
-		overflow: hidden;
+		display: grid;
+		grid-template-columns: 100%;
+		grid-template-rows: 100%;
+		/* overflow: hidden; */
 		background-color: var(--background-colour);
 	}
 	.text-accent {

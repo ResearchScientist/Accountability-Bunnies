@@ -4,6 +4,9 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Accountability Bunnies">
 	<main>
+		<!-- <section class="splash-screen">
+			im a splash
+		</section> -->
 		<section class="main-menu">
 			<nav>
 				<button>motivation</button>
@@ -11,6 +14,9 @@ import Layout from '../layouts/Layout.astro';
 				<button>goals</button>
 				<button>bunny farm</button>
 			</nav>
+		</section>
+		<section class="splash-screen">
+			im a splash
 		</section>
 		<section>
 			<header>
@@ -25,21 +31,25 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-	main section img {
-		margin: 50px 0 0;
-	}
 	section {
 		width: 100%;
 		height: 100%;
-		transform: translateY(100dvh);
+		grid-column: 1/-1;
+		grid-row: 1/-1;
+		transform: translateY(0dvh);
 		transition: all .4s ease-in-out;
+	}
+	.splash-screen {
+		transform: translateY(80dvh);
+		background-color: orange;
 	}
 	.main-menu {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		transform: translateY(0dvh);
+		transform: translateY(10dvh);
+		background-color: green;
 	}
 	.main-menu nav {
 		height: 400px;

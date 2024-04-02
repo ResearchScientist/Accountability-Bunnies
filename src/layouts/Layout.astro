@@ -78,17 +78,40 @@ const { title } = Astro.props;
 	.text-accent {
 		color: var(--main-colour);
 	}
-	.headings {
-		margin: 100px 0 50px;
+	#app-title {
+		grid-column: 1/-1;
+		grid-row: 1;
 		font-size: 40px;
 		font-family: "Alfa Slab One", serif;
   		font-weight: 400;
   		font-style: normal;
 	}
-	.sub-headings {
+	#app-sub-title {
+		grid-column: 1/-1;
+		grid-row: 2;
 		font-size: 64px;
   		font-family: "Annie Use Your Telescope", cursive;
   		font-weight: 400;
   		font-style: normal;
+	}
+	#bunny-face {
+		width: 100px;
+		grid-column: 1/-1;
+		grid-row: 3;
+	}
+	#lets-go-button {
+		grid-column: 1/-1;
+		grid-row: 4;
+		width: 80px;
+		height: 30px;
+		margin: -50px 0 0;
+		padding: 5px 10px;
+		font-size: 18px;
+		font-family: "Life Savers", cursive;
+		font-weight: 800;
+  		font-style: normal;
+		text-align: center;
+		border: solid 1px black;
+		border-radius: 12px;
 	}
 </style>

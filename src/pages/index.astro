@@ -4,19 +4,55 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Accountability Bunnies">
 	<main>
-		<h1 class="headings" id="app-title">Ac<span class="text-accent">count</span>ability</h1>
-		<h2 class="sub-headings" id="app-subtitle">Bunnies</h2>
-		<img class="bunny-face" src="/bunnyface.svg" alt="line art of a bunny"/>
-		<a id='lets-go' href="/main-menu">let's go</a>
+		<section id="motivation" class="nav-section motivation">
+			motivation
+		</section>
+		<section id="check-ins" class="nav-section check-ins">
+			check ins
+		</section>
+		<section id="goals" class="nav-section goals">
+			goals
+		</section>
+		<section id="bunny-farm" class="nav-section bunny-farm">
+			bunny farm
+		</section>
+		<section id="main-menu" class="main-menu">
+			<nav id="main-navigation">
+				<button class="nav-button" data-menu="motivation">motivation</button>
+				<button class="nav-button" data-menu="check-ins">check ins</button>
+				<button class="nav-button" data-menu="goals">goals</button>
+				<button class="nav-button" data-menu="bunny-farm">bunny farm</button>
+			</nav>
+		</section>
+		<section class="splash-screen">
+			<h1 class="headings" id="app-title">Ac<span class="text-accent">count</span>ability</h1>
+			<h2 class="sub-headings" id="app-subtitle">Bunnies</h2>
+			<img class="bunny-face" src="/bunnyface.svg" alt="line art of a bunny"/>
+			<a id='lets-go' href="/main-menu">let's go</a>
+		</section>
+		<button id="show-menu-button">menu</button>
 	</main>
 </Layout>
 
 <style>
-	main {
-		margin: -100px 0 0;
+	section {
+		width: 100%;
+		height: 100%;
+		grid-column: 1/-1;
+		grid-row: 1/-1;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		transform: translateY(0dvh);
+		transition: all .75s ease-in-out;
+		background-color: var(--background-colour);
+		box-shadow: 0px 0px 20px rgba(0,0,0,.5);
+		z-index: 0;
 	}
-	main img {
-		margin: 50px 0 0;
+	.splash-screen {
+		transform: translateY(-102dvh);
+		z-index: 5;
 	}
 	#lets-go {
 		width: 80px;
@@ -31,4 +67,63 @@ import Layout from '../layouts/Layout.astro';
 		border: solid 1px black;
 		border-radius: 12px;
 	}
+	.main-menu {
+		z-index: 3;
+	}
+	.main-menu nav {
+		height: 400px;
+		display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+		align-items: center;
+	}
+	.main-menu nav button:nth-of-type(1) {
+		width: 145px;
+	}
+	.main-menu nav button:nth-of-type(2) {
+		width: 130px;
+	}
+	.main-menu nav button:nth-of-type(3) {
+		width: 80px;
+	}
+	.main-menu nav button:nth-of-type(4) {
+		width: 164px;
+	}
+	#show-menu-button {
+		width: 100px;
+		height: 50px;
+		grid-column: 1/-1;
+		grid-row: 1/-1;
+		align-self: flex-start;
+		justify-self: flex-end;
+		font-size: 28px;
+		z-index: 2;
+	}
+	.reset-z-index {
+		z-index: 0;
+	}
 </style>
+
+<script>
+	const mainNavigation = document.querySelector('#main-navigation');
+	const showMenuButton = document.querySelector('#show-menu-button');
+	const mainMenu = document.querySelector('#main-menu');
+	const sections = document.querySelectorAll('.nav-section');
+
+	mainNavigation.addEventListener('click',transitionSection);
+	showMenuButton.addEventListener('click',showMenu);
+
+	function transitionSection(e) {
+		let sectionClicked = (e.target.dataset.menu);
+		let section = document.querySelector(`#${sectionClicked}`);
+		section.style.zIndex="1";
+		mainMenu.style.transform="translateY(-102dvh)";
+	}
+
+	function showMenu() {
+		mainMenu.style.transform="translateY(0dvh)";
+		console.log(sections);
+		sections.forEach ((section) => 
+			section.style.zIndex="0");
+	}
+</script>

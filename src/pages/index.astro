@@ -4,15 +4,24 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout title="Accountability Bunnies">
 	<main>
-		<!-- <section class="splash-screen">
-			im a splash
-		</section> -->
-		<section class="main-menu">
-			<nav>
-				<button>motivation</button>
-				<button>check ins</button>
-				<button>goals</button>
-				<button>bunny farm</button>
+		<section id="motivation" class="nav-section motivation">
+			motivation
+		</section>
+		<section id="check-ins" class="nav-section check-ins">
+			check ins
+		</section>
+		<section id="goals" class="nav-section goals">
+			goals
+		</section>
+		<section id="bunny-farm" class="nav-section bunny-farm">
+			bunny farm
+		</section>
+		<section id="main-menu" class="main-menu">
+			<nav id="main-navigation">
+				<button class="nav-button" data-menu="motivation">motivation</button>
+				<button class="nav-button" data-menu="check-ins">check ins</button>
+				<button class="nav-button" data-menu="goals">goals</button>
+				<button class="nav-button" data-menu="bunny-farm">bunny farm</button>
 			</nav>
 		</section>
 		<section class="splash-screen">
@@ -21,6 +30,7 @@ import Layout from '../layouts/Layout.astro';
 			<img class="bunny-face" src="/bunnyface.svg" alt="line art of a bunny"/>
 			<a id='lets-go' href="/main-menu">let's go</a>
 		</section>
+		<button id="show-menu-button">menu</button>
 	</main>
 </Layout>
 
@@ -36,15 +46,29 @@ import Layout from '../layouts/Layout.astro';
 		align-items: center;
 		transform: translateY(0dvh);
 		transition: all .75s ease-in-out;
+		background-color: var(--background-colour);
 		box-shadow: 0px 0px 20px rgba(0,0,0,.5);
+		z-index: 0;
 	}
 	.splash-screen {
 		transform: translateY(-102dvh);
-		background-color: var(--background-colour);
+		z-index: 5;
+	}
+	#lets-go {
+		width: 80px;
+		height: 30px;
+		margin: 150px 0 0;
+		padding: 5px 10px;
+		font-size: 21px;
+		font-family: "Life Savers", cursive;
+		font-weight: 800;
+  		font-style: normal;
+		text-align: center;
+		border: solid 1px black;
+		border-radius: 12px;
 	}
 	.main-menu {
-		/* transform: translateY(10dvh); */
-		/* background-color: green; */
+		z-index: 3;
 	}
 	.main-menu nav {
 		height: 400px;
@@ -65,17 +89,41 @@ import Layout from '../layouts/Layout.astro';
 	.main-menu nav button:nth-of-type(4) {
 		width: 164px;
 	}
-	#lets-go {
-		width: 80px;
-		height: 30px;
-		margin: 150px 0 0;
-		padding: 5px 10px;
-		font-size: 21px;
-		font-family: "Life Savers", cursive;
-		font-weight: 800;
-  		font-style: normal;
-		text-align: center;
-		border: solid 1px black;
-		border-radius: 12px;
+	#show-menu-button {
+		width: 100px;
+		height: 50px;
+		grid-column: 1/-1;
+		grid-row: 1/-1;
+		align-self: flex-start;
+		justify-self: flex-end;
+		font-size: 28px;
+		z-index: 2;
+	}
+	.reset-z-index {
+		z-index: 0;
 	}
 </style>
+
+<script>
+	const mainNavigation = document.querySelector('#main-navigation');
+	const showMenuButton = document.querySelector('#show-menu-button');
+	const mainMenu = document.querySelector('#main-menu');
+	const sections = document.querySelectorAll('.nav-section');
+
+	mainNavigation.addEventListener('click',transitionSection);
+	showMenuButton.addEventListener('click',showMenu);
+
+	function transitionSection(e) {
+		let sectionClicked = (e.target.dataset.menu);
+		let section = document.querySelector(`#${sectionClicked}`);
+		section.style.zIndex="1";
+		mainMenu.style.transform="translateY(-102dvh)";
+	}
+
+	function showMenu() {
+		mainMenu.style.transform="translateY(0dvh)";
+		console.log(sections);
+		sections.forEach ((section) => 
+			section.style.zIndex="0");
+	}
+</script>

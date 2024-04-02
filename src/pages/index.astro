@@ -107,15 +107,15 @@ import Layout from '../layouts/Layout.astro';
 <script>
 	const mainNavigation = document.querySelector('#main-navigation');
 	const showMenuButton = document.querySelector('#show-menu-button');
-	const mainMenu = document.querySelector('#main-menu');
-	const sections = document.querySelectorAll('.nav-section');
+	const mainMenu = document.querySelector('#main-menu') as HTMLElement;
+	const sections = document.querySelectorAll<HTMLElement>('.nav-section');
 
 	mainNavigation.addEventListener('click',transitionSection);
 	showMenuButton.addEventListener('click',showMenu);
 
 	function transitionSection(e) {
 		let sectionClicked = (e.target.dataset.menu);
-		let section = document.querySelector(`#${sectionClicked}`);
+		let section = document.querySelector(`#${sectionClicked}`) as HTMLElement;
 		section.style.zIndex="1";
 		mainMenu.style.transform="translateY(-102dvh)";
 	}

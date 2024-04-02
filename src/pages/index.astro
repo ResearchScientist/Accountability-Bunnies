@@ -36,7 +36,7 @@ import "../styles/bunny-farm.css";
 				<button class="nav-button" data-menu="bunny-farm">bunny farm</button>
 			</nav>
 		</section>
-		<section class="splash-screen">
+		<section id="splash-screen" class="splash-screen">
 			<h1 id="app-title">Ac<span class="text-accent">count</span>ability</h1>
 			<h2 id="app-sub-title">Bunnies</h2>
 			<img id="bunny-face" src="/bunnyface.svg" alt="line art of a bunny"/>
@@ -112,11 +112,14 @@ import "../styles/bunny-farm.css";
 <script>
 	const mainNavigation = document.querySelector('#main-navigation');
 	const showMenuButton = document.querySelector('#show-menu-button');
+	const letsGoButton = document.querySelector('#lets-go-button');
+	const splashScreen = document.querySelector('#splash-screen') as HTMLElement;
 	const mainMenu = document.querySelector('#main-menu') as HTMLElement;
 	const sections = document.querySelectorAll<HTMLElement>('.nav-section');
 
 	mainNavigation.addEventListener('click',transitionSection);
 	showMenuButton.addEventListener('click',showMenu);
+	letsGoButton.addEventListener('click',moveSplash);
 
 	function transitionSection(e) {
 		let sectionClicked = (e.target.dataset.menu);
@@ -130,5 +133,9 @@ import "../styles/bunny-farm.css";
 		console.log(sections);
 		sections.forEach ((section) => 
 			section.style.zIndex="0");
+	}
+
+	function moveSplash() {
+		splashScreen.style.transform="translateY(-102dvh)";
 	}
 </script>

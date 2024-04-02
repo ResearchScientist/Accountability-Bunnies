@@ -1,0 +1,54 @@
+#bunny-farm {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 250px 1fr;
+    justify-items: flex-start;
+}
+#farm {
+    grid-column: 1/-1;
+    grid-row: 1;
+    justify-self: center;
+    align-self: flex-end;
+}
+#sun {
+    margin: 20px 0 0 20px;
+    grid-column: 1/-1;
+    grid-row: 1;
+    justify-self: flex-start;
+    align-self: flex-start;
+}
+#bunny-pen {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    grid-column: 1;
+    grid-row: 2;
+    overflow: hidden;
+}
+.bunny {
+    width: 58px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.bunny:nth-last-of-type(1) {
+    left: 85%;
+}
+.bunny:nth-last-of-type(2) {
+    left: 8%;
+}
+.bunny:nth-last-of-type(3) {
+    left: 0%;
+}
+.bunny:nth-last-of-type(4) {
+    top: 20%;
+    left: 30%;
+}
+.bunny:nth-last-of-type(5) {
+    top: 50%;
+    left: 60%;
+}
+.bunny:nth-last-of-type(6) {
+    top: 75%;
+    left: 25%;
+}

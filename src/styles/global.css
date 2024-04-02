@@ -15,12 +15,11 @@ a {
 button {
     width: 158px;
     outline: none;
-    drop-shadow: none;
     border: none;
     font-size: 40px;
-      font-family: "Annie Use Your Telescope", cursive;
-      font-weight: 400;
-      font-style: normal;
+    font-family: "Annie Use Your Telescope", cursive;
+    font-weight: 400;
+    font-style: normal;
     text-align: center;
     background-color: var(--background-colour);
 }
@@ -46,4 +45,10 @@ main {
     grid-template-rows: 100%;
     overflow: hidden;
     background-color: var(--background-colour);
+}
+h1 {
+    font-size: 21px;
+    font-family: "Life Savers", cursive;
+  	font-weight: 400;
+  	font-style: normal;
 }

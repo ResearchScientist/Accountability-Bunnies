@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import "../styles/goals.css";
+import "../styles/bunny-farm.css";
 ---
 
 <Layout title="Accountability Bunnies">
@@ -9,14 +10,15 @@ import "../styles/goals.css";
 			motivation
 		</section>
 		<section id="check-ins" class="nav-section check-ins">
-			check ins
+			<h1>Check Ins</h1>
 		</section>
 		<section id="goals" class="nav-section goals">
 			<h1>This Week's Goals</h1>
 			<img id="goalLine" src="/goalLine.svg" alt="hand drawn line"/>
 		</section>
 		<section id="bunny-farm" class="nav-section bunny-farm">
-			<img id="farm" src="/farm.svg" alt="Line illustration of a farm and sun."/>
+			<img id="farm" src="/farm.svg" alt="Line illustration of a farm."/>
+			<img id="sun" src="/sun.svg" alt="Line illustration of a sun."/>
 			<div id="bunny-pen">
 				<img class="bunny" src="/bunnyBlue.svg" alt="blue bunny"/>
 				<img class="bunny" src="/bunnyGreen.svg" alt="green bunny"/>
@@ -34,7 +36,7 @@ import "../styles/goals.css";
 				<button class="nav-button" data-menu="bunny-farm">bunny farm</button>
 			</nav>
 		</section>
-		<section class="splash-screen">
+		<section id="splash-screen" class="splash-screen">
 			<h1 id="app-title">Ac<span class="text-accent">count</span>ability</h1>
 			<h2 id="app-sub-title">Bunnies</h2>
 			<img id="bunny-face" src="/bunnyface.svg" alt="line art of a bunny"/>
@@ -66,7 +68,7 @@ import "../styles/goals.css";
 		grid-template-rows: 15dvh minmax(50px,10dvh) 40dvh 1fr;
 		justify-items: center;
 		align-items: center;
-		transform: translateY(-102dvh);
+		transform: translateY(0dvh);
 		z-index: 4;
 	}
 	.main-menu {
@@ -99,69 +101,25 @@ import "../styles/goals.css";
 		grid-row: 1/-1;
 		align-self: flex-start;
 		justify-self: flex-end;
-		font-size: 28px;
+		font-size: 24px;
 		z-index: 2;
 	}
 	.reset-z-index {
 		z-index: 0;
-	}
-	#farm {
-		padding: 0 90px 0 0;
-		grid-column: 1/-1;
-		grid-row: 1;
-		justify-self: center;
-	}
-	#bunny-farm {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: 300px 1fr;
-		justify-items: flex-start;
-	}
-	#bunny-pen {
-		width: 100%;
-		height: 100%;
-		position: relative;
-		grid-column: 1;
-		grid-row: 2;
-		overflow: hidden;
-	}
-	.bunny {
-		width: 58px;
-		position: absolute;
-		top: 0;
-		left: 0;
-	}
-	.bunny:nth-last-of-type(1) {
-		left: 85%;
-	}
-	.bunny:nth-last-of-type(2) {
-		left: 8%;
-	}
-	.bunny:nth-last-of-type(3) {
-		left: 0%;
-	}
-	.bunny:nth-last-of-type(4) {
-		top: 20%;
-		left: 30%;
-	}
-	.bunny:nth-last-of-type(5) {
-		top: 50%;
-		left: 60%;
-	}
-	.bunny:nth-last-of-type(6) {
-		top: 75%;
-		left: 25%;
 	}
 </style>
 
 <script>
 	const mainNavigation = document.querySelector('#main-navigation');
 	const showMenuButton = document.querySelector('#show-menu-button');
+	const letsGoButton = document.querySelector('#lets-go-button');
+	const splashScreen = document.querySelector('#splash-screen') as HTMLElement;
 	const mainMenu = document.querySelector('#main-menu') as HTMLElement;
 	const sections = document.querySelectorAll<HTMLElement>('.nav-section');
 
 	mainNavigation.addEventListener('click',transitionSection);
 	showMenuButton.addEventListener('click',showMenu);
+	letsGoButton.addEventListener('click',moveSplash);
 
 	function transitionSection(e) {
 		let sectionClicked = (e.target.dataset.menu);
@@ -175,5 +133,9 @@ import "../styles/goals.css";
 		console.log(sections);
 		sections.forEach ((section) => 
 			section.style.zIndex="0");
+	}
+
+	function moveSplash() {
+		splashScreen.style.transform="translateY(-102dvh)";
 	}
 </script>

@@ -14,7 +14,23 @@ import "../styles/bunny-farm.css";
 		</section>
 		<section id="goals" class="nav-section goals">
 			<h1>This Week's Goals</h1>
-			<img id="goalLine" src="/goalLine.svg" alt="hand drawn line"/>
+			<form id="input-goal-form">
+            	<input id="input-goal" type="text" name="goal" placeholder="write your goal here">
+            	<button id="add-goal-button" type="submit">+</button>
+				<img id="goalLine" src="goalLine.svg" alt="hand drawn line"/>
+			</form>
+            <div id="goals-section">
+                <div class="goal-item">
+                    <img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
+                    <div class="goal-text">apply to crc positions</div>
+                    <button id="delete-goal-button" >x</button>
+                </div>
+                <div class="goal-item">
+                    <img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
+                    <div class="goal-text">make more copies to send out</div>
+                    <button id="delete-goal-button" >x</button>
+                </div>
+            </div>
 		</section>
 		<section id="bunny-farm" class="nav-section bunny-farm">
 			<img id="farm" src="/farm.svg" alt="Line illustration of a farm."/>

@@ -138,17 +138,17 @@ import "../styles/bunny-farm.css";
 	letsGoButton.addEventListener('click',moveSplash);
 
 	function transitionSection(e) {
+		sections.forEach ((section) => {
+			section.style.zIndex="0";
+		});
 		let sectionClicked = (e.target.dataset.menu);
-		let section = document.querySelector(`#${sectionClicked}`) as HTMLElement;
-		section.style.zIndex="1";
+		let activeSection = document.querySelector(`#${sectionClicked}`) as HTMLElement;
+		activeSection.style.zIndex="1";
 		mainMenu.style.transform="translateY(-102dvh)";
 	}
 
 	function showMenu() {
 		mainMenu.style.transform="translateY(0dvh)";
-		console.log(sections);
-		sections.forEach ((section) => 
-			section.style.zIndex="0");
 	}
 
 	function moveSplash() {

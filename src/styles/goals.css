@@ -4,7 +4,7 @@
     grid-template-rows: 100px 50px 1fr;
 }
 
-h1 {
+#goals h1 {
     grid-column: 1/-1;
     grid-row: 1;
     justify-self: flex-start;

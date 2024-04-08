@@ -13,6 +13,14 @@
     overflow-y: auto;
 }
 
+#check-ins h1 {
+    grid-column: 1/-1;
+    grid-row: 1;
+    justify-self: flex-start;
+    align-self: flex-start;
+    margin: 23px 0 0 20px;
+}
+
 #check-ins-content-section h2 {
     font-size: 21px;
     font-family: "Life Savers", cursive;

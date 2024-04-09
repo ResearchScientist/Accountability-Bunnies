@@ -124,8 +124,8 @@ import Layout from '../layouts/Layout.astro';
 	const date = new Date();
 	const dateOptions = {weekday: "long"};
 	let todayweekday = new Intl.DateTimeFormat("en-US",dateOptions).format(date);
-	const tapFarmMsg = document.querySelector('#tap-farm-msg');
-	const tapFarmButton = document.querySelector('#tap-farm-button');
+	const tapFarmMsg = document.querySelector('#tap-farm-msg') as HTMLElement;
+	const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;
 
 	let totalBunnies = 3;
 

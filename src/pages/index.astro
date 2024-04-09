@@ -152,7 +152,7 @@ import Layout from '../layouts/Layout.astro';
 
 	function makeBunnies() {
     	console.log('making bunnies');
-    	for (i=0; i<totalBunnies; i++) {
+    	for (let i=0; i<totalBunnies; i++) {
         	makeBunny(i);
     	}
     	tapFarmMsg.style.display = "none";

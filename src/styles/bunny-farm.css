@@ -31,24 +31,52 @@
     top: 0;
     left: 0;
 }
-.bunny:nth-last-of-type(1) {
-    left: 85%;
+
+#tap-farm-button {
+    width: 160px;
+    height: 145px;
+    padding: 0 50px 10px 0;
+    margin: 0 0 5px;
+    grid-column: 1/-1;
+    grid-row: 1/2;
+    justify-self: center;
+    align-self: flex-end;
+    font-family: "Annie Use Your Telescope", cursive;
+    font-size: 20px;
+    color: var(--background-colour);
+    background-color: transparent;
+    display: none;
 }
-.bunny:nth-last-of-type(2) {
-    left: 8%;
+
+#tap-farm-msg {
+    margin: 0 0 162px 80px;
+    grid-column: 1/-1;
+    grid-row: 1/2;
+    justify-self: center;
+    align-self: flex-end;
+    font-family: "Annie Use Your Telescope", cursive;
+    font-size: 24px;
+    color: var(--main-colour);
+    display: none;
 }
-.bunny:nth-last-of-type(3) {
-    left: 0%;
+
+.bunnyAppear {
+    opacity: 0;
+    margin: 100px 0 0;
+    animation: .5s ease-in-out .2s forwards bunnyAppear;
 }
-.bunny:nth-last-of-type(4) {
-    top: 20%;
-    left: 30%;
-}
-.bunny:nth-last-of-type(5) {
-    top: 50%;
-    left: 60%;
-}
-.bunny:nth-last-of-type(6) {
-    top: 75%;
-    left: 25%;
+
+@keyframes bunnyAppear {
+    0% {
+        opacity: 0;
+        transform: scale(.25);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.25);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }

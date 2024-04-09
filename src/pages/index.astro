@@ -42,9 +42,7 @@ import Layout from '../layouts/Layout.astro';
 			<img id="sun" src="/sun.svg" alt="Line illustration of a sun."/>
 			<p id="tap-farm-msg">Tap the farm !</p>
 			<button id="tap-farm-button">tap here</button>
-			<div id="bunny-pen">
-				<-- <img class="bunny" src="/bunnyBlue.svg" alt="blue bunny"/> -->
-			</div>
+			<div id="bunny-pen"></div>
 		</section>
 		<section id="main-menu" class="main-menu">
 			<nav id="main-navigation">
@@ -122,3 +120,59 @@ import Layout from '../layouts/Layout.astro';
 		z-index: 0;
 	}
 </style>
+<script>
+	const date = new Date();
+	const dateOptions = {weekday: "long"};
+	let todayweekday = new Intl.DateTimeFormat("en-US",dateOptions).format(date);
+	const tapFarmMsg = document.querySelector('#tap-farm-msg');
+	const tapFarmButton = document.querySelector('#tap-farm-button');
+
+	let totalBunnies = 3;
+
+	function onSaturday() {
+    	if (todayweekday == 'Tuesday') {
+        	tapFarmMsg.style.display = "inline";
+        	tapFarmButton.style.display = "inline";
+        	console.log('its Tuesday')
+    	}
+    	else {
+        	console.log('no');
+    	}
+	}
+
+	onSaturday();
+
+	const bunnyPen = document.querySelector("#bunny-pen");
+
+	tapFarmButton.addEventListener('click',makeBunnies);
+
+	function bunnyRush() {
+    	console.log('tapped the farm');
+	}
+
+	function makeBunnies() {
+    	console.log('making bunnies');
+    	for (i=0; i<totalBunnies; i++) {
+        	makeBunny(i);
+    	}
+    	tapFarmMsg.style.display = "none";
+    	tapFarmButton.style.display = "none";
+	}
+
+	function makeBunny(i) {
+    	setTimeout (function() {
+        	const bunny = document.createElement("img");
+        	bunny.src = "bunnyBlue.svg";
+        	bunny.classList.add("bunnyAppear");
+        	bunnyPen.appendChild(bunny);
+    	},500*i);
+	}
+
+
+
+	bunnyPen.addEventListener('click',randomBunnyAnimation);
+
+	function randomBunnyAnimation(e) {
+		console.log('bunny clicked ' + e.target);
+	}
+</script>

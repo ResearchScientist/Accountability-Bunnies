@@ -122,7 +122,7 @@ import Layout from '../layouts/Layout.astro';
 </style>
 <script>
 	const date = new Date();
-	const dateOptions = {weekday: "long"};
+	const dateOptions = {weekday: "long" as const};
 	let todayweekday = new Intl.DateTimeFormat("en-US",dateOptions).format(date);
 	const tapFarmMsg = document.querySelector('#tap-farm-msg') as HTMLElement;
 	const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;

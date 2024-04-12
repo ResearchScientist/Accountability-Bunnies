@@ -9,12 +9,12 @@ export default async function seed() {
         {
             id: 1,
             description: 'eat a cookie',
-            completed: true
+            completed: true,
         },
         {
             id: 2,
             description: 'hug a bear',
-            completed: false
-        },
+            completed: false,
+        }
     ])
 }

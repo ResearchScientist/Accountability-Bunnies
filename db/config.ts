@@ -16,11 +16,11 @@ const Goals = defineTable({
         id: column.number({ primaryKey: true }),
         description: column.text({ optional: false }),
         completed: column.boolean({ default: false }),
-        user: column.number({ references: () => Users.columns.id }),
+        // user: column.number({ references: () => Users.columns.id }),
     }
 });
 
 export default defineDb({
-  // tables: { Goals }
-  tables: { Users, Goals }
+  tables: { Goals }
+//   tables: { Users, Goals }
 });

@@ -1,4 +1,4 @@
-import { db, Users, Goals } from 'astro:db';
+import { db, Goals } from 'astro:db';
 
 // Resources
 // https://astro.build/db/seed

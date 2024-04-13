@@ -142,13 +142,14 @@ const goalsDB = await db.select().from(Goals);
 	let totalBunnies = 3;
 
 	function onSaturday() {
-    	if (todayweekday == 'Tuesday') {
+    	if (todayweekday == 'Friday') {
         	tapFarmMsg.style.display = "inline";
         	tapFarmButton.style.display = "inline";
-        	console.log('its Tuesday')
     	}
     	else {
-        	console.log('no');
+			tapFarmMsg.style.display = "none";
+        	tapFarmButton.style.display = "none";
+        	console.log('tap the farm on Saturday');
     	}
 	}
 

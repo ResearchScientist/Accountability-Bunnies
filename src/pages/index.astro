@@ -139,7 +139,7 @@ const goalsDB = await db.select().from(Goals);
 	const tapFarmMsg = document.querySelector('#tap-farm-msg') as HTMLElement;
 	const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;
 
-	let totalBunnies = 4;
+	let totalBunnies: number = 4;
 
 	function onSaturday() {
     	if (todayweekday == 'Friday') {
@@ -159,13 +159,13 @@ const goalsDB = await db.select().from(Goals);
 
 	tapFarmButton.addEventListener('click',makeBunnies);
 
-	function bunnyRush() {
-    	console.log('tapped the farm');
-	}
+	// function bunnyRush() {
+    // 	console.log('tapped the farm');
+	// }
 
 	function makeBunnies() {
     	console.log('making bunnies');
-    	for (let i=0; i<totalBunnies; i++) {
+    	for (let i: number=0; i<totalBunnies; i++) {
         	makeBunny(i);
     	}
     	tapFarmMsg.style.display = "none";

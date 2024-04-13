@@ -139,7 +139,7 @@ const goalsDB = await db.select().from(Goals);
 	const tapFarmMsg = document.querySelector('#tap-farm-msg') as HTMLElement;
 	const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;
 
-	let totalBunnies = 3;
+	let totalBunnies = 4;
 
 	function onSaturday() {
     	if (todayweekday == 'Friday') {
@@ -172,13 +172,18 @@ const goalsDB = await db.select().from(Goals);
     	tapFarmButton.style.display = "none";
 	}
 
+	const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg"];
+	let bunnyArray = [];
+
 	function makeBunny(i) {
     	setTimeout (function() {
         	const bunny = document.createElement("img");
-        	bunny.src = "bunnyBlue.svg";
+        	bunny.src = bunnyColours[i % bunnyColours.length];
         	bunny.classList.add("bunnyAppear");
         	bunnyPen.appendChild(bunny);
-    	},500*i);
+			bunnyArray.push(bunny);
+    	},400*i);
+		console.log(bunnyArray);
 	}
 
 

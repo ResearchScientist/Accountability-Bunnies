@@ -5,4 +5,5 @@ import db from "@astrojs/db";
 // https://astro.build/config
 export default defineConfig({
   integrations: [db()]
+  // output: 'hybrid'
 });

@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { db, Goals } from 'astro:db';
+
+const goalsDB = await db.select().from(Goals);
 ---
 
 <Layout title="Accountability Bunnies">
@@ -35,6 +38,15 @@ import Layout from '../layouts/Layout.astro';
                     <div class="goal-text">make more copies to send out</div>
                     <button id="delete-goal-button" >x</button>
                 </div>
+				{
+					goalsDB.map(({ description }) => (
+						<div class="goal-item">
+							<img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
+                    		<div class="goal-text">{description}</div>
+                    		<button id="delete-goal-button" >x</button>
+						</div>
+					))
+				}
             </div>
 		</section>
 		<section id="bunny-farm" class="nav-section">
@@ -127,16 +139,17 @@ import Layout from '../layouts/Layout.astro';
 	const tapFarmMsg = document.querySelector('#tap-farm-msg') as HTMLElement;
 	const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;
 
-	let totalBunnies = 3;
+	let totalBunnies = 4;
 
 	function onSaturday() {
-    	if (todayweekday == 'Tuesday') {
+    	if (todayweekday == 'Friday') {
         	tapFarmMsg.style.display = "inline";
         	tapFarmButton.style.display = "inline";
-        	console.log('its Tuesday')
     	}
     	else {
-        	console.log('no');
+			tapFarmMsg.style.display = "none";
+        	tapFarmButton.style.display = "none";
+        	console.log('tap the farm on Saturday');
     	}
 	}
 
@@ -159,13 +172,18 @@ import Layout from '../layouts/Layout.astro';
     	tapFarmButton.style.display = "none";
 	}
 
+	const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg"];
+	let bunnyArray = [];
+
 	function makeBunny(i) {
     	setTimeout (function() {
         	const bunny = document.createElement("img");
-        	bunny.src = "bunnyBlue.svg";
+        	bunny.src = bunnyColours[i % bunnyColours.length];
         	bunny.classList.add("bunnyAppear");
         	bunnyPen.appendChild(bunny);
-    	},500*i);
+			bunnyArray.push(bunny);
+    	},400*i);
+		console.log(bunnyArray);
 	}
 
 

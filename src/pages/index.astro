@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import { db, Goals } from 'astro:db';
+// import { db, Goals } from 'astro:db';
 
-const goalsDB = await db.select().from(Goals);
+// const goalsDB = await db.select().from(Goals);
 ---
 
 <Layout title="Accountability Bunnies">
@@ -38,7 +38,7 @@ const goalsDB = await db.select().from(Goals);
                     <div class="goal-text">make more copies to send out</div>
                     <button id="delete-goal-button" >x</button>
                 </div>
-				{
+				<!-- {
 					goalsDB.map(({ description }) => (
 						<div class="goal-item">
 							<img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
@@ -46,7 +46,7 @@ const goalsDB = await db.select().from(Goals);
                     		<button id="delete-goal-button" >x</button>
 						</div>
 					))
-				}
+				} -->
             </div>
 		</section>
 		<section id="bunny-farm" class="nav-section">

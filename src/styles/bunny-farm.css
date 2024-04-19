@@ -28,8 +28,9 @@
 .bunny {
     width: 58px;
     position: absolute;
-    top: 0;
-    left: 0;
+    transform-origin: center bottom;
+    opacity: 1;
+    pointer-events: auto;
 }
 
 #tap-farm-button {
@@ -62,8 +63,7 @@
 
 .bunnyAppear {
     opacity: 0;
-    margin: 100px 0 0;
-    animation: .5s ease-in-out .2s forwards bunnyAppear;
+    animation: .3s ease-in-out .25s forwards bunnyAppear;
 }
 
 @keyframes bunnyAppear {
@@ -71,7 +71,7 @@
         opacity: 0;
         transform: scale(.25);
     }
-    50% {
+    30% {
         opacity: 1;
         transform: scale(1.25);
     }
@@ -79,4 +79,30 @@
         opacity: 1;
         transform: scale(1);
     }
+}
+
+.bunnyHop {
+    animation: .4s ease-in forwards bunnyHop;
+}
+
+@keyframes bunnyHop {
+    0% {opacity: 1; transform: translate(0px,10px) scale(1,0.5);}
+    25% {opacity: 1; transform: translate(0px,10px) scale(1.5,0.25);}
+	50% {opacity: 1; transform: translate(0px,-50px) scale(0.5,1.5);}
+    90% {opacity: 1; transform: translate(0px,0px) scale(1.1,0.8);}
+	100% {opacity: 1; transform: translate(0px,0px) scale(1,1);}
+}
+
+.bunnyLeft {
+    animation: .4s ease-in-out forwards bunnyLeft;
+}
+
+@keyframes bunnyLeft {
+    0% {opacity: 1; transform: translate(0px,0px);}
+    50% {opacity: 1; transform: translate(-50px,0px);}
+    100% {opacity: 1; transform: translate(-50px,0px);}
+}
+
+.bunnyRight {
+    animation: .4s ease-in-out forwards bunnyRight;
 }

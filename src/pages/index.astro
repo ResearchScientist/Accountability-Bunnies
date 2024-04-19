@@ -13,7 +13,7 @@ import Layout from '../layouts/Layout.astro';
 				<h2>Ideal Scenario</h2>
             	<p class="check-ins-content">Imagine your ultimate goal. The location, the people, your role. Close your eyes and imagine the tastes and smells surrounding you. The temperature. The feeling of the air on your skin. And the feeling of the things you are touching. Imagine how you feel. Write it all down.</p>
                 <p class="check-ins-content">Keep it somewhere where you can easily find it, like a note on your night stand, or hidden between your matresses, or pinned up inside your closet. Find a place where you can easily glance at it when you feel overwhelmed and close your eyes.</p>
-                <p class="check-ins-content">Check in with it daily or as often as you want or not at all. It's all for you. So do whatever you want.</p>
+                <p class="check-ins-content">Check in with it daily or as often as you want or not at all. I don't care do whatever you want.</p>
             	<h2>Weekly</h2>
             	<p class="check-ins-content">Each Saturday at 7pm send a text saying if goal was met and if not, why.</p>
             	<h2>Monthly</h2>
@@ -132,28 +132,11 @@ import Layout from '../layouts/Layout.astro';
 		z-index: 0;
 	}
 </style>
+<script src="../scripts/bunny-count.ts"></script>
 <script>
-	const date = new Date();
-	const dateOptions = {weekday: "long" as const};
-	let todayweekday = new Intl.DateTimeFormat("en-US",dateOptions).format(date);
-	const tapFarmMsg = document.querySelector('#tap-farm-msg') as HTMLElement;
-	const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;
+	
 
-	let totalBunnies: number = 4;
-
-	function onSaturday() {
-    	if (todayweekday == 'Friday') {
-        	tapFarmMsg.style.display = "inline";
-        	tapFarmButton.style.display = "inline";
-    	}
-    	else {
-			tapFarmMsg.style.display = "none";
-        	tapFarmButton.style.display = "none";
-        	console.log('tap the farm on Saturday');
-    	}
-	}
-
-	onSaturday();
+	
 
 	const bunnyPen = document.querySelector("#bunny-pen");
 

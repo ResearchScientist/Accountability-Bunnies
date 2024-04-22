@@ -31,20 +31,20 @@ import Layout from '../layouts/Layout.astro';
                 <li class="goal-item">
                     <img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
                     <div class="goal-text">apply to crc positions</div>
-                    <button id="delete-goal-button" type="button">x</button>
+                    <button id="delete-goal-button" class="delete-goal-button" type="button">x</button>
 				</li>
                 <li class="goal-item">
                     <img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
                     <div class="goal-text">make more copies to send out</div>
-                    <button id="delete-goal-button" >x</button>
+                    <button id="delete-goal-button" class="delete-goal-button" type="button">x</button>
 				</li>
 				<!-- {
 					goalsDB.map(({ description }) => (
-						<div class="goal-item">
+						<li class="goal-item">
 							<img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
                     		<div class="goal-text">{description}</div>
-                    		<button id="delete-goal-button" >x</button>
-						</div>
+                    		<button id="delete-goal-button">x</button>
+						</li>
 					))
 				} -->
             </ul>

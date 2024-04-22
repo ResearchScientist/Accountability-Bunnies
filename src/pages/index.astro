@@ -74,64 +74,6 @@ import Layout from '../layouts/Layout.astro';
 		<button id="show-menu-button">menu</button>
 	</main>
 </Layout>
-
-<style>
-	section {
-		width: 100%;
-		height: 100%;
-		grid-column: 1/-1;
-		grid-row: 1/-1;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		transform: translateY(0dvh);
-		transition: transform .75s ease-in-out;
-		background-color: var(--background-colour);
-		box-shadow: 0px 0px 20px rgba(0,0,0,.5);
-		z-index: 0;
-	}
-	.splash-screen {
-		display: grid;
-		grid-template-columns: 1fr;
-		grid-template-rows: 15dvh minmax(50px,10dvh) 40dvh 1fr;
-		justify-items: center;
-		align-items: center;
-		transform: translateY(0dvh);
-		z-index: 4;
-	}
-	.main-menu {
-		z-index: 3;
-	}
-	.main-menu nav {
-		height: 250px;
-		display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-		align-items: center;
-	}
-	.main-menu nav button:nth-of-type(1) {
-		width: 130px;
-	}
-	.main-menu nav button:nth-of-type(2) {
-		width: 80px;
-	}
-	.main-menu nav button:nth-of-type(3) {
-		width: 164px;
-	}
-	#show-menu-button {
-		margin: 10px 10px 0 0;
-		width: 100px;
-		height: 50px;
-		grid-column: 1/-1;
-		grid-row: 1/-1;
-		align-self: flex-start;
-		justify-self: flex-end;
-		font-size: 24px;
-		z-index: 2;
-	}
-	.reset-z-index {
-		z-index: 0;
-	}
-</style>
+<script src="../scripts/navigation.ts"></script>
+<script src="../scripts/goals.ts"></script>
 <script src="../scripts/bunny-count.ts"></script>

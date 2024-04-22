@@ -3,10 +3,21 @@ const dateOptions = {weekday: "long" as const};
 let todayweekday = new Intl.DateTimeFormat("en-US",dateOptions).format(date);
 const sun = document.querySelector('#sun') as HTMLElement;
 const tapFarmMsg = document.querySelector('#tap-farm-msg') as HTMLElement;
-const dontTapFarmMsg = document.querySelector('#dont-tap-farm-msg') as HTMLElement;
 const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;
+const dontTapFarmMsg = document.querySelector('#dont-tap-farm-msg') as HTMLElement;
+const dontTapFarmButton = document.querySelector('#dont-tap-farm-button') as HTMLElement;
+const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyPink.svg","bunnyLightBlue.svg","bunnyRed.svg","bunnyYellow.svg","bunnyLightOrange.svg"];
+const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
+
+let bunnyArray = [];
+let tasksCompleted: number = 5;
+let totalBunnies: number = 0;
+
 
 sun.addEventListener('click',sunSpin);
+tapFarmButton.addEventListener('click',makeBunnies);
+dontTapFarmButton.addEventListener('click',dontTapTheFarm);
+bunnyPen.addEventListener('click',randomBunnyAnimation);
 
 function sunSpin() {
     sun.classList.add("sunSpin");
@@ -15,25 +26,39 @@ function sunSpin() {
     };
 }
 
-let tasksCompleted: number = 5;
-let totalBunnies: number = 0;
-
 function onSaturday() {
-    if (todayweekday == 'Sunday') {
+    if (todayweekday == 'Saturday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
-		console.log('its Saturday');
 	}
 	else {
 		tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
         dontTapFarmMsg.style.display = "inline";
+        dontTapFarmButton.style.display = "inline";
 	}
 }
 
 onSaturday();
 
-tapFarmButton.addEventListener('click',makeBunnies);
+let taps = 0;
+function dontTapTheFarm() {
+    const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
+    taps++;
+    if (taps == 1) {
+        dontTapFarmMsg.textContent = "It's not Saturday !";
+    }
+    else if (taps == 4) {
+        dontTapFarmMsg.textContent = "no mas";
+        dontTapFarmButton.style.display = "none";
+        setTimeout (function() {
+            dontTapFarmMsg.style.display = "none";
+        },2000);
+    }
+    else {
+        dontTapFarmMsg.textContent = dontTapFarmMsgsArray[Math.floor(Math.random() * dontTapFarmMsgsArray.length)];
+    }
+}
 
 function makeBunnies() {
 	console.log('making bunnies');
@@ -44,9 +69,6 @@ function makeBunnies() {
 	tapFarmMsg.style.display = "none";
 	tapFarmButton.style.display = "none";
 }
-
-const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyPink.svg","bunnyLightBlue.svg","bunnyRed.svg","bunnyYellow.svg","bunnyLightOrange.svg"];
-let bunnyArray = [];
 
 function makeBunny(i) {
 	setTimeout (function() {
@@ -69,10 +91,6 @@ function addIds(bunnyArray) {
     });
     console.log(bunnyArray);
 }
-
-const bunnyPen = document.querySelector("#bunny-pen");
-
-bunnyPen.addEventListener('click',randomBunnyAnimation);
 
 function randomBunnyAnimation(e) {
 	const bunnyAnimationArray = ["bunnyHop","bunnyLeft","bunnyRight"];

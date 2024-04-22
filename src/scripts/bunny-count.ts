@@ -1,14 +1,25 @@
 const date = new Date();
 const dateOptions = {weekday: "long" as const};
 let todayweekday = new Intl.DateTimeFormat("en-US",dateOptions).format(date);
+const sun = document.querySelector('#sun') as HTMLElement;
 const tapFarmMsg = document.querySelector('#tap-farm-msg') as HTMLElement;
+const dontTapFarmMsg = document.querySelector('#dont-tap-farm-msg') as HTMLElement;
 const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;
+
+sun.addEventListener('click',sunSpin);
+
+function sunSpin() {
+    sun.classList.add("sunSpin");
+    sun.onanimationend = () => {
+        sun.classList.remove("sunSpin");
+    };
+}
 
 let tasksCompleted: number = 5;
 let totalBunnies: number = 0;
 
 function onSaturday() {
-    if (todayweekday == 'Friday') {
+    if (todayweekday == 'Sunday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 		console.log('its Saturday');
@@ -16,6 +27,7 @@ function onSaturday() {
 	else {
 		tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
+        dontTapFarmMsg.style.display = "inline";
 	}
 }
 

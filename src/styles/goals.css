@@ -52,7 +52,7 @@ input {
     border: 2px solid gray;
 }
 
-#delete-goal-button {
+.delete-goal-button {
     width: 15px;
     height: 15px;
     justify-self: flex-end;

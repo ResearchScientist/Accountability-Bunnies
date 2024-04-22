@@ -5,6 +5,8 @@ interface Props {
 
 const { title } = Astro.props;
 import "../styles/global.css";
+import "../styles/splash-screen.css";
+import "../styles/navigation.css";
 import "../styles/check-ins.css";
 import "../styles/goals.css";
 import "../styles/bunny-farm.css";
@@ -29,74 +31,3 @@ import "../styles/bunny-farm.css";
 		</main>
 	</body>
 </html>
-<style is:global>
-	.text-accent {
-		color: var(--main-colour);
-	}
-	#app-title {
-		grid-column: 1/-1;
-		grid-row: 1;
-		font-size: 40px;
-		font-family: "Alfa Slab One", serif;
-  		font-weight: 400;
-  		font-style: normal;
-	}
-	#app-sub-title {
-		grid-column: 1/-1;
-		grid-row: 2;
-		font-size: 64px;
-  		font-family: "Annie Use Your Telescope", cursive;
-  		font-weight: 400;
-  		font-style: normal;
-	}
-	#bunny-face {
-		width: 100px;
-		grid-column: 1/-1;
-		grid-row: 3;
-	}
-	#lets-go-button {
-		grid-column: 1/-1;
-		grid-row: 4;
-		width: 80px;
-		height: 30px;
-		margin: -50px 0 0;
-		padding: 2px 10px;
-		font-size: 18px;
-		font-family: "Life Savers", cursive;
-		font-weight: 800;
-  		font-style: normal;
-		text-align: center;
-		border: solid 1px black;
-		border-radius: 12px;
-	}
-</style>
-<script>
-	const mainNavigation = document.querySelector('#main-navigation');
-	const showMenuButton = document.querySelector('#show-menu-button');
-	const letsGoButton = document.querySelector('#lets-go-button');
-	const splashScreen = document.querySelector('#splash-screen') as HTMLElement;
-	const mainMenu = document.querySelector('#main-menu') as HTMLElement;
-	const sections = document.querySelectorAll<HTMLElement>('.nav-section');
-
-	mainNavigation.addEventListener('click',transitionSection);
-	showMenuButton.addEventListener('click',showMenu);
-	letsGoButton.addEventListener('click',moveSplash);
-
-	function transitionSection(e) {
-		sections.forEach ((section) => {
-			section.style.zIndex="0";
-		});
-		let sectionClicked = (e.target.dataset.menu);
-		let activeSection = document.querySelector(`#${sectionClicked}`) as HTMLElement;
-		activeSection.style.zIndex="1";
-		mainMenu.style.transform="translateY(-102dvh)";
-	}
-
-	function showMenu() {
-		mainMenu.style.transform="translateY(0dvh)";
-	}
-
-	function moveSplash() {
-		splashScreen.style.transform="translateY(-102dvh)";
-	}
-</script>

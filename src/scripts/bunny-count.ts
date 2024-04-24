@@ -6,6 +6,7 @@ const tapFarmMsg = document.querySelector('#tap-farm-msg') as HTMLElement;
 const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;
 const dontTapFarmMsg = document.querySelector('#dont-tap-farm-msg') as HTMLElement;
 const dontTapFarmButton = document.querySelector('#dont-tap-farm-button') as HTMLElement;
+const countingBunniesMsg = document.querySelector('#counting-bunnies-msg') as HTMLElement;
 const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyPink.svg","bunnyLightBlue.svg","bunnyRed.svg","bunnyYellow.svg","bunnyLightOrange.svg"];
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 
@@ -61,7 +62,9 @@ function dontTapTheFarm() {
 }
 
 function countBunnies() {
-    console.log('counting bunnies');
+    console.log(`counting ${tasksCompleted} bunnies`);
+    countingBunniesMsg.textContent = `${tasksCompleted}`;
+    countingBunniesMsg.style.display = "inline";
     makeBunnies();
 }
 

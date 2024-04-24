@@ -10,12 +10,12 @@ const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyP
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 
 let bunnyArray = [];
-let tasksCompleted: number = 5;
+let tasksCompleted: number = 1;
 let totalBunnies: number = 0;
 
 
 sun.addEventListener('click',sunSpin);
-tapFarmButton.addEventListener('click',makeBunnies);
+tapFarmButton.addEventListener('click',countBunnies);
 dontTapFarmButton.addEventListener('click',dontTapTheFarm);
 bunnyPen.addEventListener('click',randomBunnyAnimation);
 
@@ -27,7 +27,7 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Saturday') {
+    if (todayweekday == 'Wednesday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
@@ -58,6 +58,11 @@ function dontTapTheFarm() {
     else {
         dontTapFarmMsg.textContent = dontTapFarmMsgsArray[Math.floor(Math.random() * dontTapFarmMsgsArray.length)];
     }
+}
+
+function countBunnies() {
+    console.log('counting bunnies');
+    makeBunnies();
 }
 
 function makeBunnies() {

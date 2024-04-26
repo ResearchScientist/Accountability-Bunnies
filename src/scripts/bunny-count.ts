@@ -14,7 +14,6 @@ let bunnyArray = [];
 let tasksCompleted: number = 1;
 let totalBunnies: number = 0;
 
-
 sun.addEventListener('click',sunSpin);
 tapFarmButton.addEventListener('click',countBunnies);
 dontTapFarmButton.addEventListener('click',dontTapTheFarm);
@@ -28,7 +27,7 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Wednesday') {
+    if (todayweekday == 'Thursday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
@@ -63,9 +62,14 @@ function dontTapTheFarm() {
 
 function countBunnies() {
     console.log(`counting ${tasksCompleted} bunnies`);
-    countingBunniesMsg.textContent = `${tasksCompleted}`;
+    tapFarmMsg.style.display = "none";
+	tapFarmButton.style.display = "none";
     countingBunniesMsg.style.display = "inline";
-    makeBunnies();
+    tapFarmButton.removeEventListener('click',countBunnies);
+    setTimeout (function() {
+        countingBunniesMsg.textContent = `counting bunnies`;
+    },200);
+    setTimeout(makeBunnies,2000);
 }
 
 function makeBunnies() {
@@ -73,9 +77,7 @@ function makeBunnies() {
 	for (let i: number=0; i<tasksCompleted; i++) {
 		makeBunny(i);
 	}
-	tapFarmButton.removeEventListener('click',makeBunnies);
-	tapFarmMsg.style.display = "none";
-	tapFarmButton.style.display = "none";
+	
 }
 
 function makeBunny(i) {

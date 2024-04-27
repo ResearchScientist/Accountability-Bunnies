@@ -10,6 +10,8 @@ const countingBunniesMsg = document.querySelector('#counting-bunnies-msg') as HT
 const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyPink.svg","bunnyLightBlue.svg","bunnyRed.svg","bunnyYellow.svg","bunnyLightOrange.svg"];
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 
+const countingGoalsMsgArray = ['querying database','gathering goals','parsing goals','counting completed goals','finding bunnies'];
+
 let bunnyArray = [];
 let tasksCompleted: number = 1;
 let totalBunnies: number = 0;
@@ -27,7 +29,7 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Thursday') {
+    if (todayweekday == 'Friday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
@@ -61,23 +63,31 @@ function dontTapTheFarm() {
 }
 
 function countBunnies() {
-    console.log(`counting ${tasksCompleted} bunnies`);
+    // console.log(`counting ${tasksCompleted} bunnies`);
     tapFarmMsg.style.display = "none";
 	tapFarmButton.style.display = "none";
     countingBunniesMsg.style.display = "inline";
     tapFarmButton.removeEventListener('click',countBunnies);
     setTimeout (function() {
-        countingBunniesMsg.textContent = `counting bunnies`;
+        // console.log(countingGoalsArray);
+        countingGoalsMsgArray.forEach(goalMsg => {
+            // console.log(goalMsg);
+            countingBunniesMsg.textContent = `${goalMsg}`;
+        });
+        // countingBunniesMsg.textContent = `counting bunnies`;
     },200);
     setTimeout(makeBunnies,2000);
 }
+
+// function countingGoals() {
+
+// }
 
 function makeBunnies() {
 	console.log('making bunnies');
 	for (let i: number=0; i<tasksCompleted; i++) {
 		makeBunny(i);
 	}
-	
 }
 
 function makeBunny(i) {
@@ -99,7 +109,7 @@ function addIds(bunnyArray) {
     bunnyArray.forEach((bunnyObject,i) => {
         bunnyObject.setAttribute('id',`bunny${i+1}`);
     });
-    console.log(bunnyArray);
+    // console.log(bunnyArray);
 }
 
 function randomBunnyAnimation(e) {

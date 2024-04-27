@@ -9,12 +9,16 @@ const dontTapFarmButton = document.querySelector('#dont-tap-farm-button') as HTM
 const countingBunniesMsg = document.querySelector('#counting-bunnies-msg') as HTMLElement;
 const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyPink.svg","bunnyLightBlue.svg","bunnyRed.svg","bunnyYellow.svg","bunnyLightOrange.svg"];
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
+const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','finding bunnies'];
 
-const countingGoalsMsgArray = ['querying database','gathering goals','parsing goals','counting completed goals','finding bunnies'];
+let taps = 0;
+let processGoals;
+let processingMsgCount = 0;
 
 let bunnyArray = [];
 let tasksCompleted: number = 1;
 let totalBunnies: number = 0;
+
 
 sun.addEventListener('click',sunSpin);
 tapFarmButton.addEventListener('click',countBunnies);
@@ -43,7 +47,6 @@ function onSaturday() {
 
 onSaturday();
 
-let taps = 0;
 function dontTapTheFarm() {
     const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
     taps++;
@@ -63,25 +66,36 @@ function dontTapTheFarm() {
 }
 
 function countBunnies() {
-    // console.log(`counting ${tasksCompleted} bunnies`);
     tapFarmMsg.style.display = "none";
 	tapFarmButton.style.display = "none";
     countingBunniesMsg.style.display = "inline";
+    countingBunniesMsg.style.margin = "0 0 0";
+    countingBunniesMsg.style.color = "black";
+    countingBunniesMsg.style.fontFamily = "Pavanam";
+    countingBunniesMsg.style.fontSize = "16px";
     tapFarmButton.removeEventListener('click',countBunnies);
+    console.log((Math.random() * (2000 - 200) + 200));
+    // processGoals = setInterval(processingGoals,(Math.random() * (2000 - 200) + 200));
+    processGoals = setInterval(processingGoals,300);
     setTimeout (function() {
-        // console.log(countingGoalsArray);
-        countingGoalsMsgArray.forEach(goalMsg => {
-            // console.log(goalMsg);
-            countingBunniesMsg.textContent = `${goalMsg}`;
-        });
-        // countingBunniesMsg.textContent = `counting bunnies`;
+            countingBunniesMsg.textContent = 'querying database';
     },200);
     setTimeout(makeBunnies,2000);
 }
 
-// function countingGoals() {
 
-// }
+function processingGoals() {
+    if (processingMsgCount < countingGoalsMsgArray.length) {
+        countingBunniesMsg.textContent = countingGoalsMsgArray[processingMsgCount];
+        console.log('processing');
+        processingMsgCount++;
+    }
+    else {
+        countingBunniesMsg.textContent = '';
+        console.log('all done');
+        clearInterval(processGoals);
+    }
+}
 
 function makeBunnies() {
 	console.log('making bunnies');
@@ -109,7 +123,6 @@ function addIds(bunnyArray) {
     bunnyArray.forEach((bunnyObject,i) => {
         bunnyObject.setAttribute('id',`bunny${i+1}`);
     });
-    // console.log(bunnyArray);
 }
 
 function randomBunnyAnimation(e) {
@@ -122,7 +135,6 @@ function randomBunnyAnimation(e) {
     let boxy = e.target.offsetLeft;
     console.log(boxy);
     console.log(imHere);
-    // e.target.style.transform = 'translate(50px,0px)';
     e.target.onanimationend = () => {
         e.target.classList.remove("bunnyAppear","bunnyHop","bunnyLeft","bunnyRight");
     };

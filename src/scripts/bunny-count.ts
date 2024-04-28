@@ -11,13 +11,14 @@ const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyP
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
 const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','finding bunnies'];
-const oneBunnyMsg = ["Yay! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?","How do you say bunny in Spansish? Bunnito."];
+const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?","How do you say bunny in Spansish? Bunnito."];
+let tasksCompleted: number = 5;
+const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
 
 let taps = 0;
 let processGoals;
 let processingMsgCount = 0;
 let bunnyArray = [];
-let tasksCompleted: number = 2;
 let totalBunnies: number = 0;
 
 sun.addEventListener('click',sunSpin);
@@ -99,8 +100,16 @@ function bunnyAnnouncement() {
     countingBunniesMsg.style.margin = "0 0 -4px";
     countingBunniesMsg.style.fontSize = "20px";
     countingBunniesMsg.style.fontFamily = "Annie Use Your Telescope";
-    countingBunniesMsg.textContent = oneBunnyMsg[Math.floor(Math.random() * oneBunnyMsg.length)];
-    setTimeout(makeBunnies,400);
+    if (tasksCompleted == 0) {
+        countingBunniesMsg.textContent = 'aww, no bunnies';
+    }
+    else if (tasksCompleted == 1) {
+        countingBunniesMsg.textContent = oneBunnyMsg[Math.floor(Math.random() * oneBunnyMsg.length)];
+    }
+    else {
+        countingBunniesMsg.textContent = manyBunnyMsg[Math.floor(Math.random() * manyBunnyMsg.length)];
+    }
+    setTimeout(makeBunnies,500);
 }
 
 function makeBunnies() {

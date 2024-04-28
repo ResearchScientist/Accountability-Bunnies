@@ -140,15 +140,14 @@ function addIds(bunnyArray) {
 }
 
 function randomBunnyAnimation(e) {
-	const bunnyAnimationArray = ["bunnyHop","bunnyLeft","bunnyRight"];
-    // console.log(e.target.classList);
-    let animationIndex = Math.floor(Math.random()*3);
-    let randomAnimation = bunnyAnimationArray[animationIndex];
+	// const bunnyAnimationArray = ["bunnyHop","bunnyLeft","bunnyRight"];
+    // let animationIndex = Math.floor(Math.random()*3);
+    // let randomAnimation = bunnyAnimationArray[animationIndex];
     e.target.classList.add("bunnyHop");
-    let imHere = e.target.getBoundingClientRect();
-    let boxy = e.target.offsetLeft;
-    console.log(boxy);
-    console.log(imHere);
+    // let imHere = e.target.getBoundingClientRect();
+    // let boxy = e.target.offsetLeft;
+    // console.log(boxy);
+    // console.log(imHere);
     e.target.onanimationend = () => {
         e.target.classList.remove("bunnyAppear","bunnyHop","bunnyLeft","bunnyRight");
     };

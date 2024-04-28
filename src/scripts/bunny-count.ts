@@ -14,9 +14,8 @@ const countingGoalsMsgArray = ['parsing goals','gathering goals','counting compl
 let taps = 0;
 let processGoals;
 let processingMsgCount = 0;
-
 let bunnyArray = [];
-let tasksCompleted: number = 1;
+let tasksCompleted: number = 2;
 let totalBunnies: number = 0;
 
 
@@ -33,7 +32,7 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Friday') {
+    if (todayweekday == 'Saturday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
@@ -72,7 +71,7 @@ function countBunnies() {
     countingBunniesMsg.style.margin = "0 0 0";
     countingBunniesMsg.style.color = "black";
     countingBunniesMsg.style.fontFamily = "Pavanam";
-    countingBunniesMsg.style.fontSize = "16px";
+    countingBunniesMsg.style.fontSize = "14px";
     tapFarmButton.removeEventListener('click',countBunnies);
     console.log((Math.random() * (2000 - 200) + 200));
     // processGoals = setInterval(processingGoals,(Math.random() * (2000 - 200) + 200));
@@ -80,9 +79,7 @@ function countBunnies() {
     setTimeout (function() {
             countingBunniesMsg.textContent = 'querying database';
     },200);
-    setTimeout(makeBunnies,2000);
 }
-
 
 function processingGoals() {
     if (processingMsgCount < countingGoalsMsgArray.length) {
@@ -94,11 +91,20 @@ function processingGoals() {
         countingBunniesMsg.textContent = '';
         console.log('all done');
         clearInterval(processGoals);
+        setTimeout(bunnyAnnouncement,500);
     }
 }
 
+function bunnyAnnouncement() {
+    countingBunniesMsg.style.margin = "0 0 -4px";
+    countingBunniesMsg.style.fontSize = "20px";
+    countingBunniesMsg.style.fontFamily = "Annie Use Your Telescope";
+    countingBunniesMsg.textContent = 'You got a bunny !';
+    countingBunniesMsg.textContent = 'How do you say bunny in Spanish? Bunnito.';
+    setTimeout(makeBunnies,400);
+}
+
 function makeBunnies() {
-	console.log('making bunnies');
 	for (let i: number=0; i<tasksCompleted; i++) {
 		makeBunny(i);
 	}

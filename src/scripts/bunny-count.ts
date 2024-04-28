@@ -9,7 +9,9 @@ const dontTapFarmButton = document.querySelector('#dont-tap-farm-button') as HTM
 const countingBunniesMsg = document.querySelector('#counting-bunnies-msg') as HTMLElement;
 const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyPink.svg","bunnyLightBlue.svg","bunnyRed.svg","bunnyYellow.svg","bunnyLightOrange.svg"];
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
+const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
 const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','finding bunnies'];
+const oneBunnyMsg = ["Yay! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?","How do you say bunny in Spansish? Bunnito."];
 
 let taps = 0;
 let processGoals;
@@ -18,21 +20,20 @@ let bunnyArray = [];
 let tasksCompleted: number = 2;
 let totalBunnies: number = 0;
 
-
 sun.addEventListener('click',sunSpin);
 tapFarmButton.addEventListener('click',countBunnies);
 dontTapFarmButton.addEventListener('click',dontTapTheFarm);
 bunnyPen.addEventListener('click',randomBunnyAnimation);
 
 function sunSpin() {
-    sun.classList.add("sunSpin");
-    sun.onanimationend = () => {
+        sun.classList.add("sunSpin");
+        sun.onanimationend = () => {
         sun.classList.remove("sunSpin");
     };
 }
 
 function onSaturday() {
-    if (todayweekday == 'Saturday') {
+    if (todayweekday == 'Sunday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
@@ -47,7 +48,6 @@ function onSaturday() {
 onSaturday();
 
 function dontTapTheFarm() {
-    const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
     taps++;
     if (taps == 1) {
         dontTapFarmMsg.textContent = "It's not Saturday !";
@@ -99,8 +99,7 @@ function bunnyAnnouncement() {
     countingBunniesMsg.style.margin = "0 0 -4px";
     countingBunniesMsg.style.fontSize = "20px";
     countingBunniesMsg.style.fontFamily = "Annie Use Your Telescope";
-    countingBunniesMsg.textContent = 'You got a bunny !';
-    countingBunniesMsg.textContent = 'How do you say bunny in Spanish? Bunnito.';
+    countingBunniesMsg.textContent = oneBunnyMsg[Math.floor(Math.random() * oneBunnyMsg.length)];
     setTimeout(makeBunnies,400);
 }
 

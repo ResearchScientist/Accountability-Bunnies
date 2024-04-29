@@ -11,9 +11,11 @@ const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyP
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
 const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','finding bunnies'];
-const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?","How do you say bunny in Spansish? Bunnito."];
+const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?"];
 let tasksCompleted: number = 5;
 const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
+const bunnyJokesArray = ["How do you say bunny in Spanish? Bunnito.","Why can't you hear bunnies having sex? Because they have cotton balls.","I'm having a bad hare day.","Where do bunnies go for breakfast? IHOP.","Read me a story with a hoppy ending.","Somebunny loves you.","I dance to hip hop."];
+const bunnyJokeBubble = document.querySelector('#bunny-joke-bubble');
 
 let taps = 0;
 let processGoals;
@@ -148,6 +150,7 @@ function randomBunnyAnimation(e) {
     // let boxy = e.target.offsetLeft;
     // console.log(boxy);
     // console.log(imHere);
+    bunnyJoke();
     e.target.onanimationend = () => {
         e.target.classList.remove("bunnyAppear","bunnyHop","bunnyRush","bunnyJoke");
     };
@@ -158,5 +161,8 @@ function bunnyRush() {
 }
 
 function bunnyJoke() {
-    console.log('bunny joke')
+    for (let j: number = 0; j<bunnyJokesArray.length; j++) {
+        console.log(bunnyJokesArray[j]);
+    }
+    bunnyJokeBubble.textContent = bunnyJokesArray[0];
 }

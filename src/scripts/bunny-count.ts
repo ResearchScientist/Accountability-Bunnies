@@ -34,7 +34,7 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Sunday') {
+    if (todayweekday == 'Monday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
@@ -74,7 +74,7 @@ function countBunnies() {
     countingBunniesMsg.style.fontFamily = "Pavanam";
     countingBunniesMsg.style.fontSize = "14px";
     tapFarmButton.removeEventListener('click',countBunnies);
-    console.log((Math.random() * (2000 - 200) + 200));
+    // console.log((Math.random() * (2000 - 200) + 200));
     // processGoals = setInterval(processingGoals,(Math.random() * (2000 - 200) + 200));
     processGoals = setInterval(processingGoals,300);
     setTimeout (function() {
@@ -140,7 +140,7 @@ function addIds(bunnyArray) {
 }
 
 function randomBunnyAnimation(e) {
-	// const bunnyAnimationArray = ["bunnyHop","bunnyLeft","bunnyRight"];
+	// const bunnyAnimationArray = ["bunnyHop","bunnyRush","bunnyJoke"];
     // let animationIndex = Math.floor(Math.random()*3);
     // let randomAnimation = bunnyAnimationArray[animationIndex];
     e.target.classList.add("bunnyHop");
@@ -149,10 +149,14 @@ function randomBunnyAnimation(e) {
     // console.log(boxy);
     // console.log(imHere);
     e.target.onanimationend = () => {
-        e.target.classList.remove("bunnyAppear","bunnyHop","bunnyLeft","bunnyRight");
+        e.target.classList.remove("bunnyAppear","bunnyHop","bunnyRush","bunnyJoke");
     };
 }
 
-// function bunnyRush() {
-// 	console.log('tapped the farm');
-// }
+function bunnyRush() {
+	console.log('bunny rush');
+}
+
+function bunnyJoke() {
+    console.log('bunny joke')
+}

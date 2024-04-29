@@ -4,6 +4,6 @@ import netlify from "@astrojs/netlify";
 
 export default defineConfig({
   integrations: [db()],
-  output: "server",
+  output: "static",
   adapter: netlify()
 });

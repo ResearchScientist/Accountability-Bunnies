@@ -1,8 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
-// import { db, Goals } from 'astro:db';
+import { db, Goals } from 'astro:db';
 
-// const goalsDB = await db.select().from(Goals);
+const goalsDB = await db.select().from(Goals);
 ---
 
 <Layout title="Accountability Bunnies">
@@ -28,26 +28,16 @@ import Layout from '../layouts/Layout.astro';
 				<img id="goalLine" src="goalLine.svg" alt="hand drawn line"/>
 			</form>
             <ul id="goals-section">
-                <!-- <li class="goal-item">
-                    <img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
-					<button id="complete-goal-button" class="complete-goal-button" type="button"></button>
-                    <div class="goal-text">apply to crc positions</div>
-                    <button id="delete-goal-button" class="delete-goal-button" type="button">x</button>
-				</li>
-                <li class="goal-item">
-                    <img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
-                    <div class="goal-text">make more copies to send out</div>
-                    <button id="delete-goal-button" class="delete-goal-button" type="button">x</button>
-				</li> -->
-				<!-- {
+				{
 					goalsDB.map(({ description }) => (
 						<li class="goal-item">
 							<img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
+							<button class="complete-goal-button" type="button" data-goal-complete="no"></button>
                     		<div class="goal-text">{description}</div>
-                    		<button id="delete-goal-button">x</button>
+                    		<button id="delete-goal-button" class="delete-goal-button" type="button">x</button>
 						</li>
 					))
-				} -->
+				}
             </ul>
 		</section>
 		<section id="bunny-farm" class="nav-section">

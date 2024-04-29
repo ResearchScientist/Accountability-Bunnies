@@ -1,8 +1,4 @@
-// import { defineDb, defineTable, column } from 'astro:db';
-
-// Resources //
-// https://docs.astro.build/en/guides/astro-db/
-// https://docs.astro.build/en/guides/integrations-guide/db/
+import { defineDb, defineTable, column } from 'astro:db';
 
 // const Users = defineTable({
 //   columns: {
@@ -11,16 +7,16 @@
 //   }
 // });
 
-// const Goals = defineTable({
-//     columns: {
-//         id: column.number({ primaryKey: true }),
-//         description: column.text({ optional: false }),
-//         completed: column.boolean({ default: false }),
-//         // user: column.number({ references: () => Users.columns.id }),
-//     }
-// });
+const Goals = defineTable({
+    columns: {
+        id: column.number({ primaryKey: true }),
+        description: column.text({ optional: false }),
+        completed: column.boolean({ default: false }),
+        // user: column.number({ references: () => Users.columns.id }),
+    }
+});
 
-// export default defineDb({
-//   tables: { Goals }
+export default defineDb({
+  tables: { Goals },
 //   tables: { Users, Goals }
-// });
+});

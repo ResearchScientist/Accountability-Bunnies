@@ -111,7 +111,12 @@ function bunnyAnnouncement() {
     else {
         countingBunniesMsg.textContent = manyBunnyMsg[Math.floor(Math.random() * manyBunnyMsg.length)];
     }
-    setTimeout(makeBunnies,500);
+    setTimeout(removeAnnouncement,1700);
+    setTimeout(makeBunnies,1200);
+}
+
+function removeAnnouncement() {
+    countingBunniesMsg.textContent = '';
 }
 
 function makeBunnies() {
@@ -163,4 +168,9 @@ function bunnyRush() {
 function bunnyJoke() {
     bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random()*7)];
     bunnyJokeBubble.style.display = "block";
+    setTimeout(removeJoke,4000);
+}
+
+function removeJoke() {
+    bunnyJokeBubble.style.display = "none";
 }

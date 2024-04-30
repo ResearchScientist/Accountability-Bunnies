@@ -118,23 +118,27 @@
 }
 
 .bunny-left {
-    animation: .4s ease-in-out forwards bunnyLeft;
+    animation: .8s ease-in-out forwards bunnyLeft;
 }
 
 @keyframes bunnyLeft {
-    0% {opacity: 1; transform: translate(0px,0px);}
-    50% {opacity: 1; transform: translate(-75vw,0px);}
-    100% {opacity: 1; transform: translate(0px,0px);}
+    0% {opacity: 1; transform: translate(0px,0px) rotate(0deg);}
+    2% {transform: rotate(45deg);}
+    50% {opacity: 1; transform: translate(-100vw,0px) rotate(0deg);}
+    98% {transform: rotate(-45deg);}
+    100% {opacity: 1; transform: translate(0px,0px) rotate(0deg);}
 }
 
 .bunny-right {
-    animation: .4s ease-in-out forwards bunnyRight;
+    animation: .5s ease-in-out forwards bunnyRight;
 }
 
 @keyframes bunnyRight {
-    0% {opacity: 1; transform: translate(0px,0px);}
-    50% {opacity: 1; transform: translate(75vw,0px);}
-    100% {opacity: 1; transform: translate(0px,0px);}
+    0% {opacity: 1; transform: translate(0px,0px) rotate(0deg);}
+    2% {transform: rotate(-45deg);}
+    50% {opacity: 1; transform: translate(100vw,0px) rotate(0deg);}
+    98% {transform: rotate(45deg);}
+    100% {opacity: 1; transform: translate(0px,0px) rotate(0deg);}
 }
 
 #bunny-joke-bubble {

@@ -146,29 +146,18 @@ function addIds(bunnyArray) {
 }
 
 function randomBunnyAnimation(e) {
-	// const bunnyAnimationArray = ["bunnyHop","bunnyRush","bunnyJoke"];
-    // let randomAnimation = bunnyAnimationArray[Math.floor(Math.random()*bunnyAnimationArray.length)];
     let randomAnimation = Math.random();
     if (randomAnimation <= .2) {
-        console.log('bunny joke');
         bunnyJoke();
     }
     else if (randomAnimation >= .8) {
-        console.log('bunny rush');
         bunnyRush();
     }
     else {
-        console.log('bunny hop');
         bunnyHop(e);
     }
-    
-    // let imHere = e.target.getBoundingClientRect();
-    // let boxy = e.target.offsetLeft;
-    // console.log(boxy);
-    // console.log(imHere);
-    
     e.target.onanimationend = () => {
-        e.target.classList.remove("bunnyAppear","bunnyHop","bunnyRush");
+        e.target.classList.remove("bunnyAppear","bunnyHop");
     };
 }
 
@@ -177,7 +166,7 @@ function bunnyHop(e) {
 }
 
 function bunnyJoke() {
-    bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random()*7)];
+    bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random() * bunnyJokesArray.length)];
     bunnyJokeBubble.style.display = "block";
     setTimeout(removeJoke,4000);
 }
@@ -188,18 +177,15 @@ function removeJoke() {
 
 function bunnyRush() {
     let penBunnies = document.querySelectorAll('.bunny');
-	console.log('bunny rush');
     penBunnies.forEach(penBunny => {
         if ((penBunny as HTMLElement).style.left <= "40") {
-            console.log('to the left');
             penBunny.classList.add("bunny-left");
         }
         else {
             penBunny.classList.add("bunny-right");
-            console.log('to the right');
         }
-        (penBunny as HTMLElement).onanimationend = () => {
+        setTimeout(() => {
             penBunny.classList.remove("bunny-left","bunny-right");
-        };
+        }, 1500);
     });
 }

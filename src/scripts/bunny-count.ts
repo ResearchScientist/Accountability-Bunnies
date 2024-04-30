@@ -11,9 +11,11 @@ const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyP
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
 const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','finding bunnies'];
-const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?","How do you say bunny in Spansish? Bunnito."];
+const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?"];
 let tasksCompleted: number = 5;
 const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
+const bunnyJokesArray = ["How do you say bunny in Spanish?\nBunnito.","Why can't you hear bunnies having sex?\nBecause they have cotton balls.","I'm having a bad hare day.","Where do bunnies go for breakfast?\nI H O P","Read me a story with a hoppy ending.","Somebunny loves you.","I dance to hip hop."];
+const bunnyJokeBubble = document.querySelector('#bunny-joke-bubble') as HTMLElement;
 
 let taps = 0;
 let processGoals;
@@ -109,7 +111,12 @@ function bunnyAnnouncement() {
     else {
         countingBunniesMsg.textContent = manyBunnyMsg[Math.floor(Math.random() * manyBunnyMsg.length)];
     }
-    setTimeout(makeBunnies,500);
+    setTimeout(removeAnnouncement,1700);
+    setTimeout(makeBunnies,1200);
+}
+
+function removeAnnouncement() {
+    countingBunniesMsg.textContent = '';
 }
 
 function makeBunnies() {
@@ -148,6 +155,7 @@ function randomBunnyAnimation(e) {
     // let boxy = e.target.offsetLeft;
     // console.log(boxy);
     // console.log(imHere);
+    bunnyJoke();
     e.target.onanimationend = () => {
         e.target.classList.remove("bunnyAppear","bunnyHop","bunnyRush","bunnyJoke");
     };
@@ -158,5 +166,11 @@ function bunnyRush() {
 }
 
 function bunnyJoke() {
-    console.log('bunny joke')
+    bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random()*7)];
+    bunnyJokeBubble.style.display = "block";
+    setTimeout(removeJoke,4000);
+}
+
+function removeJoke() {
+    bunnyJokeBubble.style.display = "none";
 }

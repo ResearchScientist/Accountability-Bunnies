@@ -130,3 +130,22 @@
 .bunnyRight {
     animation: .4s ease-in-out forwards bunnyRight;
 }
+
+#bunny-joke-bubble {
+    margin: -50px 0 0;
+    padding: 50px 20px;
+    grid-row: 2/-1;
+    grid-column: 1/-1;
+    justify-self: center;
+    align-self: flex-start;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    border: 1px solid black;
+    font-family: "Annie Use Your Telescope", cursive;
+    text-align: center;
+    white-space: break-spaces;
+    background-color: white;
+    z-index: 1;
+}

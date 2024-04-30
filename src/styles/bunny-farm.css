@@ -117,18 +117,24 @@
 	100% {opacity: 1; transform: translate(0px,0px) scale(1,1);}
 }
 
-.bunnyLeft {
+.bunny-left {
     animation: .4s ease-in-out forwards bunnyLeft;
 }
 
 @keyframes bunnyLeft {
     0% {opacity: 1; transform: translate(0px,0px);}
-    50% {opacity: 1; transform: translate(-50px,0px);}
-    100% {opacity: 1; transform: translate(-50px,0px);}
+    50% {opacity: 1; transform: translate(-75vw,0px);}
+    100% {opacity: 1; transform: translate(0px,0px);}
 }
 
-.bunnyRight {
+.bunny-right {
     animation: .4s ease-in-out forwards bunnyRight;
+}
+
+@keyframes bunnyRight {
+    0% {opacity: 1; transform: translate(0px,0px);}
+    50% {opacity: 1; transform: translate(75vw,0px);}
+    100% {opacity: 1; transform: translate(0px,0px);}
 }
 
 #bunny-joke-bubble {

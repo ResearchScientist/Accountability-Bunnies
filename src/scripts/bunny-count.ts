@@ -76,8 +76,6 @@ function countBunnies() {
     countingBunniesMsg.style.fontFamily = "Pavanam";
     countingBunniesMsg.style.fontSize = "14px";
     tapFarmButton.removeEventListener('click',countBunnies);
-    // console.log((Math.random() * (2000 - 200) + 200));
-    // processGoals = setInterval(processingGoals,(Math.random() * (2000 - 200) + 200));
     processGoals = setInterval(processingGoals,300);
     setTimeout (function() {
             countingBunniesMsg.textContent = 'querying database';
@@ -151,13 +149,13 @@ function randomBunnyAnimation(e) {
 	// const bunnyAnimationArray = ["bunnyHop","bunnyRush","bunnyJoke"];
     // let randomAnimation = bunnyAnimationArray[Math.floor(Math.random()*bunnyAnimationArray.length)];
     let randomAnimation = Math.random();
-    console.log(randomAnimation);
     if (randomAnimation <= .2) {
         console.log('bunny joke');
         bunnyJoke();
     }
     else if (randomAnimation >= .8) {
         console.log('bunny rush');
+        bunnyRush();
     }
     else {
         console.log('bunny hop');
@@ -189,8 +187,19 @@ function removeJoke() {
 }
 
 function bunnyRush() {
-    let penBunnies = document.querySelector('.bunny');
+    let penBunnies = document.querySelectorAll('.bunny');
 	console.log('bunny rush');
-    console.log(penBunnies);
-    console.log(bunnyArray);
+    penBunnies.forEach(penBunny => {
+        if ((penBunny as HTMLElement).style.left <= "40") {
+            console.log('to the left');
+            penBunny.classList.add("bunny-left");
+        }
+        else {
+            penBunny.classList.add("bunny-right");
+            console.log('to the right');
+        }
+        (penBunny as HTMLElement).onanimationend = () => {
+            penBunny.classList.remove("bunny-left","bunny-right");
+        };
+    });
 }

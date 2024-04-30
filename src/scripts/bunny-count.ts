@@ -14,8 +14,8 @@ const countingGoalsMsgArray = ['parsing goals','gathering goals','counting compl
 const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?"];
 let tasksCompleted: number = 5;
 const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
-const bunnyJokesArray = ["How do you say bunny in Spanish? Bunnito.","Why can't you hear bunnies having sex? Because they have cotton balls.","I'm having a bad hare day.","Where do bunnies go for breakfast? IHOP.","Read me a story with a hoppy ending.","Somebunny loves you.","I dance to hip hop."];
-const bunnyJokeBubble = document.querySelector('#bunny-joke-bubble');
+const bunnyJokesArray = ["How do you say bunny in Spanish?\nBunnito.","Why can't you hear bunnies having sex?\nBecause they have cotton balls.","I'm having a bad hare day.","Where do bunnies go for breakfast?\nI H O P","Read me a story with a hoppy ending.","Somebunny loves you.","I dance to hip hop."];
+const bunnyJokeBubble = document.querySelector('#bunny-joke-bubble') as HTMLElement;
 
 let taps = 0;
 let processGoals;
@@ -161,8 +161,6 @@ function bunnyRush() {
 }
 
 function bunnyJoke() {
-    for (let j: number = 0; j<bunnyJokesArray.length; j++) {
-        console.log(bunnyJokesArray[j]);
-    }
-    bunnyJokeBubble.textContent = bunnyJokesArray[0];
+    bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random()*7)];
+    bunnyJokeBubble.style.display = "block";
 }

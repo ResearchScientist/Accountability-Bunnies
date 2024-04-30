@@ -132,17 +132,19 @@
 }
 
 #bunny-joke-bubble {
-    /* width: 200px; */
-    height: 100px;
-    padding: 10px;
+    padding: 50px 20px;
     grid-row: 1/-1;
     grid-column: 1/-1;
     justify-self: center;
     align-self: center;
+    display: none;
+    align-items: center;
+    justify-content: center;
     border-radius: 50%;
     border: 1px solid black;
     font-family: "Annie Use Your Telescope", cursive;
     text-align: center;
+    white-space: break-spaces;
     background-color: white;
     z-index: 1;
 }

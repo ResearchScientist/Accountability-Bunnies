@@ -16,6 +16,14 @@ const Goals = defineTable({
     }
 });
 
+const Bunnies = defineTable({
+    columns: {
+        id: column.number({ primaryKey: true }),
+        totalBunnies: column.number(),
+        // user: column.number({ references: () => Users.columns.id }),
+    }
+});
+
 export default defineDb({
   tables: { Goals },
 //   tables: { Users, Goals }

@@ -69,6 +69,14 @@
     color: black;
 }
 
+#bunny-count-msg {
+    margin: 0 0 50px -58px;
+    grid-column: 1/-1;
+    grid-row: 2/3;
+    justify-self: center;
+    align-self: flex-end;
+}
+
 .sunSpin {
     animation: 1.5s ease-in-out forwards sunSpin;
 }

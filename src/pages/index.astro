@@ -2,6 +2,14 @@
 import Layout from '../layouts/Layout.astro';
 import { db, Goals } from 'astro:db';
 
+if (Astro.request.method === 'POST') {
+	const formData = await Astro.request.formData();
+	const description = formData.get('description');
+	if (typeof description === 'string') {
+		await db.insert(Goals).values({ description });
+	}
+}
+
 const goalsDB = await db.select().from(Goals);
 ---
 
@@ -22,7 +30,7 @@ const goalsDB = await db.select().from(Goals);
 		</section>
 		<section id="goals" class="nav-section">
 			<h1>This Week's Goals</h1>
-			<form id="input-goal-form">
+			<form id="input-goal-form" method="POST">
             	<input id="input-goal" type="text" name="goal" placeholder="write your goal here" required>
             	<button id="add-goal-button" type="submit">+</button>
 				<img id="goalLine" src="goalLine.svg" alt="hand drawn line"/>

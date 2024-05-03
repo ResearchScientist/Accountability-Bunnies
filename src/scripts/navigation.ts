@@ -9,7 +9,7 @@ mainNavigation.addEventListener('click',transitionSection);
 showMenuButton.addEventListener('click',showMenu);
 letsGoButton.addEventListener('click',moveSplash);
 
-function transitionSection(e) {
+function transitionSection(e : any) {
 	sections.forEach ((section) => {
 		section.style.zIndex="0";
 	});

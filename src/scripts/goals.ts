@@ -5,7 +5,7 @@ const deleteGoalButton = document.querySelector('#delete-goal-button');
 
 addGoalButton.addEventListener('click',addGoal);
 
-function addGoal(e) {
+function addGoal(e : any) {
     e.preventDefault();
     let goalText = inputGoal.value;
     if (goalText) {
@@ -31,7 +31,7 @@ function addGoal(e) {
     inputGoal.value = "";
 }
 
-function completeGoal(e) {
+function completeGoal(e : any) {
     console.log('complete goal');
     if (e.target.dataset.goalComplete == 'no') {
         e.target.dataset.goalComplete = 'yes';
@@ -44,7 +44,7 @@ function completeGoal(e) {
     console.log(e.target.dataset.goalComplete);
 }
 
-function deleteGoal(event) {
+function deleteGoal(event : any) {
     console.log('delete goal');
     let goal = event.target.parentElement;
     goalsSection.removeChild(goal);

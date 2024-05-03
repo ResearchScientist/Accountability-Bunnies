@@ -3,7 +3,7 @@ import { escape } from 'html-escaper';
 import { clsx } from 'clsx';
 import 'cssesc';
 
-const ASTRO_VERSION = "4.7.0";
+const ASTRO_VERSION = "4.7.1";
 
 const MissingMediaQueryDirective = {
   name: "MissingMediaQueryDirective",
@@ -255,7 +255,7 @@ function createAstroGlobFn() {
 }
 function createAstro(site) {
   return {
-    // TODO: this is no longer neccessary for `Astro.site`
+    // TODO: this is no longer necessary for `Astro.site`
     // but it somehow allows working around caching issues in content collections for some tests
     site: site ? new URL(site) : void 0,
     generator: `Astro v${ASTRO_VERSION}`,
@@ -620,13 +620,15 @@ const voidElementNames = /^(area|base|br|col|command|embed|hr|img|input|keygen|l
 const htmlBooleanAttributes = /^(?:allowfullscreen|async|autofocus|autoplay|controls|default|defer|disabled|disablepictureinpicture|disableremoteplayback|formnovalidate|hidden|loop|nomodule|novalidate|open|playsinline|readonly|required|reversed|scoped|seamless|itemscope)$/i;
 const htmlEnumAttributes = /^(?:contenteditable|draggable|spellcheck|value)$/i;
 const svgEnumAttributes = /^(?:autoReverse|externalResourcesRequired|focusable|preserveAlpha)$/i;
+const AMPERSAND_REGEX = /&/g;
+const DOUBLE_QUOTE_REGEX = /"/g;
 const STATIC_DIRECTIVES = /* @__PURE__ */ new Set(["set:html", "set:text"]);
 const toIdent = (k) => k.trim().replace(/(?!^)\b\w|\s+|\W+/g, (match, index) => {
   if (/\W/.test(match))
     return "";
   return index === 0 ? match : match.toUpperCase();
 });
-const toAttributeString = (value, shouldEscape = true) => shouldEscape ? String(value).replace(/&/g, "&#38;").replace(/"/g, "&#34;") : value;
+const toAttributeString = (value, shouldEscape = true) => shouldEscape ? String(value).replace(AMPERSAND_REGEX, "&#38;").replace(DOUBLE_QUOTE_REGEX, "&#34;") : value;
 const kebab = (k) => k.toLowerCase() === k ? k : k.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
 const toStyleString = (obj) => Object.entries(obj).filter(([_, v]) => typeof v === "string" && v.trim() || typeof v === "number").map(([k, v]) => {
   if (k[0] !== "-" && k[1] !== "-")
@@ -1000,20 +1002,20 @@ class AstroComponentInstance {
     if (this.returnValue !== void 0)
       return this.returnValue;
     this.returnValue = this.factory(result, this.props, this.slotValues);
+    if (isPromise(this.returnValue)) {
+      this.returnValue.then((resolved) => {
+        this.returnValue = resolved;
+      }).catch(() => {
+      });
+    }
     return this.returnValue;
   }
   async render(destination) {
-    if (this.returnValue === void 0) {
-      await this.init(this.result);
-    }
-    let value = this.returnValue;
-    if (isPromise(value)) {
-      value = await value;
-    }
-    if (isHeadAndContent(value)) {
-      await value.content.render(destination);
+    const returnValue = await this.init(this.result);
+    if (isHeadAndContent(returnValue)) {
+      await returnValue.content.render(destination);
     } else {
-      await renderChild(destination, value);
+      await renderChild(destination, returnValue);
     }
   }
 }

@@ -17,10 +17,10 @@ const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted}
 const bunnyJokesArray = ["How do you say bunny in Spanish?\nBunnito.","Why can't you hear bunnies having sex?\nBecause they have cotton balls.","I'm having a bad hare day.","Where do bunnies go for breakfast?\nI H O P","Read me a story with a hoppy ending.","Somebunny loves you.","I dance to hip hop."];
 const bunnyJokeBubble = document.querySelector('#bunny-joke-bubble') as HTMLElement;
 
-let taps = 0;
-let processGoals;
+let taps: number = 0;
+let processGoals: any;
 let processingMsgCount = 0;
-let bunnyArray = [];
+let bunnyArray: any = [];
 let totalBunnies: number = 0;
 
 sun.addEventListener('click',sunSpin);
@@ -118,12 +118,12 @@ function removeAnnouncement() {
 }
 
 function makeBunnies() {
-	for (let i: number=0; i<tasksCompleted; i++) {
+	for (let i: number = 0; i<tasksCompleted; i++) {
 		makeBunny(i);
 	}
 }
 
-function makeBunny(i) {
+function makeBunny(i : any) {
 	setTimeout (function() {
     	const bunny = document.createElement("img");
         let randTopPosition = Math.random() * (86) + 15; // (101 - 15) + 15
@@ -138,14 +138,14 @@ function makeBunny(i) {
     },400*i);
 }
 
-function addIds(bunnyArray) {
-    bunnyArray.forEach((bunnyObject,i) => {
+function addIds(bunnyArray : any) {
+    bunnyArray.forEach((bunnyObject : any,i : number) => {
         bunnyObject.setAttribute('class',`bunny`);
         bunnyObject.setAttribute('id',`bunny${i+1}`);
     });
 }
 
-function randomBunnyAnimation(e) {
+function randomBunnyAnimation(e : any) {
     let randomAnimation = Math.random();
     if (randomAnimation <= .2) {
         bunnyJoke();
@@ -161,7 +161,7 @@ function randomBunnyAnimation(e) {
     };
 }
 
-function bunnyHop(e) {
+function bunnyHop(e : any) {
     e.target.classList.add("bunnyHop");
 }
 

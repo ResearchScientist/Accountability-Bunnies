@@ -24,7 +24,7 @@ const $$Index = createComponent(async ($$result, $$props, $$slots) => {
   Astro2.self = $$Index;
   if (Astro2.request.method === "POST") {
     const formData = await Astro2.request.formData();
-    const description = formData.get("description");
+    const description = formData.get("input-goal");
     if (typeof description === "string") {
       await db.insert(Goals).values({ description });
     }

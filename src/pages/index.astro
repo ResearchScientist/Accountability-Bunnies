@@ -4,7 +4,7 @@ import { db, Goals } from 'astro:db';
 
 if (Astro.request.method === 'POST') {
 	const formData = await Astro.request.formData();
-	const description = formData.get('description');
+	const description = formData.get('input-goal'); // description
 	if (typeof description === 'string') {
 		await db.insert(Goals).values({ description });
 	}

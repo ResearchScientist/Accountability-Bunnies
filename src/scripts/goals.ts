@@ -36,10 +36,12 @@ function completeGoal(e : any) {
     if (e.target.dataset.goalComplete == 'no') {
         e.target.dataset.goalComplete = 'yes';
         e.target.parentElement.firstElementChild.src = "tikedfilled.svg";
+        e.target.parentElement.children[2].classList.add('goal-completed');
     }
     else if (e.target.dataset.goalComplete == 'yes') {
         e.target.dataset.goalComplete = 'no';
         e.target.parentElement.firstElementChild.src = "tikbox.svg";
+        e.target.parentElement.children[2].classList.remove('goal-completed');
     }
     console.log(e.target.dataset.goalComplete);
 }

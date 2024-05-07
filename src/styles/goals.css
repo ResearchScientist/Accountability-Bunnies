@@ -71,7 +71,7 @@ input {
     color: rgba(200,100,100,.5);
 }
 
-#delete-goal-button:hover {
+.delete-goal-button:hover {
     color: rgb(200,100,100);
 }
 
@@ -116,4 +116,9 @@ input {
     justify-self: flex-start;
     font-family: "Pavanam",sans-serif;
     text-wrap: wrap;
+}
+
+.goal-completed {
+    color: var(--text-faded);
+    text-decoration: line-through;
 }

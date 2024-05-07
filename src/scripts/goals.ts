@@ -44,8 +44,11 @@ function completeGoal(e : any) {
     console.log(e.target.dataset.goalComplete);
 }
 
-function deleteGoal(event : any) {
+function deleteGoal(event : any,) {
     console.log('delete goal');
+    // console.log(event.target.parentElement.children);
+    event.target.parentElement.children[1].removeEventListener('click',completeGoal);
+    event.target.parentElement.children[3].removeEventListener('click',deleteGoal);
     let goal = event.target.parentElement;
     goalsSection.removeChild(goal);
 }

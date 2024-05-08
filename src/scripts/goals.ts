@@ -32,7 +32,6 @@ function addGoal(e : any) {
 }
 
 function completeGoal(e : any) {
-    console.log('complete goal');
     if (e.target.dataset.goalComplete == 'no') {
         e.target.dataset.goalComplete = 'yes';
         e.target.parentElement.firstElementChild.src = "tikedfilled.svg";
@@ -43,7 +42,7 @@ function completeGoal(e : any) {
         e.target.parentElement.firstElementChild.src = "tikbox.svg";
         e.target.parentElement.children[2].classList.remove('goal-completed');
     }
-    console.log(e.target.dataset.goalComplete);
+    console.log(`goal completed: ${e.target.dataset.goalComplete}`);
 }
 
 function deleteGoal(event : any,) {

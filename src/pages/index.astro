@@ -39,10 +39,10 @@ const goalsDB = await db.select().from(Goals);
 			</form>
             <ul id="goals-section">
 				{
-					goalsDB.map(({ description }) => (
+					goalsDB.map(({ description , completed }) => (
 						<li class="goal-item">
 							<img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
-							<button class="complete-goal-button" type="button" data-goal-complete="no"></button>
+							<button class="complete-goal-button" type="button" data-goal-complete={completed}></button>
                     		<div class="goal-text">{description}</div>
                     		<button id="delete-goal-button" class="delete-goal-button" type="button">x</button>
 						</li>

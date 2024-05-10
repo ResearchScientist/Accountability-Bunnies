@@ -6,7 +6,6 @@ if (Astro.request.method === 'POST') {
 	const formData = await Astro.request.formData();
 	const description = formData.get('description');
 	const completed = formData.get('completed');
-	console.log(description , completed);
 	if (typeof description === 'string' && typeof completed === 'string') {
 		await db.insert(Goals).values({ description , completed });
 	}

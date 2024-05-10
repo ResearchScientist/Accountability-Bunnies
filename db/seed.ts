@@ -11,6 +11,11 @@ export default async function() {
             id: 2,
             description: 'hug a bear',
             completed: 'no',
+        },
+        {
+            id: 3,
+            description: 'count bunnies',
+            completed: 'yes',
         }
     ]),
     await db.insert(Bunnies).values([

@@ -1,7 +1,10 @@
+const inputGoalForm = document.querySelector('#input-goal-form') as HTMLElement;
 const inputGoal = document.querySelector('#input-goal') as HTMLInputElement;
 const addGoalButton = document.querySelector('#add-goal-button');
 const goalsSection = document.querySelector('#goals-section');
 const deleteGoalButton = document.querySelector('#delete-goal-button');
+
+console.log(inputGoalForm);
 
 addGoalButton.addEventListener('click',addGoal);
 

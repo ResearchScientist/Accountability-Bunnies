@@ -2,6 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import { db, Goals } from 'astro:db';
 
+const goalsDB = await db.select().from(Goals);
+
 if (Astro.request.method === 'POST') {
 	const formData = await Astro.request.formData();
 	const description = formData.get('description');
@@ -11,7 +13,7 @@ if (Astro.request.method === 'POST') {
 	}
 }
 
-const goalsDB = await db.select().from(Goals);
+console.log(goalsDB);
 ---
 
 <Layout title="Accountability Bunnies">

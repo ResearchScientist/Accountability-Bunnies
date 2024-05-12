@@ -69,7 +69,9 @@ else {
 			<div id="bunny-pen"></div>
 			<div id="bunny-count-msg">
 				{
-					bunniesDB[0].totalBunnies
+					bunniesDB.map(({totalBunnies}) => (
+						{totalBunnies}
+					)) 
 				}
 			</div>
 			<div id="bunny-joke-bubble"></div>

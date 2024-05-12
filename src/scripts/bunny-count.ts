@@ -123,6 +123,11 @@ function makeBunnies() {
 	}
 }
 
+// async function updateTotalBunnies(tasksCompleted) {
+//     const totalBunniesDB = await db.select().from(Bunnies);
+//     console.log(totalBunnies);
+// }
+
 function makeBunny(i : any) {
 	setTimeout (function() {
     	const bunny = document.createElement("img");

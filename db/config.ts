@@ -25,6 +25,5 @@ const Bunnies = defineTable({
 });
 
 export default defineDb({
-  tables: { Goals, Bunnies },
-//   tables: { Users, Goals }
+  tables: { Goals, Bunnies }
 });

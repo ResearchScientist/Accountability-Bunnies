@@ -36,7 +36,7 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Tuesday') {
+    if (todayweekday == 'Sunday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}

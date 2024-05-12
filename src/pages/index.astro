@@ -4,6 +4,7 @@ import { db, Goals, Bunnies } from 'astro:db';
 
 const goalsDB = await db.select().from(Goals);
 const bunniesDB = await db.select().from(Bunnies);
+const allBunnies = bunniesDB[0].totalBunnies;
 
 if (Astro.request.method === 'POST') {
 	const formData = await Astro.request.formData();
@@ -14,12 +15,7 @@ if (Astro.request.method === 'POST') {
 	}
 }
 
-console.log('why not');
-console.log(goalsDB);
-console.log(bunniesDB);
-console.log(`goals : ${goalsDB}`);
-console.log(`bunnies : ${bunniesDB}`);
-
+console.log(goalsDB[0].description);
 ---
 
 <Layout title="Accountability Bunnies">
@@ -66,7 +62,7 @@ console.log(`bunnies : ${bunniesDB}`);
 			<button id="dont-tap-farm-button">don't tap</button>
 			<button id="tap-farm-button">tap here</button>
 			<div id="bunny-pen"></div>
-			<!-- <div id="bunny-count-msg">5</div> -->
+			<div id="bunny-count-msg">{allBunnies}</div>
 			<div id="bunny-joke-bubble"></div>
 		</section>
 		<section id="main-menu" class="main-menu">

@@ -15,6 +15,12 @@ if (Astro.request.method === 'POST') {
 	}
 }
 
+if (typeof allBunnies === 'number') {
+	console.log(`its a ${allBunnies}`)
+}
+else {
+	console.log('not a number');
+}
 ---
 
 <Layout title="Accountability Bunnies">
@@ -61,7 +67,11 @@ if (Astro.request.method === 'POST') {
 			<button id="dont-tap-farm-button">don't tap</button>
 			<button id="tap-farm-button">tap here</button>
 			<div id="bunny-pen"></div>
-			<div id="bunny-count-msg">{allBunnies}</div>
+			<div id="bunny-count-msg">
+				{
+					bunniesDB[0].totalBunnies
+				}
+			</div>
 			<div id="bunny-joke-bubble"></div>
 		</section>
 		<section id="main-menu" class="main-menu">

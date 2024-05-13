@@ -1,6 +1,6 @@
 const inputGoalForm = document.querySelector('#input-goal-form') as HTMLElement;
 const addGoalButton = document.querySelector('#add-goal-button');
-const goalsSection = document.querySelector('#goals-section');
+// const goalsSection = document.querySelector('#goals-section');
 const deleteGoalButton = document.querySelector('#delete-goal-button');
 
 // addGoalButton.addEventListener('click',addGoal);
@@ -19,7 +19,29 @@ inputGoalForm.addEventListener('submit', async function(e) {
     });
     if (response.ok) {
         inputGoal.value = "";
-        // const goals = await fetch('/api/goals').then(res => res.json());
+        const goals = await fetch('/api/goals').then(res => res.json());
+        const goalsSection = document.querySelector('#goals-section');
+        goalsSection.innerHTML = "";
+        goals.forEach(goal => {
+            let li = document.createElement('li');
+            let img = document.createElement('img');
+            let div = document.createElement('div');
+            let cbtn = document.createElement('button');
+            let dbtn = document.createElement('button');
+            cbtn.addEventListener('click',completeGoal);
+            dbtn.addEventListener('click',deleteGoal);
+            li.classList.add('goal-item');
+            img.src = "tikbox.svg";
+            img.classList.add('tikbox');
+            div.classList.add('goal-text');
+            div.textContent = goal.description;
+            cbtn.classList.add('complete-goal-button');
+            cbtn.setAttribute('data-goal-complete','no');
+            dbtn.textContent = "x";
+            dbtn.classList.add('delete-goal-button');
+            li.append(img,cbtn,div,dbtn);
+            goalsSection.appendChild(li);
+        });
     }
     
 });
@@ -70,5 +92,5 @@ function deleteGoal(event : any,) {
     event.target.parentElement.children[1].removeEventListener('click',completeGoal);
     event.target.parentElement.children[3].removeEventListener('click',deleteGoal);
     let goal = event.target.parentElement;
-    goalsSection.removeChild(goal);
+    // goalsSection.removeChild(goal);
 }

@@ -3,8 +3,6 @@ const addGoalButton = document.querySelector('#add-goal-button');
 const goalsSection = document.querySelector('#goals-section');
 const deleteGoalButton = document.querySelector('#delete-goal-button');
 
-// console.log(inputGoalForm);
-
 // addGoalButton.addEventListener('click',addGoal);
 
 inputGoalForm.addEventListener('submit', function(e) {
@@ -19,7 +17,12 @@ inputGoalForm.addEventListener('submit', function(e) {
         },
         body: data
     });
+    clearInputGoal(inputGoal);
 });
+
+function clearInputGoal(inputGoal) {
+        inputGoal.value = "";
+};
 
 // function addGoal(e : any) {
 //     e.preventDefault();

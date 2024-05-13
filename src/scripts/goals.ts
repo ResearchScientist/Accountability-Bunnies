@@ -19,6 +19,7 @@ inputGoalForm.addEventListener('submit', async function(e) {
     });
     if (response.ok) {
         inputGoal.value = "";
+        // const goals = await fetch('/api/goals').then(res => res.json());
     }
     
 });

@@ -5,24 +5,23 @@ const deleteGoalButton = document.querySelector('#delete-goal-button');
 
 // addGoalButton.addEventListener('click',addGoal);
 
-inputGoalForm.addEventListener('submit', function(e) {
+inputGoalForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     let inputGoal = document.querySelector('#input-goal') as HTMLInputElement;
     var data = JSON.stringify({ description: inputGoal.value });
 
-    fetch('/api/goals', {
+    const response = await fetch('/api/goals', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: data
     });
-    clearInputGoal(inputGoal);
-});
-
-function clearInputGoal(inputGoal) {
+    if (response.ok) {
         inputGoal.value = "";
-};
+    }
+    
+});
 
 // function addGoal(e : any) {
 //     e.preventDefault();

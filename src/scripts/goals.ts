@@ -115,9 +115,11 @@ async function deleteGoal(id) {
         if (!response.ok) {
             throw new Error('network response not ok');
         }
-        const data = await response.json();
-        console.log(id);
+        if (response.status !== 204) {
+            const data = await response.json();
+            console.log(id);
         console.log('successfully deleted ' , data);
+        }
     }
     catch (error) {
         console.log('id is',id);

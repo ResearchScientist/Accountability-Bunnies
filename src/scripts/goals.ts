@@ -1,7 +1,7 @@
 const inputGoalForm = document.querySelector('#input-goal-form') as HTMLElement;
 const addGoalButton = document.querySelector('#add-goal-button');
-// const goalsSection = document.querySelector('#goals-section');
-const deleteGoalButton = document.querySelector('#delete-goal-button');
+const goalsSection = document.querySelector('#goals-section');
+// const deleteGoalButton = document.querySelector('#delete-goal-button');
 
 // addGoalButton.addEventListener('click',addGoal);
 
@@ -27,8 +27,8 @@ inputGoalForm.addEventListener('submit', async function(e) {
             let div = document.createElement('div');
             let cbtn = document.createElement('button');
             let dbtn = document.createElement('button');
-            cbtn.addEventListener('click',completeGoal);
-            dbtn.addEventListener('click',deleteGoal);
+            // cbtn.addEventListener('click',completeGoal);
+            // dbtn.addEventListener('click',deleteGoal);
             li.classList.add('goal-item');
             img.src = "tikbox.svg";
             img.classList.add('tikbox');
@@ -84,20 +84,30 @@ function completeGoal(e : any) {
     console.log(`goal completed: ${e.target.dataset.goalComplete}`);
 }
 
-// function deleteGoal(event : any,) {
-//     console.log('delete goal');
-//     // console.log(event.target.parentElement.children);
-//     event.target.parentElement.children[1].removeEventListener('click',completeGoal);
-//     event.target.parentElement.children[3].removeEventListener('click',deleteGoal);
-//     let goal = event.target.parentElement;
-//     // goalsSection.removeChild(goal);
-//     fetch(`/api/`)
+// async function deleteGoal(event) {
+//     const id = event.target.getAttribute('data-id');
+//     console.log(id);
+//     console.log(typeof(id));
+//     try {
+//         const response = await fetch(`/api/goals/${id}`, {
+//             method: 'DELETE',
+//         });
+//         if (!response.ok) {
+//             throw new Error('network response not ok');
+//         }
+//         const data = await response.json();
+//         console.log(id);
+//         console.log('successfully deleted ' , data);
+//     }
+//     catch (error) {
+//         console.log('id is',id);
+//         console.error('delete gave an error : ' , error);
+//     }
 // }
 
-async function deleteGoal(event) {
-    const id = event.target.getAttribute('data-id');
-    console.log(id);
-    console.log(typeof(id));
+// window.deleteGoal = async function(id) {
+
+async function deleteGoal(id) {
     try {
         const response = await fetch(`/api/goals/${id}`, {
             method: 'DELETE',
@@ -114,3 +124,17 @@ async function deleteGoal(event) {
         console.error('delete gave an error : ' , error);
     }
 }
+
+goalsSection.addEventListener('click',(ev) => {
+    const target = ev.target as Element;
+    const id = target.getAttribute('data-id');
+    if (target.classList.contains('complete-goal-button')) {
+        console.log('complete goal');
+        completeGoal(id);
+    }
+    else if (target.classList.contains('delete-goal-button')) {
+        console.log('delete ',id)
+        console.log('type is ', typeof(id));
+        deleteGoal(id);
+    }
+});

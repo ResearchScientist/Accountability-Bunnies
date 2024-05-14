@@ -9,7 +9,6 @@ inputGoalForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     let inputGoal = document.querySelector('#input-goal') as HTMLInputElement;
     var data = JSON.stringify({ description: inputGoal.value });
-
     const response = await fetch('/api/goals', {
         method: 'POST',
         headers: {
@@ -43,7 +42,6 @@ inputGoalForm.addEventListener('submit', async function(e) {
             goalsSection.appendChild(li);
         });
     }
-    
 });
 
 // function addGoal(e : any) {
@@ -86,11 +84,31 @@ function completeGoal(e : any) {
     console.log(`goal completed: ${e.target.dataset.goalComplete}`);
 }
 
-function deleteGoal(event : any,) {
-    console.log('delete goal');
-    // console.log(event.target.parentElement.children);
-    event.target.parentElement.children[1].removeEventListener('click',completeGoal);
-    event.target.parentElement.children[3].removeEventListener('click',deleteGoal);
-    let goal = event.target.parentElement;
-    // goalsSection.removeChild(goal);
+// function deleteGoal(event : any,) {
+//     console.log('delete goal');
+//     // console.log(event.target.parentElement.children);
+//     event.target.parentElement.children[1].removeEventListener('click',completeGoal);
+//     event.target.parentElement.children[3].removeEventListener('click',deleteGoal);
+//     let goal = event.target.parentElement;
+//     // goalsSection.removeChild(goal);
+//     fetch(`/api/`)
+// }
+
+async function deleteGoal(event) {
+    const id = event.target.getAttribute('data-id');
+    try {
+        const response = await fetch(`/api/goals/${id}`, {
+            method: 'DELETE',
+        });
+        if (!response.ok) {
+            throw new Error('network response not ok');
+        }
+        const data = await response.json();
+        console.log(id);
+        console.log('successfully deleted ' , data);
+    }
+    catch (error) {
+        console.log('id is',id);
+        console.error('delete gave an error : ' , error);
+    }
 }

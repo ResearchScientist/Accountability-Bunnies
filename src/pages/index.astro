@@ -40,12 +40,12 @@ if (Astro.request.method === 'POST') {
 			</form>
             <ul id="goals-section">
 				{
-					goalsDB.map(({ description , completed }) => (
+					goalsDB.map(({ id , description , completed }) => (
 						<li class="goal-item">
 							<img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
 							<button class="complete-goal-button" type="button" data-goal-complete={completed}></button>
                     		<div class="goal-text">{description}</div>
-                    		<button id="delete-goal-button" class="delete-goal-button" type="button">x</button>
+                    		<button id="delete-goal-button" class="delete-goal-button" data-id={id} type="button">x</button>
 						</li>
 					))
 				}

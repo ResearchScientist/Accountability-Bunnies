@@ -45,7 +45,7 @@ if (Astro.request.method === 'POST') {
 							<img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
 							<button class="complete-goal-button" type="button" data-goal-complete={completed}></button>
                     		<div class="goal-text">{description}</div>
-                    		<button id="delete-goal-button" class="delete-goal-button" data-id={id} type="button">x</button>
+                    		<button id="delete-goal-button" class="delete-goal-button" data-id={id} onclick="deleteGoal(event)" type="button">x</button>
 						</li>
 					))
 				}

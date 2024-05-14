@@ -96,6 +96,8 @@ function completeGoal(e : any) {
 
 async function deleteGoal(event) {
     const id = event.target.getAttribute('data-id');
+    console.log(id);
+    console.log(typeof(id));
     try {
         const response = await fetch(`/api/goals/${id}`, {
             method: 'DELETE',

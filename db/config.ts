@@ -11,7 +11,7 @@ const Goals = defineTable({
     columns: {
         id: column.number({ primaryKey: true }),
         description: column.text({ optional: false }),
-        completed: column.boolean({ default: false }),
+        completed: column.text({ default: 'no' }),
         // user: column.number({ references: () => Users.columns.id }),
     }
 });

@@ -2,6 +2,12 @@ const inputGoalForm = document.querySelector('#input-goal-form') as HTMLElement;
 const addGoalButton = document.querySelector('#add-goal-button');
 const goalsSection = document.querySelector('#goals-section');
 
+// interface Goal {
+//     id: number;
+//     description: string;
+//     completed: boolean;
+// }
+
 inputGoalForm.addEventListener('submit', async function(e) {
     e.preventDefault();
     let inputGoal = document.querySelector('#input-goal') as HTMLInputElement;
@@ -58,7 +64,7 @@ async function populateGoals(inputGoal) {
 //     console.log(`goal completed: ${e.target.dataset.goalComplete}`);
 // }
 
-async function completeGoal(id,completed) {
+async function completeGoal(id: number, completed: boolean) {
     try {
         const response = await fetch(`/api/goals/${id}`, {
             method: 'PATCH',
@@ -78,7 +84,7 @@ async function completeGoal(id,completed) {
 }
 
 
-async function deleteGoal(id) {
+async function deleteGoal(id: number) {
     try {
         const response = await fetch(`/api/goals/${id}`, {
             method: 'DELETE',
@@ -126,7 +132,7 @@ async function repopulateGoals() {
 
 goalsSection.addEventListener('click',(ev) => {
     const target = ev.target as Element;
-    const id = target.getAttribute('data-id');
+    const id = Number(target.getAttribute('data-id'));
     if (target.classList.contains('complete-goal-button')) {
         console.log('complete goal');
         const completed = target.getAttribute('data-goal-completed') === 'true';

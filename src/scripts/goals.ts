@@ -18,34 +18,6 @@ inputGoalForm.addEventListener('submit', async function(e) {
     if (response.ok) {
         populateGoals(inputGoal);
     }
-
-
-    // if (response.ok) {
-    //     inputGoal.value = "";
-    //     const goals = await fetch('/api/goals').then(res => res.json());
-    //     const goalsSection = document.querySelector('#goals-section');
-    //     goalsSection.innerHTML = "";
-    //     goals.forEach(goal => {
-    //         let li = document.createElement('li');
-    //         let img = document.createElement('img');
-    //         let div = document.createElement('div');
-    //         let cbtn = document.createElement('button');
-    //         let dbtn = document.createElement('button');
-    //         // cbtn.addEventListener('click',completeGoal);
-    //         // dbtn.addEventListener('click',deleteGoal);
-    //         li.classList.add('goal-item');
-    //         img.src = "tikbox.svg";
-    //         img.classList.add('tikbox');
-    //         div.classList.add('goal-text');
-    //         div.textContent = goal.description;
-    //         cbtn.classList.add('complete-goal-button');
-    //         cbtn.setAttribute('data-goal-complete','no');
-    //         dbtn.textContent = "x";
-    //         dbtn.classList.add('delete-goal-button');
-    //         li.append(img,cbtn,div,dbtn);
-    //         goalsSection.appendChild(li);
-    //     });
-    // }
 });
 
 async function populateGoals(inputGoal) {
@@ -59,8 +31,6 @@ async function populateGoals(inputGoal) {
         let div = document.createElement('div');
         let cbtn = document.createElement('button');
         let dbtn = document.createElement('button');
-        // cbtn.addEventListener('click',completeGoal);
-        // dbtn.addEventListener('click',deleteGoal);
         li.classList.add('goal-item');
         img.src = "tikbox.svg";
         img.classList.add('tikbox');
@@ -100,12 +70,37 @@ async function deleteGoal(id) {
         if (response.status !== 204) {
             const data = await response.json();
             console.log(id , 'successfully deleted ' , data);
+            repopulateGoals();
         }
     }
     catch (error) {
         console.log('id is',id);
         console.error('delete gave an error : ' , error);
     }
+}
+
+async function repopulateGoals() {
+    const response = await fetch('/api/goals');
+    const goals = await response.json();
+    goalsSection.innerHTML = "";
+    goals.forEach(goal => {
+        let li = document.createElement('li');
+        let img = document.createElement('img');
+        let div = document.createElement('div');
+        let cbtn = document.createElement('button');
+        let dbtn = document.createElement('button');
+        li.classList.add('goal-item');
+        img.src = "tikbox.svg";
+        img.classList.add('tikbox');
+        div.classList.add('goal-text');
+        div.textContent = goal.description;
+        cbtn.classList.add('complete-goal-button');
+        cbtn.setAttribute('data-goal-complete','no');
+        dbtn.textContent = "x";
+        dbtn.classList.add('delete-goal-button');
+        li.append(img,cbtn,div,dbtn);
+        goalsSection.appendChild(li);
+    });
 }
 
 goalsSection.addEventListener('click',(ev) => {

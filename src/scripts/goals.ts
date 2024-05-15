@@ -1,8 +1,6 @@
 const inputGoalForm = document.querySelector('#input-goal-form') as HTMLElement;
 const addGoalButton = document.querySelector('#add-goal-button');
 const goalsSection = document.querySelector('#goals-section');
-// const deleteGoalButton = document.querySelector('#delete-goal-button');
-// addGoalButton.addEventListener('click',addGoal);
 
 inputGoalForm.addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -23,7 +21,7 @@ inputGoalForm.addEventListener('submit', async function(e) {
 async function populateGoals(inputGoal) {
     inputGoal.value = "";
     const goals = await fetch('/api/goals').then(res => res.json());
-    const goalsSection = document.querySelector('#goals-section');
+    // const goalsSection = document.querySelector('#goals-section');
     goalsSection.innerHTML = "";
     goals.forEach(goal => {
         let li = document.createElement('li');
@@ -38,8 +36,10 @@ async function populateGoals(inputGoal) {
         div.textContent = goal.description;
         cbtn.classList.add('complete-goal-button');
         cbtn.setAttribute('data-goal-complete','no');
+        cbtn.setAttribute('data-id',goal.id);
         dbtn.textContent = "x";
         dbtn.classList.add('delete-goal-button');
+        dbtn.setAttribute('data-id',goal.id);
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
     });
@@ -96,6 +96,7 @@ async function repopulateGoals() {
         div.textContent = goal.description;
         cbtn.classList.add('complete-goal-button');
         cbtn.setAttribute('data-goal-complete','no');
+        cbtn.setAttribute('data-id',goal.id);
         dbtn.textContent = "x";
         dbtn.classList.add('delete-goal-button');
         dbtn.setAttribute('data-id',goal.id);

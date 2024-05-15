@@ -113,5 +113,6 @@ goalsSection.addEventListener('click',(ev) => {
     else if (target.classList.contains('delete-goal-button')) {
         console.log('successfully deleted ',id)
         deleteGoal(id);
+        repopulateGoals();
     }
 });

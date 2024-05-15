@@ -98,6 +98,7 @@ async function repopulateGoals() {
         cbtn.setAttribute('data-goal-complete','no');
         dbtn.textContent = "x";
         dbtn.classList.add('delete-goal-button');
+        dbtn.setAttribute('data-id',goal.id);
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
     });

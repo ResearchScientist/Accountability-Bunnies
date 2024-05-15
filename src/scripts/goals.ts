@@ -21,7 +21,6 @@ inputGoalForm.addEventListener('submit', async function(e) {
 async function populateGoals(inputGoal) {
     inputGoal.value = "";
     const goals = await fetch('/api/goals').then(res => res.json());
-    // const goalsSection = document.querySelector('#goals-section');
     goalsSection.innerHTML = "";
     goals.forEach(goal => {
         let li = document.createElement('li');
@@ -45,19 +44,39 @@ async function populateGoals(inputGoal) {
     });
 }
 
-function completeGoal(e : any) {
-    if (e.target.dataset.goalComplete == 'no') {
-        e.target.dataset.goalComplete = 'yes';
-        e.target.parentElement.firstElementChild.src = "tikedfilled.svg";
-        e.target.parentElement.children[2].classList.add('goal-completed');
+// function completeGoal(e : any) {
+//     if (e.target.dataset.goalComplete == 'no') {
+//         e.target.dataset.goalComplete = 'yes';
+//         e.target.parentElement.firstElementChild.src = "tikedfilled.svg";
+//         e.target.parentElement.children[2].classList.add('goal-completed');
+//     }
+//     else if (e.target.dataset.goalComplete == 'yes') {
+//         e.target.dataset.goalComplete = 'no';
+//         e.target.parentElement.firstElementChild.src = "tikbox.svg";
+//         e.target.parentElement.children[2].classList.remove('goal-completed');
+//     }
+//     console.log(`goal completed: ${e.target.dataset.goalComplete}`);
+// }
+
+async function completeGoal(id,completed) {
+    try {
+        const response = await fetch(`/api/goals/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ completed }),
+        });
+        if (!response.ok) {
+            throw new Error('Network response not ok');
+        }
+        repopulateGoals();
     }
-    else if (e.target.dataset.goalComplete == 'yes') {
-        e.target.dataset.goalComplete = 'no';
-        e.target.parentElement.firstElementChild.src = "tikbox.svg";
-        e.target.parentElement.children[2].classList.remove('goal-completed');
+    catch (error) {
+        console.error('Error: ', error);
     }
-    console.log(`goal completed: ${e.target.dataset.goalComplete}`);
 }
+
 
 async function deleteGoal(id) {
     try {
@@ -110,7 +129,8 @@ goalsSection.addEventListener('click',(ev) => {
     const id = target.getAttribute('data-id');
     if (target.classList.contains('complete-goal-button')) {
         console.log('complete goal');
-        completeGoal(id);
+        const completed = target.getAttribute('data-goal-completed') === 'true';
+        completeGoal(id,!completed);
     }
     else if (target.classList.contains('delete-goal-button')) {
         console.log('successfully deleted ',id)

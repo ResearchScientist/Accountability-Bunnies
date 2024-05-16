@@ -34,7 +34,7 @@ async function populateGoals(inputGoal) {
         div.classList.add('goal-text');
         div.textContent = goal.description;
         cbtn.classList.add('complete-goal-button');
-        cbtn.setAttribute('data-goal-complete','no');
+        cbtn.setAttribute('data-goalComplete','no');
         cbtn.setAttribute('data-id',goal.id);
         dbtn.textContent = "x";
         dbtn.classList.add('delete-goal-button');
@@ -114,7 +114,7 @@ async function repopulateGoals() {
         div.classList.add('goal-text');
         div.textContent = goal.description;
         cbtn.classList.add('complete-goal-button');
-        cbtn.setAttribute('data-goal-complete','no');
+        cbtn.setAttribute('data-goalComplete','no');
         cbtn.setAttribute('data-id',goal.id);
         dbtn.textContent = "x";
         dbtn.classList.add('delete-goal-button');
@@ -129,7 +129,7 @@ goalsSection.addEventListener('click',(ev) => {
     const id = Number(target.getAttribute('data-id'));
     
     if (target.classList.contains('complete-goal-button')) {
-        const completed = target.getAttribute('data-goal-completed');
+        const completed = target.getAttribute('data-goalComplete');
         console.log('completed status is ',completed);
         console.log('complete goal button clicked for ',id);
         completeGoal(id,completed);

@@ -34,7 +34,7 @@ async function populateGoals(inputGoal) {
         div.classList.add('goal-text');
         div.textContent = goal.description;
         cbtn.classList.add('complete-goal-button');
-        // cbtn.setAttribute('data-goalcomplete','no');
+        cbtn.setAttribute('data-goalcomplete','no');
         cbtn.setAttribute('data-id',goal.id);
         dbtn.textContent = "x";
         dbtn.classList.add('delete-goal-button');

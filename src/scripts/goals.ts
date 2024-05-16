@@ -61,6 +61,7 @@ async function populateGoals(inputGoal) {
 async function completeGoal(id: number, completed: string) {
     try {
         const response = await fetch(`/api/goals/${id}`, {
+            console.log('response');
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',

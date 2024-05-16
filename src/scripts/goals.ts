@@ -127,9 +127,9 @@ async function repopulateGoals() {
 goalsSection.addEventListener('click',(ev) => {
     const target = ev.target as Element;
     const id = Number(target.getAttribute('data-id'));
+    const completed = target.getAttribute('data-goal-completed');
     if (target.classList.contains('complete-goal-button')) {
         console.log('complete goal button clicked for ',id);
-        const completed = target.getAttribute('data-goal-completed');
         completeGoal(id,completed);
     }
     else if (target.classList.contains('delete-goal-button')) {

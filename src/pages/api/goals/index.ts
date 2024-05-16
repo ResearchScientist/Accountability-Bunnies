@@ -1,7 +1,7 @@
 import type { APIRoute } from 'astro';
 import { db, Goals } from 'astro:db';
 
-export const GET: APIRoute = async (ctx) => {
+export const GET: APIRoute = async () => {
     try {
         const allGoals = await db.select().from(Goals);
         return new Response(JSON.stringify(allGoals), {

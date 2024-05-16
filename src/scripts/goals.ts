@@ -18,11 +18,11 @@ inputGoalForm.addEventListener('submit', async function(e) {
     }
 });
 
-async function populateGoals(inputGoal) {
+async function populateGoals(inputGoal: HTMLInputElement) {
     inputGoal.value = "";
     const goals = await fetch('/api/goals').then(res => res.json());
     goalsSection.innerHTML = "";
-    goals.forEach(goal => {
+    goals.forEach((goal: any) => {
         let li = document.createElement('li');
         let img = document.createElement('img');
         let div = document.createElement('div');
@@ -58,7 +58,7 @@ async function populateGoals(inputGoal) {
 //     console.log(`goal completed: ${e.target.dataset.goalComplete}`);
 // }
 
-function toggleGoalComplete(target) {
+function toggleGoalComplete(target: any) {
     if (target.dataset.goalcomplete == 'no') {
         target.dataset.goalcomplete = 'yes';
         target.parentElement.firstElementChild.src = "tikedfilled.svg";
@@ -117,7 +117,7 @@ async function repopulateGoals() {
     const response = await fetch('/api/goals');
     const goals = await response.json();
     goalsSection.innerHTML = "";
-    goals.forEach(goal => {
+    goals.forEach((goal: any) => {
         let li = document.createElement('li');
         let img = document.createElement('img');
         let div = document.createElement('div');

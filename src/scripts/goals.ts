@@ -69,6 +69,7 @@ function toggleGoalComplete(target) {
         target.parentElement.firstElementChild.src = "tikbox.svg";
         target.parentElement.children[2].classList.remove('goal-completed');
     }
+    console.log('target is ', target);
     console.log(`goal completed: ${target.dataset.goalcomplete}`);
 }
 

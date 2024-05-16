@@ -34,7 +34,7 @@ async function populateGoals(inputGoal) {
         div.classList.add('goal-text');
         div.textContent = goal.description;
         cbtn.classList.add('complete-goal-button');
-        cbtn.setAttribute('data-goalComplete','no');
+        cbtn.setAttribute('data-goalcomplete','no');
         cbtn.setAttribute('data-id',goal.id);
         dbtn.textContent = "x";
         dbtn.classList.add('delete-goal-button');
@@ -59,17 +59,17 @@ async function populateGoals(inputGoal) {
 // }
 
 function toggleGoalComplete(target) {
-    if (target.dataset.goalComplete == 'no') {
-        target.dataset.goalComplete = 'yes';
+    if (target.dataset.goalcomplete == 'no') {
+        target.dataset.goalcomplete = 'yes';
         target.parentElement.firstElementChild.src = "tikedfilled.svg";
         target.parentElement.children[2].classList.add('goal-completed');
     }
-    else if (target.dataset.goalComplete == 'yes') {
-        target.dataset.goalComplete = 'no';
+    else if (target.dataset.goalcomplete == 'yes') {
+        target.dataset.goalcomplete = 'no';
         target.parentElement.firstElementChild.src = "tikbox.svg";
         target.parentElement.children[2].classList.remove('goal-completed');
     }
-    console.log(`goal completed: ${target.dataset.goalComplete}`);
+    console.log(`goal completed: ${target.dataset.goalcomplete}`);
 }
 
 async function completeGoal(id: number, completed: string) {
@@ -128,7 +128,7 @@ async function repopulateGoals() {
         div.classList.add('goal-text');
         div.textContent = goal.description;
         cbtn.classList.add('complete-goal-button');
-        cbtn.setAttribute('data-goalComplete','no');
+        cbtn.setAttribute('data-goalcomplete',goal.completed);
         cbtn.setAttribute('data-id',goal.id);
         dbtn.textContent = "x";
         dbtn.classList.add('delete-goal-button');
@@ -143,7 +143,7 @@ goalsSection.addEventListener('click',(ev) => {
     const id = Number(target.getAttribute('data-id'));
     
     if (target.classList.contains('complete-goal-button')) {
-        const completed = target.getAttribute('data-goalComplete');
+        const completed = target.getAttribute('data-goalcomplete');
         console.log('completed status is ',completed);
         console.log('complete goal button clicked for ',id);
         toggleGoalComplete(target);

@@ -3,7 +3,7 @@ import { escape } from 'html-escaper';
 import { clsx } from 'clsx';
 import 'cssesc';
 
-const ASTRO_VERSION = "4.8.5";
+const ASTRO_VERSION = "4.8.6";
 
 const MissingMediaQueryDirective = {
   name: "MissingMediaQueryDirective",

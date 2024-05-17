@@ -1,4 +1,4 @@
-import { e as createComponent, r as renderTemplate, g as addAttribute, i as renderHead, j as renderSlot, h as createAstro, k as renderComponent, m as maybeRenderHead } from '../astro_TNa6F8EM.mjs';
+import { e as createComponent, r as renderTemplate, g as addAttribute, i as renderHead, j as renderSlot, h as createAstro, k as renderComponent, m as maybeRenderHead } from '../astro_B_1gqQEr.mjs';
 import 'kleur/colors';
 import 'html-escaper';
 import 'clsx';

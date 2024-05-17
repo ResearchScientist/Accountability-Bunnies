@@ -18,3 +18,6 @@
 |`npx astro link`||
 |`npx astro db push`||
 |`npx astro db push --force-reset`||
+|`npx @astrojs/upgrade`| Update Astro and official integrations |
+|`npx npm-check -u`| List of updates sorted by major,minor,patch |
+|`netstat -an \| grep LISTEN`| List of open ports |

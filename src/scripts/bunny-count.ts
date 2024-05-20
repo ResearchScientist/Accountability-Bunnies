@@ -21,7 +21,7 @@ let taps: number = 0;
 let processGoals: any;
 let processingMsgCount = 0;
 let bunnyArray: any = [];
-let totalBunnies: number = 0;
+// let totalBunnies: number = 0;
 
 sun.addEventListener('click',sunSpin);
 tapFarmButton.addEventListener('click',countBunnies);

@@ -145,13 +145,12 @@ goalsSection.addEventListener('click',(ev) => {
     
     if (target.classList.contains('complete-goal-button')) {
         const completed = target.getAttribute('data-goalcomplete');
-        console.log('completed status is ',completed);
+        // console.log('type is ',typeof completed);
         console.log('complete goal button clicked for ',id);
         toggleGoalComplete(target);
         completeGoal(id,completed);
     }
     else if (target.classList.contains('delete-goal-button')) {
-        console.log('delete button clicked for ',id)
         deleteGoal(id);
         repopulateGoals();
     }

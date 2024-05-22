@@ -41,6 +41,8 @@ async function populateGoals(inputGoal: HTMLInputElement) {
         dbtn.setAttribute('data-id',goal.id);
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
+        makeComplete(cbtn);
+        console.log('goal complted is ',cbtn.getAttribute('data-goalcomplete'));
     });
 }
 
@@ -58,20 +60,20 @@ async function populateGoals(inputGoal: HTMLInputElement) {
 //     console.log(`goal completed: ${e.target.dataset.goalComplete}`);
 // }
 
-function toggleGoalComplete(target: any) {
-    if (target.dataset.goalcomplete == 'no') {
-        target.dataset.goalcomplete = 'yes';
-        target.parentElement.firstElementChild.src = "tikedfilled.svg";
-        target.parentElement.children[2].classList.add('goal-completed');
-    }
-    else if (target.dataset.goalcomplete == 'yes') {
-        target.dataset.goalcomplete = 'no';
-        target.parentElement.firstElementChild.src = "tikbox.svg";
-        target.parentElement.children[2].classList.remove('goal-completed');
-    }
-    console.log('target is ', target);
-    console.log(`goal completed: ${target.dataset.goalcomplete}`);
-}
+// function toggleGoalComplete(target: any) {
+//     if (target.dataset.goalcomplete == 'no') {
+//         target.dataset.goalcomplete = 'yes';
+//         target.parentElement.firstElementChild.src = "tikedfilled.svg";
+//         target.parentElement.children[2].classList.add('goal-completed');
+//     }
+//     else if (target.dataset.goalcomplete == 'yes') {
+//         target.dataset.goalcomplete = 'no';
+//         target.parentElement.firstElementChild.src = "tikbox.svg";
+//         target.parentElement.children[2].classList.remove('goal-completed');
+//     }
+//     console.log('target is ', target);
+//     console.log(`goal completed dataset: ${target.dataset.goalcomplete}`);
+// }
 
 async function completeGoal(id: number, completed: string) {
     try {
@@ -85,6 +87,7 @@ async function completeGoal(id: number, completed: string) {
         if (!response.ok) {
             throw new Error('Network response not ok');
         }
+        // makeComplete();
         repopulateGoals();
     }
     catch (error) {
@@ -92,6 +95,21 @@ async function completeGoal(id: number, completed: string) {
     }
 }
 
+function makeComplete(cbtn) {
+    console.log('make complete funciton');
+    if (cbtn.dataset.goalcomplete == 'yes') {
+        // target.dataset.goalcomplete = 'yes';
+        cbtn.parentElement.firstElementChild.src = "tikedfilled.svg";
+        cbtn.parentElement.children[2].classList.add('goal-completed');
+    }
+    else if (cbtn.dataset.goalcomplete == 'no') {
+        // cbtn.dataset.goalcomplete = 'no';
+        cbtn.parentElement.firstElementChild.src = "tikbox.svg";
+        cbtn.parentElement.children[2].classList.remove('goal-completed');
+    }
+    // console.log('target is ', target);
+    // console.log(`goal completed dataset: ${target.dataset.goalcomplete}`);
+}
 
 async function deleteGoal(id: number) {
     try {
@@ -136,6 +154,8 @@ async function repopulateGoals() {
         dbtn.setAttribute('data-id',goal.id);
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
+        console.log('goal repopulated is ',cbtn.getAttribute('data-goalcomplete'));
+        makeComplete(cbtn);
     });
 }
 
@@ -145,9 +165,8 @@ goalsSection.addEventListener('click',(ev) => {
     
     if (target.classList.contains('complete-goal-button')) {
         const completed = target.getAttribute('data-goalcomplete');
-        // console.log('type is ',typeof completed);
         console.log('complete goal button clicked for ',id);
-        toggleGoalComplete(target);
+        // toggleGoalComplete(target);
         completeGoal(id,completed);
     }
     else if (target.classList.contains('delete-goal-button')) {

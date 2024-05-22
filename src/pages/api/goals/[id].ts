@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import { db, Goals, eq } from 'astro:db';
+import { db, Goals, eq , like} from 'astro:db';
 
 export const DELETE: APIRoute = async (ctx) => {
     try {
@@ -25,6 +25,10 @@ export const PATCH: APIRoute = async (ctx) => {
         }
         console.log('patching going on');
         await db.update(Goals).set({ completed: 'yes' }).where(eq(Goals.id,id));
+        let goal = await db.select().from(Goals).where(eq(Goals.id,id));
+        let goalCompletedValue = goal[0].completed;
+        console.log(goalCompletedValue);
+        // console.log(goal[0].completed);
         // const goal = await db.select(Goals).where(eq(Goals.id,id)).first();
         // const newCompletedValue = goal.completed === 'no' ? 'yes' : 'no';
         // await db.update(Goals).set({ completed: newCompletedValue }).where(eq(Goals.id,id));

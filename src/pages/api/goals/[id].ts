@@ -24,7 +24,7 @@ export const PATCH: APIRoute = async (ctx) => {
             return new Response('goal id not foundl',{ status: 400 });
         }
         console.log('patching going on');
-        await db.update(Goals).set({ completed: 'yes' }).where(eq(Goals.id,id));
+        await db.update(Goals).set({ completed: true }).where(eq(Goals.id,id));
         // const goal = await db.select(Goals).where(eq(Goals.id,id)).first();
         // const newCompletedValue = goal.completed === 'no' ? 'yes' : 'no';
         // await db.update(Goals).set({ completed: newCompletedValue }).where(eq(Goals.id,id));

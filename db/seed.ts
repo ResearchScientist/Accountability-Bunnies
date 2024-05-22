@@ -5,17 +5,14 @@ export default async function() {
         {
             id: 1,
             description: 'bake a cookie',
-            completed: 'no',
         },
         {
             id: 2,
             description: 'hug a bear',
-            completed: 'yes',
         },
         {
             id: 3,
             description: 'count bunnies',
-            completed: 'no',
         }
     ]),
     await db.insert(Bunnies).values([

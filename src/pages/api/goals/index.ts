@@ -19,7 +19,6 @@ export const GET: APIRoute = async () => {
 export const POST: APIRoute = async ({ request }) => {
   try {
       const data = await request.json();
-    //   const newGoal = { ...data, completed: "no" };
     const newGoal = { ...data};
       await db.insert(Goals).values(newGoal);
       return new Response(null, { status: 201 });

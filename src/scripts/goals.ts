@@ -46,20 +46,6 @@ async function populateGoals(inputGoal: HTMLInputElement) {
     });
 }
 
-// function toggleGoalComplete(e : any) {
-//     if (e.target.dataset.goalComplete == 'no') {
-//         e.target.dataset.goalComplete = 'yes';
-//         e.target.parentElement.firstElementChild.src = "tikedfilled.svg";
-//         e.target.parentElement.children[2].classList.add('goal-completed');
-//     }
-//     else if (e.target.dataset.goalComplete == 'yes') {
-//         e.target.dataset.goalComplete = 'no';
-//         e.target.parentElement.firstElementChild.src = "tikbox.svg";
-//         e.target.parentElement.children[2].classList.remove('goal-completed');
-//     }
-//     console.log(`goal completed: ${e.target.dataset.goalComplete}`);
-// }
-
 // function toggleGoalComplete(target: any) {
 //     if (target.dataset.goalcomplete == 'no') {
 //         target.dataset.goalcomplete = 'yes';
@@ -98,17 +84,13 @@ async function completeGoal(id: number, completed: string) {
 function makeComplete(cbtn) {
     console.log('make complete funciton');
     if (cbtn.dataset.goalcomplete == 'yes') {
-        // target.dataset.goalcomplete = 'yes';
         cbtn.parentElement.firstElementChild.src = "tikedfilled.svg";
         cbtn.parentElement.children[2].classList.add('goal-completed');
     }
     else if (cbtn.dataset.goalcomplete == 'no') {
-        // cbtn.dataset.goalcomplete = 'no';
         cbtn.parentElement.firstElementChild.src = "tikbox.svg";
         cbtn.parentElement.children[2].classList.remove('goal-completed');
     }
-    // console.log('target is ', target);
-    // console.log(`goal completed dataset: ${target.dataset.goalcomplete}`);
 }
 
 async function deleteGoal(id: number) {

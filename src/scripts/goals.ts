@@ -57,7 +57,7 @@ async function completeGoal(id: number, completed: string) {
         if (!response.ok) {
             throw new Error('Network response not ok');
         }
-        repopulateGoals();
+        // repopulateGoals();
     }
     catch (error) {
         console.error('Error: ', error);
@@ -87,7 +87,7 @@ async function deleteGoal(id: number) {
         if (response.status !== 204) {
             const data = await response.json();
             console.log(id , 'successfully deleted ' , data);
-            repopulateGoals();
+            // repopulateGoals();
         }
     }
     catch (error) {
@@ -127,11 +127,11 @@ async function repopulateGoals() {
 goalsSection.addEventListener('click',(ev) => {
     const target = ev.target as Element;
     const id = Number(target.getAttribute('data-id'));
-    
     if (target.classList.contains('complete-goal-button')) {
         const completed = target.getAttribute('data-goalcomplete');
         console.log('complete goal button clicked for ',id);
         completeGoal(id,completed);
+        repopulateGoals();
     }
     else if (target.classList.contains('delete-goal-button')) {
         deleteGoal(id);

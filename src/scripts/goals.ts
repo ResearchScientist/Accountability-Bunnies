@@ -57,7 +57,7 @@ async function completeGoal(id: number, completed: string) {
         if (!response.ok) {
             throw new Error('Network response not ok');
         }
-        // repopulateGoals();
+        repopulateGoals();
     }
     catch (error) {
         console.error('Error: ', error);
@@ -131,7 +131,7 @@ goalsSection.addEventListener('click',(ev) => {
         const completed = target.getAttribute('data-goalcomplete');
         console.log('complete goal button clicked for ',id);
         completeGoal(id,completed);
-        repopulateGoals();
+        // repopulateGoals();
     }
     else if (target.classList.contains('delete-goal-button')) {
         deleteGoal(id);

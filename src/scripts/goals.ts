@@ -46,21 +46,6 @@ async function populateGoals(inputGoal: HTMLInputElement) {
     });
 }
 
-// function toggleGoalComplete(target: any) {
-//     if (target.dataset.goalcomplete == 'no') {
-//         target.dataset.goalcomplete = 'yes';
-//         target.parentElement.firstElementChild.src = "tikedfilled.svg";
-//         target.parentElement.children[2].classList.add('goal-completed');
-//     }
-//     else if (target.dataset.goalcomplete == 'yes') {
-//         target.dataset.goalcomplete = 'no';
-//         target.parentElement.firstElementChild.src = "tikbox.svg";
-//         target.parentElement.children[2].classList.remove('goal-completed');
-//     }
-//     console.log('target is ', target);
-//     console.log(`goal completed dataset: ${target.dataset.goalcomplete}`);
-// }
-
 async function completeGoal(id: number, completed: string) {
     try {
         const response = await fetch(`/api/goals/${id}`, {
@@ -148,7 +133,6 @@ goalsSection.addEventListener('click',(ev) => {
     if (target.classList.contains('complete-goal-button')) {
         const completed = target.getAttribute('data-goalcomplete');
         console.log('complete goal button clicked for ',id);
-        // toggleGoalComplete(target);
         completeGoal(id,completed);
     }
     else if (target.classList.contains('delete-goal-button')) {
@@ -156,3 +140,8 @@ goalsSection.addEventListener('click',(ev) => {
         repopulateGoals();
     }
 });
+
+window.onload = () => {
+    console.log('window fully loaded');
+    repopulateGoals();
+};

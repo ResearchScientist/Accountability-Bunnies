@@ -65,7 +65,6 @@ async function completeGoal(id: number, completed: string) {
 }
 
 function tikComplete(cbtn) {
-    console.log('make complete funciton');
     if (cbtn.dataset.goalcomplete == 'yes') {
         cbtn.parentElement.firstElementChild.src = "tikedfilled.svg";
         cbtn.parentElement.children[2].classList.add('goal-completed');
@@ -91,7 +90,6 @@ async function deleteGoal(id: number) {
         repopulateGoals();
     }
     catch (error) {
-        console.log('id is',id);
         console.error('delete gave an error : ' , error);
     }
 }
@@ -119,7 +117,6 @@ async function repopulateGoals() {
         dbtn.setAttribute('data-id',goal.id);
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
-        console.log('goal repopulated is ',cbtn.getAttribute('data-goalcomplete'));
         tikComplete(cbtn);
     });
 }
@@ -133,11 +130,9 @@ goalsSection.addEventListener('click',(ev) => {
     }
     else if (target.classList.contains('delete-goal-button')) {
         deleteGoal(id);
-        // repopulateGoals();
     }
 });
 
 window.onload = () => {
-    console.log('window fully loaded');
     repopulateGoals();
 };

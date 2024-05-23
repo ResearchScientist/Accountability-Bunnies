@@ -13,7 +13,7 @@ const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
 const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','finding bunnies'];
 const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?"];
-let tasksCompleted: number = 5;
+let tasksCompleted: number = 3;
 const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
 const bunnyJokesArray = ["How do you say bunny in Spanish?\nBunnito.","Why can't you hear bunnies having sex?\nBecause they have cotton balls.","I'm having a bad hare day.","Where do bunnies go for breakfast?\nI H O P","Read me a story with a hoppy ending.","Somebunny loves you.","I dance to hip hop."];
 const bunnyJokeBubble = document.querySelector('#bunny-joke-bubble') as HTMLElement;
@@ -93,29 +93,27 @@ function processingGoals() {
         countingBunniesMsg.textContent = '';
         console.log('all done');
         clearInterval(processGoals);
-        setTimeout(bunnyAnnouncement,500);
+        setTimeout(bunnyAnnouncement,400);
     }
 }
 
 function bunnyAnnouncement() {
-    countingBunniesMsg.style.margin = "0 0 -4px";
-    countingBunniesMsg.style.fontSize = "20px";
-    countingBunniesMsg.style.fontFamily = "Annie Use Your Telescope";
+    bunnyCountMsg.style.display = "inline";
     if (tasksCompleted == 0) {
-        countingBunniesMsg.textContent = 'aww, no bunnies';
+        bunnyCountMsg.textContent = 'aww, no bunnies';
     }
     else if (tasksCompleted == 1) {
-        countingBunniesMsg.textContent = oneBunnyMsg[Math.floor(Math.random() * oneBunnyMsg.length)];
+        bunnyCountMsg.textContent = oneBunnyMsg[Math.floor(Math.random() * oneBunnyMsg.length)];
     }
     else {
-        countingBunniesMsg.textContent = manyBunnyMsg[Math.floor(Math.random() * manyBunnyMsg.length)];
+        bunnyCountMsg.textContent = manyBunnyMsg[Math.floor(Math.random() * manyBunnyMsg.length)];
     }
-    setTimeout(removeAnnouncement,1700);
-    setTimeout(makeBunnies,1200);
+    setTimeout(removeAnnouncement,1500);
 }
 
 function removeAnnouncement() {
-    countingBunniesMsg.textContent = '';
+    bunnyCountMsg.textContent = '';
+    setTimeout(makeBunnies,400);
 }
 
 function makeBunnies() {

@@ -14,37 +14,36 @@ inputGoalForm.addEventListener('submit', async function(e) {
         body: data
     });
     if (response.ok) {
-        populateGoals(inputGoal);
+        // populateGoals(inputGoal);
     }
 });
 
-async function populateGoals(inputGoal: HTMLInputElement) {
-    inputGoal.value = "";
-    const goals = await fetch('/api/goals').then(res => res.json());
-    goalsSection.innerHTML = "";
-    goals.forEach((goal: any) => {
-        let li = document.createElement('li');
-        let img = document.createElement('img');
-        let div = document.createElement('div');
-        let cbtn = document.createElement('button');
-        let dbtn = document.createElement('button');
-        li.classList.add('goal-item');
-        img.src = "tikbox.svg";
-        img.classList.add('tikbox');
-        div.classList.add('goal-text');
-        div.textContent = goal.description;
-        cbtn.classList.add('complete-goal-button');
-        cbtn.setAttribute('data-goalcomplete',goal.completed);
-        cbtn.setAttribute('data-id',goal.id);
-        dbtn.textContent = "x";
-        dbtn.classList.add('delete-goal-button');
-        dbtn.setAttribute('data-id',goal.id);
-        li.append(img,cbtn,div,dbtn);
-        goalsSection.appendChild(li);
-        makeComplete(cbtn);
-        console.log('goal complted is ',cbtn.getAttribute('data-goalcomplete'));
-    });
-}
+// async function populateGoals(inputGoal: HTMLInputElement) {
+//     inputGoal.value = "";
+//     const goals = await fetch('/api/goals').then(res => res.json());
+//     goalsSection.innerHTML = "";
+//     goals.forEach((goal: any) => {
+//         let li = document.createElement('li');
+//         let img = document.createElement('img');
+//         let div = document.createElement('div');
+//         let cbtn = document.createElement('button');
+//         let dbtn = document.createElement('button');
+//         li.classList.add('goal-item');
+//         img.src = "tikbox.svg";
+//         img.classList.add('tikbox');
+//         div.classList.add('goal-text');
+//         div.textContent = goal.description;
+//         cbtn.classList.add('complete-goal-button');
+//         cbtn.setAttribute('data-goalcomplete',goal.completed);
+//         cbtn.setAttribute('data-id',goal.id);
+//         dbtn.textContent = "x";
+//         dbtn.classList.add('delete-goal-button');
+//         dbtn.setAttribute('data-id',goal.id);
+//         li.append(img,cbtn,div,dbtn);
+//         goalsSection.appendChild(li);
+//         tikComplete(cbtn);
+//     });
+// }
 
 async function completeGoal(id: number, completed: string) {
     try {
@@ -58,7 +57,6 @@ async function completeGoal(id: number, completed: string) {
         if (!response.ok) {
             throw new Error('Network response not ok');
         }
-        // makeComplete();
         repopulateGoals();
     }
     catch (error) {
@@ -66,7 +64,7 @@ async function completeGoal(id: number, completed: string) {
     }
 }
 
-function makeComplete(cbtn) {
+function tikComplete(cbtn) {
     console.log('make complete funciton');
     if (cbtn.dataset.goalcomplete == 'yes') {
         cbtn.parentElement.firstElementChild.src = "tikedfilled.svg";
@@ -122,7 +120,7 @@ async function repopulateGoals() {
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
         console.log('goal repopulated is ',cbtn.getAttribute('data-goalcomplete'));
-        makeComplete(cbtn);
+        tikComplete(cbtn);
     });
 }
 

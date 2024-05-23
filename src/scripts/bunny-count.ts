@@ -81,6 +81,7 @@ function countBunnies() {
     setTimeout (function() {
             countingBunniesMsg.textContent = 'querying database';
     },200);
+    updateTotalBunnies();
 }
 
 function processingGoals() {
@@ -120,6 +121,12 @@ function makeBunnies() {
 	for (let i: number = 0; i<tasksCompleted; i++) {
 		makeBunny(i);
 	}
+}
+
+async function updateTotalBunnies() {
+    const response = await fetch('/api/bunnies');
+    const data = await response.json();
+    console.log(`total bunnies, ${data}`);
 }
 
 // async function updateTotalBunnies(tasksCompleted) {

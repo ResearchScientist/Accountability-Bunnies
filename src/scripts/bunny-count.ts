@@ -7,6 +7,7 @@ const tapFarmButton = document.querySelector('#tap-farm-button') as HTMLElement;
 const dontTapFarmMsg = document.querySelector('#dont-tap-farm-msg') as HTMLElement;
 const dontTapFarmButton = document.querySelector('#dont-tap-farm-button') as HTMLElement;
 const countingBunniesMsg = document.querySelector('#counting-bunnies-msg') as HTMLElement;
+const bunnyCountMsg = document.querySelector('#bunny-count-msg') as HTMLElement;
 const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyPink.svg","bunnyLightBlue.svg","bunnyRed.svg","bunnyYellow.svg","bunnyLightOrange.svg"];
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
@@ -36,7 +37,7 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Sunday') {
+    if (todayweekday == 'Thursday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}

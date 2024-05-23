@@ -70,11 +70,15 @@
 }
 
 #bunny-count-msg {
-    margin: 0 0 50px -58px;
     grid-column: 1/-1;
-    grid-row: 2/3;
+    grid-row: -2/-1;
     justify-self: center;
-    align-self: flex-end;
+    align-self: center;
+    text-align: center;
+    font-family: "Annie Use Your Telescope", cursive;
+    font-size: 48px;
+    color: black;
+    display: inline;
 }
 
 .sunSpin {

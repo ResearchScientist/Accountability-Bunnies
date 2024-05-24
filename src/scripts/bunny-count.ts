@@ -13,7 +13,8 @@ const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
 const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','finding bunnies'];
 const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?"];
-let tasksCompleted: number = 3;
+let tasksCompleted: number = 0;
+let tasksNotCompleted: number = 0;
 const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
 const bunnyJokesArray = ["How do you say bunny in Spanish?\nBunnito.","Why can't you hear bunnies having sex?\nBecause they have cotton balls.","I'm having a bad hare day.","Where do bunnies go for breakfast?\nI H O P","Read me a story with a hoppy ending.","Somebunny loves you.","I dance to hip hop."];
 const bunnyJokeBubble = document.querySelector('#bunny-joke-bubble') as HTMLElement;
@@ -22,7 +23,6 @@ let taps: number = 0;
 let processGoals: any;
 let processingMsgCount = 0;
 let bunnyArray: any = [];
-// let totalBunnies: number = 0;
 
 sun.addEventListener('click',sunSpin);
 tapFarmButton.addEventListener('click',countBunnies);
@@ -85,6 +85,14 @@ function countBunnies() {
     updateTotalBunnies();
 }
 
+async function getCompletedGoalsCounts() {
+    const response = await fetch('/api/goals/complete');
+    const data = await response.json();
+    tasksCompleted = data.completedGoals;
+    tasksNotCompleted = data.notcompletedGoals;
+    // console.log(JSON.stringify(data,null,2));
+}
+
 function processingGoals() {
     if (processingMsgCount < countingGoalsMsgArray.length) {
         countingBunniesMsg.textContent = countingGoalsMsgArray[processingMsgCount];
@@ -124,22 +132,11 @@ function makeBunnies() {
 	}
 }
 
-async function getCompletedGoalsCounts() {
-    const response = await fetch('/api/goals/complete');
-    const data = await response.json();
-    console.log(`completed bunnies, ${data}`);
-}
-
 async function updateTotalBunnies() {
     const response = await fetch('/api/bunnies');
     const data = await response.json();
     console.log(`total bunnies, ${data}`);
 }
-
-// async function updateTotalBunnies(tasksCompleted) {
-//     const totalBunniesDB = await db.select().from(Bunnies);
-//     console.log(totalBunnies);
-// }
 
 function makeBunny(i : any) {
 	setTimeout (function() {

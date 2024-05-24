@@ -11,11 +11,11 @@ const bunnyCountMsg = document.querySelector('#bunny-count-msg') as HTMLElement;
 const bunnyColours = ["bunnyBlue.svg","bunnyGreen.svg","bunnyOrange.svg","bunnyPink.svg","bunnyLightBlue.svg","bunnyRed.svg","bunnyYellow.svg","bunnyLightOrange.svg"];
 const bunnyPen = document.querySelector("#bunny-pen") as HTMLElement;
 const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no","wooooow","don't tap yet","stop"];
-const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','finding bunnies'];
+const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','gathering bunnies','counting bunnies'];
 const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?"];
-let tasksCompleted: number = 0;
-let tasksNotCompleted: number = 0;
-const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
+// let tasksCompleted: number = 0;
+// let tasksNotCompleted: number = 0;
+// const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
 const bunnyJokesArray = ["How do you say bunny in Spanish?\nBunnito.","Why can't you hear bunnies having sex?\nBecause they have cotton balls.","I'm having a bad hare day.","Where do bunnies go for breakfast?\nI H O P","Read me a story with a hoppy ending.","Somebunny loves you.","I dance to hip hop."];
 const bunnyJokeBubble = document.querySelector('#bunny-joke-bubble') as HTMLElement;
 
@@ -37,7 +37,7 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Thursday') {
+    if (todayweekday == 'Friday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
@@ -77,20 +77,14 @@ function countBunnies() {
     countingBunniesMsg.style.fontFamily = "Pavanam";
     countingBunniesMsg.style.fontSize = "14px";
     tapFarmButton.removeEventListener('click',countBunnies);
-    processGoals = setInterval(processingGoals,300);
     setTimeout (function() {
             countingBunniesMsg.textContent = 'querying database';
     },200);
-    getCompletedGoalsCounts();
-    updateTotalBunnies();
-}
-
-async function getCompletedGoalsCounts() {
-    const response = await fetch('/api/goals/complete');
-    const data = await response.json();
-    tasksCompleted = data.completedGoals;
-    tasksNotCompleted = data.notcompletedGoals;
-    // console.log(JSON.stringify(data,null,2));
+    setTimeout (function() {
+        processGoals = setInterval(processingGoals,200);
+    },400);
+    // getCompletedGoalsCounts();
+    // updateTotalBunnies();
 }
 
 function processingGoals() {
@@ -103,11 +97,26 @@ function processingGoals() {
         countingBunniesMsg.textContent = '';
         console.log('all done');
         clearInterval(processGoals);
-        setTimeout(bunnyAnnouncement,400);
+        getCompletedGoalsCounts();
+        // setTimeout(bunnyAnnouncement,400);
     }
 }
 
-function bunnyAnnouncement() {
+async function getCompletedGoalsCounts() {
+    const response = await fetch('/api/goals/complete');
+    const data = await response.json();
+    let tasksCompleted = data.completedGoals;
+    let tasksNotCompleted = data.notcompletedGoals;
+    console.log('updated tasks completed',tasksCompleted);
+    bunnyAnnouncement(tasksCompleted);
+    // makeBunnies(tasksCompleted);
+    setTimeout(makeBunnies,1900,tasksCompleted);
+    // return tasksCompleted;
+    // console.log(JSON.stringify(data,null,2));
+}
+
+function bunnyAnnouncement(tasksCompleted) {
+    const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
     bunnyCountMsg.style.display = "inline";
     if (tasksCompleted == 0) {
         bunnyCountMsg.textContent = 'aww, no bunnies';
@@ -123,10 +132,11 @@ function bunnyAnnouncement() {
 
 function removeAnnouncement() {
     bunnyCountMsg.textContent = '';
-    setTimeout(makeBunnies,400);
+    // setTimeout(makeBunnies,400);
 }
 
-function makeBunnies() {
+function makeBunnies(tasksCompleted) {
+    console.log('make bunnies',tasksCompleted);
 	for (let i: number = 0; i<tasksCompleted; i++) {
 		makeBunny(i);
 	}

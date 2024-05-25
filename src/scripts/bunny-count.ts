@@ -98,6 +98,7 @@ async function populateBunnies() {
     const response = await fetch('/api/bunnies');
     const totalBunniesDB:number = await response.json();
     console.log(`populate bunnies ${totalBunniesDB}`);
+    makeBunnies(totalBunniesDB);
 }
 
 async function getTotalBunnies() {
@@ -243,7 +244,4 @@ function bunnyRush() {
     });
 }
 
-window.onload = () => {
-    // getTotalBunnies();
-    populateBunnies();
-};
+window.addEventListener('load',populateBunnies);

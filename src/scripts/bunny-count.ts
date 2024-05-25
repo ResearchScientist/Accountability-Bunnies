@@ -33,7 +33,7 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Friday') {
+    if (todayweekday == 'Saturday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
@@ -84,15 +84,20 @@ function countBunnies() {
 function processingGoals() {
     if (processingMsgCount < countingGoalsMsgArray.length) {
         countingBunniesMsg.textContent = countingGoalsMsgArray[processingMsgCount];
-        console.log('processing');
         processingMsgCount++;
     }
     else {
         countingBunniesMsg.textContent = '';
-        console.log('all done');
         clearInterval(processGoals);
+        getTotalBunnies();
         getCompletedGoalsCounts();
     }
+}
+
+async function getTotalBunnies() {
+    const response = await fetch('/api/bunnies');
+    const totalBunniesDB = await response.json();
+    console.log(`total bunnies ${totalBunniesDB}`);
 }
 
 async function getCompletedGoalsCounts() {
@@ -132,12 +137,6 @@ function makeBunnies(tasksCompleted) {
 	for (let i: number = 0; i<tasksCompleted; i++) {
 		makeBunny(i);
 	}
-}
-
-async function updateTotalBunnies() {
-    const response = await fetch('/api/bunnies');
-    const data = await response.json();
-    console.log(`total bunnies, ${data}`);
 }
 
 function makeBunny(i : any) {
@@ -206,3 +205,7 @@ function bunnyRush() {
         }, 1500);
     });
 }
+
+window.onload = () => {
+    getTotalBunnies();
+};

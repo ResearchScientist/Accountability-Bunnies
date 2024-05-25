@@ -64,7 +64,7 @@ async function completeGoal(id: number, completed: string) {
     }
 }
 
-function tikComplete(cbtn) {
+function tikComplete(cbtn: any) {
     if (cbtn.dataset.goalcomplete == 'yes') {
         cbtn.parentElement.firstElementChild.src = "tikedfilled.svg";
         cbtn.parentElement.children[2].classList.add('goal-completed');

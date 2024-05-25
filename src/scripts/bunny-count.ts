@@ -94,17 +94,23 @@ function processingGoals() {
     }
 }
 
+async function populateBunnies() {
+    const response = await fetch('/api/bunnies');
+    const totalBunniesDB:number = await response.json();
+    console.log(`populate bunnies ${totalBunniesDB}`);
+}
+
 async function getTotalBunnies() {
     const response = await fetch('/api/bunnies');
-    const totalBunniesDB = await response.json();
+    const totalBunniesDB:number = await response.json();
     console.log(`total bunnies ${totalBunniesDB}`);
 }
 
 async function getCompletedGoalsCounts() {
     const response = await fetch('/api/goals/complete');
     const data = await response.json();
-    let tasksCompleted = data.completedGoals;
-    let tasksNotCompleted = data.notcompletedGoals;
+    let tasksCompleted: number = data.completedGoals;
+    let tasksNotCompleted: number = data.notcompletedGoals;
     bunnyAnnouncement(tasksCompleted);
     setTimeout(makeBunnies,1900,tasksCompleted);
     setTimeout(makeSleepingBunnies,2500,tasksNotCompleted)
@@ -113,7 +119,7 @@ async function getCompletedGoalsCounts() {
     console.log('tasks not completed',tasksNotCompleted);
 }
 
-function bunnyAnnouncement(tasksCompleted) {
+function bunnyAnnouncement(tasksCompleted: number) {
     const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?"];
     const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
     bunnyCountMsg.style.display = "inline";
@@ -133,7 +139,14 @@ function removeAnnouncement() {
     bunnyCountMsg.textContent = '';
 }
 
-function makeBunnies(tasksCompleted) {
+function repopulateBunnies(totalBunniesDB: number) {
+    console.log('repopulate bunnies',totalBunniesDB);
+	for (let i: number = 0; i<totalBunniesDB; i++) {
+		makeBunny(i);
+	}
+}
+
+function makeBunnies(tasksCompleted: number) {
     console.log('make bunnies',tasksCompleted);
 	for (let i: number = 0; i<tasksCompleted; i++) {
 		makeBunny(i);
@@ -162,7 +175,7 @@ function addIds(bunnyArray : any) {
     });
 }
 
-function makeSleepingBunnies(tasksNotCompleted) {
+function makeSleepingBunnies(tasksNotCompleted: number) {
     console.log('make sleeping bunnies',tasksNotCompleted);
 	for (let i: number = 0; i<tasksNotCompleted; i++) {
 		makeSleepingBunny(i);
@@ -231,5 +244,6 @@ function bunnyRush() {
 }
 
 window.onload = () => {
-    getTotalBunnies();
+    // getTotalBunnies();
+    populateBunnies();
 };

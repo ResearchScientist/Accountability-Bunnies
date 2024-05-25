@@ -107,6 +107,7 @@ async function getCompletedGoalsCounts() {
     let tasksNotCompleted = data.notcompletedGoals;
     bunnyAnnouncement(tasksCompleted);
     setTimeout(makeBunnies,1900,tasksCompleted);
+    setTimeout(makeSleepingBunnies,2500,tasksNotCompleted)
     // console.log(JSON.stringify(data,null,2));
     console.log('tasks completed',tasksCompleted);
     console.log('tasks not completed',tasksNotCompleted);
@@ -159,6 +160,29 @@ function addIds(bunnyArray : any) {
         bunnyObject.setAttribute('class',`bunny`);
         bunnyObject.setAttribute('id',`bunny${i+1}`);
     });
+}
+
+function makeSleepingBunnies(tasksNotCompleted) {
+    console.log('make sleeping bunnies',tasksNotCompleted);
+	for (let i: number = 0; i<tasksNotCompleted; i++) {
+		makeSleepingBunny(i);
+	}
+}
+
+function makeSleepingBunny(i : any) {
+    console.log(i);
+	// setTimeout (function() {
+    // 	const bunny = document.createElement("img");
+    //     let randTopPosition = Math.random() * (86) + 15; // (101 - 15) + 15
+    //     let randLeftPosition = Math.random() * (85); // (85 - 0) + 0
+    //     bunny.src = bunnyColours[i % bunnyColours.length];
+    //     bunny.classList.add("bunnyAppear","bunny");
+    //     bunny.style.top = `calc( ${randTopPosition}% - 108px)`;
+    //     bunny.style.left = `${randLeftPosition}%`;
+    //     bunnyPen.appendChild(bunny);
+    //     bunnyArray.push(bunny);
+    //     addIds(bunnyArray);
+    // },400*i);
 }
 
 function randomBunnyAnimation(e : any) {

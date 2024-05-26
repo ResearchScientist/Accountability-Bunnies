@@ -78,6 +78,7 @@
     font-family: "Annie Use Your Telescope", cursive;
     font-size: 48px;
     color: black;
+    z-index: 1;
     display: none;
 }
 

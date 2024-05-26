@@ -89,15 +89,20 @@ function processingGoals() {
     else {
         countingBunniesMsg.textContent = '';
         clearInterval(processGoals);
-        getTotalBunnies();
-        getCompletedGoalsCounts();
+        // getTotalBunnies();
+        // getCompletedGoalsCounts();
+        updateTotalBunnies();
     }
+}
+
+function updateTotalBunnies() {
+    getTotalBunnies();
+    getCompletedGoalsCounts();
 }
 
 async function populateBunnies() {
     const response = await fetch('/api/bunnies');
     const totalBunniesDB:number = await response.json();
-    console.log(`populate bunnies ${totalBunniesDB}`);
     makeBunnies(totalBunniesDB);
 }
 
@@ -105,6 +110,7 @@ async function getTotalBunnies() {
     const response = await fetch('/api/bunnies');
     const totalBunniesDB:number = await response.json();
     console.log(`total bunnies ${totalBunniesDB}`);
+    return totalBunniesDB;
 }
 
 async function getCompletedGoalsCounts() {
@@ -118,6 +124,7 @@ async function getCompletedGoalsCounts() {
     // console.log(JSON.stringify(data,null,2));
     console.log('tasks completed',tasksCompleted);
     console.log('tasks not completed',tasksNotCompleted);
+    return tasksCompleted;
 }
 
 function bunnyAnnouncement(tasksCompleted: number) {

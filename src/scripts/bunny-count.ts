@@ -19,8 +19,8 @@ let taps: number = 0;
 let processGoals: any;
 let processingMsgCount = 0;
 let bunnyArray: any = [];
-let nTotalBunnies;
-let nCompletedGoals;
+let nTotalBunnies: number;
+let nCompletedGoals: number;
 
 sun.addEventListener('click',sunSpin);
 tapFarmButton.addEventListener('click',countBunnies);
@@ -95,13 +95,35 @@ function processingGoals() {
     }
 }
 
-function updateTotalBunnies() {
-    Promise.all([getTotalBunnies(),getCompletedGoalsCounts()]).then(values => {
-        nTotalBunnies = values[0];
-        nCompletedGoals = values[1];
-        let newTotalBunnies = nTotalBunnies + nCompletedGoals;
-        console.log('updated bunny count is',newTotalBunnies);
+// function updateTotalBunnies() {
+//     Promise.all([getTotalBunnies(),getCompletedGoalsCounts()]).then(values => {
+//         nTotalBunnies = values[0];
+//         nCompletedGoals = values[1];
+//         let newTotalBunnies = nTotalBunnies + nCompletedGoals;
+//         console.log('updated bunny count is',newTotalBunnies);
+//     });
+// }
+
+async function updateTotalBunnies() {
+    const values = await Promise.all([getTotalBunnies(),getCompletedGoalsCounts()]);
+    let nTotalBunnies = values[0];
+    let nCompletedGoals = values[1];
+    let newTotalBunnies = nTotalBunnies + nCompletedGoals;
+    console.log('updated bunny count is',newTotalBunnies);
+    const id = 1;
+    const response = await fetch(`/api/bunnies/${id}`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ totalBunnies: newTotalBunnies })
     });
+    if (response.ok) {
+        console.log('update successful');
+    }
+    else {
+        console.log('update not successful');
+    }
 }
 
 async function populateBunnies() {

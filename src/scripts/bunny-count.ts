@@ -109,20 +109,28 @@ async function updateTotalBunnies() {
     let nTotalBunnies = values[0];
     let nCompletedGoals = values[1];
     let newTotalBunnies = nTotalBunnies + nCompletedGoals;
-    console.log('updated bunny count is',newTotalBunnies);
     const id = 1;
-    const response = await fetch(`/api/bunnies/${id}`, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ totalBunnies: newTotalBunnies })
-    });
-    if (response.ok) {
-        console.log('update successful');
+    console.log('updated bunny count is',newTotalBunnies);
+    updateTotalBunniesDBValue(id,newTotalBunnies);
+}
+
+async function updateTotalBunniesDBValue(id: number,newTotalBunnies: number) {
+    try {
+        const response = await fetch(`/api/bunnies/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ newTotalBunnies }),
+        });
+        if (!response.ok) {
+            throw new Error('Network response not ok');
+        }
+        // repopulateGoals();
+        console.log('updating total bunnies');
     }
-    else {
-        console.log('update not successful');
+    catch (error) {
+        console.error('Error: ', error);
     }
 }
 

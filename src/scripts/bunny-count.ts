@@ -19,6 +19,8 @@ let taps: number = 0;
 let processGoals: any;
 let processingMsgCount = 0;
 let bunnyArray: any = [];
+let nTotalBunnies;
+let nCompletedGoals;
 
 sun.addEventListener('click',sunSpin);
 tapFarmButton.addEventListener('click',countBunnies);
@@ -89,15 +91,17 @@ function processingGoals() {
     else {
         countingBunniesMsg.textContent = '';
         clearInterval(processGoals);
-        // getTotalBunnies();
-        // getCompletedGoalsCounts();
         updateTotalBunnies();
     }
 }
 
 function updateTotalBunnies() {
-    getTotalBunnies();
-    getCompletedGoalsCounts();
+    Promise.all([getTotalBunnies(),getCompletedGoalsCounts()]).then(values => {
+        nTotalBunnies = values[0];
+        nCompletedGoals = values[1];
+        let newTotalBunnies = nTotalBunnies + nCompletedGoals;
+        console.log('updated bunny count is',newTotalBunnies);
+    });
 }
 
 async function populateBunnies() {
@@ -109,7 +113,6 @@ async function populateBunnies() {
 async function getTotalBunnies() {
     const response = await fetch('/api/bunnies');
     const totalBunniesDB:number = await response.json();
-    console.log(`total bunnies ${totalBunniesDB}`);
     return totalBunniesDB;
 }
 
@@ -122,8 +125,6 @@ async function getCompletedGoalsCounts() {
     setTimeout(makeBunnies,1900,tasksCompleted);
     setTimeout(makeSleepingBunnies,2500,tasksNotCompleted)
     // console.log(JSON.stringify(data,null,2));
-    console.log('tasks completed',tasksCompleted);
-    console.log('tasks not completed',tasksNotCompleted);
     return tasksCompleted;
 }
 

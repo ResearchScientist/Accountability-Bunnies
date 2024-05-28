@@ -4,8 +4,8 @@ import { db, Bunnies } from 'astro:db';
 export const GET: APIRoute = async () => {
     try {
         const allBunnies = await db.select().from(Bunnies);
-        let totalBunniesValue = allBunnies[0].totalBunnies;
-        return new Response(JSON.stringify(totalBunniesValue), {
+        let updatedValue = allBunnies[0].updated;
+        return new Response(JSON.stringify(updatedValue), {
             status: 200,
             headers: {
                 'Content-Type': 'application/json'

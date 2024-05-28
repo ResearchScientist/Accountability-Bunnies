@@ -1,4 +1,4 @@
-import { defineDb, defineTable, column } from 'astro:db';
+import { defineDb, defineTable, column, FALSE } from 'astro:db';
 
 // const Users = defineTable({
 //   columns: {
@@ -20,6 +20,7 @@ const Bunnies = defineTable({
     columns: {
         id: column.number({ primaryKey: true }),
         totalBunnies: column.number(),
+        updated: column.boolean({ default: false }),
         // user: column.number({ references: () => Users.columns.id }),
     }
 });

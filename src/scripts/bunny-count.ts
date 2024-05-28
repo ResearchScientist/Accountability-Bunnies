@@ -35,7 +35,14 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Sunday') {
+    if (todayweekday == 'Friday') {
+        console.log('update bunny total');
+        tapFarmMsg.style.display = "none";
+       	tapFarmButton.style.display = "none";
+        dontTapFarmMsg.style.display = "inline";
+        dontTapFarmButton.style.display = "inline";
+    }
+    else if (todayweekday == 'Tuesday') {
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
@@ -121,7 +128,7 @@ async function updateTotalBunniesDBValue(id: number,newTotalBunnies: number) {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ newTotalBunnies }),
+            body: JSON.stringify({ newTotalBunnies, updated: true }),
         });
         if (!response.ok) {
             throw new Error('Network response not ok');

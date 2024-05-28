@@ -35,17 +35,17 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Friday') {
-        console.log('reset bunny updated');
+    if (todayweekday == 'Saturday') {
+    	tapFarmMsg.style.display = "inline";
+    	tapFarmButton.style.display = "inline";
+	}
+    else if (todayweekday == 'Tuesday') {
         tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
         dontTapFarmMsg.style.display = "inline";
         dontTapFarmButton.style.display = "inline";
+        resetTotalBunniesDBValue();
     }
-    else if (todayweekday == 'Tuesday') {
-    	tapFarmMsg.style.display = "inline";
-    	tapFarmButton.style.display = "inline";
-	}
 	else {
 		tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
@@ -102,15 +102,6 @@ function processingGoals() {
     }
 }
 
-// function updateTotalBunnies() {
-//     Promise.all([getTotalBunnies(),getCompletedGoalsCounts()]).then(values => {
-//         nTotalBunnies = values[0];
-//         nCompletedGoals = values[1];
-//         let newTotalBunnies = nTotalBunnies + nCompletedGoals;
-//         console.log('updated bunny count is',newTotalBunnies);
-//     });
-// }
-
 async function updateTotalBunnies() {
     const values = await Promise.all([getTotalBunnies(),getCompletedGoalsCounts()]);
     let nTotalBunnies = values[0];
@@ -134,7 +125,29 @@ async function updateTotalBunniesDBValue(id: number,newTotalBunnies: number) {
             throw new Error('Network response not ok');
         }
         // repopulateGoals();
-        console.log('updating total bunnies');
+        console.log('updating total bunnies value and updated value');
+    }
+    catch (error) {
+        console.error('Error: ', error);
+    }
+}
+
+async function resetTotalBunniesDBValue() {
+    let id: number = 1;
+    console.log('resetting');
+    try {
+        const response = await fetch(`/api/bunnies/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ updated: false }),
+        });
+        if (!response.ok) {
+            throw new Error('Network response not ok');
+        }
+        // repopulateGoals();
+        console.log('reset updated to false');
     }
     catch (error) {
         console.error('Error: ', error);

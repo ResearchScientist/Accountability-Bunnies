@@ -35,10 +35,10 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Saturday') {
+    if (todayweekday == 'Wednesday') {
         getUpdatedDBValue();
-    	tapFarmMsg.style.display = "inline";
-    	tapFarmButton.style.display = "inline";
+    	// tapFarmMsg.style.display = "inline";
+    	// tapFarmButton.style.display = "inline";
 	}
     else if (todayweekday == 'Tuesday') {
         tapFarmMsg.style.display = "none";
@@ -145,10 +145,29 @@ async function getUpdatedDBValue() {
             throw new Error('network response not ok');
         }
         const updatedValue = await response.json();
-        console.log('updated is',updatedValue);
+        // return updatedValue;
+        checkUpdatedValue(updatedValue);
     }
     catch (error) {
         console.error('Error: ',error);
+    }
+}
+
+function checkUpdatedValue(updatedValue) {
+    console.log('updated is',updatedValue);
+    if (updatedValue == false) {
+        tapFarmMsg.style.display = "inline";
+    	tapFarmButton.style.display = "inline";
+    }
+    else if (updatedValue == true) {
+        tapFarmMsg.style.display = "none";
+       	tapFarmButton.style.display = "none";
+        dontTapFarmMsg.style.display = "inline";
+        dontTapFarmButton.style.display = "inline";
+        console.log('already updated');
+    }
+    else {
+        console.log('value is something other than boolean');
     }
 }
 

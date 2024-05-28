@@ -35,12 +35,12 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Tuesday') {
+    if (todayweekday == 'Saturday') {
         getUpdatedDBValue();
     	tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
 	}
-    else if (todayweekday == 'Sunday') {
+    else if (todayweekday == 'Tuesday') {
         tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
         dontTapFarmMsg.style.display = "inline";

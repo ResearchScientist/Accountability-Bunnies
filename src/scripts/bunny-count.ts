@@ -44,7 +44,7 @@ function onSaturday() {
        	tapFarmButton.style.display = "none";
         dontTapFarmMsg.style.display = "inline";
         dontTapFarmButton.style.display = "inline";
-        resetTotalBunniesDBValue();
+        resetUpdatedDBValue();
     }
 	else {
 		tapFarmMsg.style.display = "none";
@@ -132,7 +132,7 @@ async function updateTotalBunniesDBValue(id: number,newTotalBunnies: number) {
     }
 }
 
-async function resetTotalBunniesDBValue() {
+async function resetUpdatedDBValue() {
     let id: number = 1;
     console.log('resetting');
     try {

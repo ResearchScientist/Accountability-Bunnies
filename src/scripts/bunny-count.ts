@@ -36,7 +36,7 @@ function sunSpin() {
 
 function onSaturday() {
     if (todayweekday == 'Friday') {
-        console.log('update bunny total');
+        console.log('reset bunny updated');
         tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
         dontTapFarmMsg.style.display = "inline";

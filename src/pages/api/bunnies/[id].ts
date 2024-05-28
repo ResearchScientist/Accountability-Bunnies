@@ -8,7 +8,7 @@ export const PATCH: APIRoute = async (ctx) => {
         if (!id) {
             return new Response('total id not foundl',{ status: 400 });
         }
-        await db.update(Bunnies).set({ totalBunnies: newTotalBunnies }).where(eq(Bunnies.id,id));
+        await db.update(Bunnies).set({ totalBunnies: newTotalBunnies, updated: newTotalBunnies }).where(eq(Bunnies.id,id));
         return new Response('update successful',{ status: 200 });
     }
     catch (error) {

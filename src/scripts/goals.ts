@@ -46,7 +46,9 @@ async function populateGoals(inputGoal: HTMLInputElement) {
 }
 
 async function completeGoal(id: number, completed: string, target: any) { // added target
-    if (target.dataset.goalcomplete == 'yes') {                             // added from here
+    let originalSrc = target.parentElement.firstElementChild.src = "tikedfilled.svg";  // added from here
+    let originalClassList = [...target.parentElement.children[2].classList];
+    if (target.dataset.goalcomplete == 'yes') {
         target.parentElement.firstElementChild.src = "tikedfilled.svg";
         target.parentElement.children[2].classList.add('goal-completed');
     }
@@ -69,6 +71,8 @@ async function completeGoal(id: number, completed: string, target: any) { // add
     }
     catch (error) {
         console.error('Error: ', error);
+        target.parentElement.firstElementChild.src = originalSrc; // revert changes
+        target.parentElement.children[2].classList = originalClassList;
     }
 }
 

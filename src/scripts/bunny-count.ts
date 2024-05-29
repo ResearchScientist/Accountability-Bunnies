@@ -37,8 +37,6 @@ function sunSpin() {
 function onSaturday() {
     if (todayweekday == 'Wednesday') {
         getUpdatedDBValue();
-    	// tapFarmMsg.style.display = "inline";
-    	// tapFarmButton.style.display = "inline";
 	}
     else if (todayweekday == 'Tuesday') {
         tapFarmMsg.style.display = "none";
@@ -125,8 +123,6 @@ async function updateTotalBunniesDBValue(id: number,newTotalBunnies: number) {
         if (!response.ok) {
             throw new Error('Network response not ok');
         }
-        // repopulateGoals();
-        console.log('updating total bunnies value and updated value');
     }
     catch (error) {
         console.error('Error: ', error);
@@ -145,7 +141,6 @@ async function getUpdatedDBValue() {
             throw new Error('network response not ok');
         }
         const updatedValue = await response.json();
-        // return updatedValue;
         checkUpdatedValue(updatedValue);
     }
     catch (error) {
@@ -158,12 +153,14 @@ function checkUpdatedValue(updatedValue) {
     if (updatedValue == false) {
         tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
+        dontTapFarmMsg.style.display = "none";
+        dontTapFarmButton.style.display = "none";
     }
     else if (updatedValue == true) {
         tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
-        dontTapFarmMsg.style.display = "inline";
-        dontTapFarmButton.style.display = "inline";
+        dontTapFarmMsg.style.display = "none";
+        dontTapFarmButton.style.display = "none";
         console.log('already updated');
     }
     else {
@@ -173,7 +170,6 @@ function checkUpdatedValue(updatedValue) {
 
 async function resetUpdatedDBValue() {
     let id: number = 1;
-    console.log('resetting');
     try {
         const response = await fetch(`/api/bunnies/${id}`, {
             method: 'PATCH',
@@ -185,8 +181,6 @@ async function resetUpdatedDBValue() {
         if (!response.ok) {
             throw new Error('Network response not ok');
         }
-        // repopulateGoals();
-        console.log('reset updated to false');
     }
     catch (error) {
         console.error('Error: ', error);

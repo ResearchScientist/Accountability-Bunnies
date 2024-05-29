@@ -45,7 +45,15 @@ async function populateGoals(inputGoal: HTMLInputElement) {
     });
 }
 
-async function completeGoal(id: number, completed: string) {
+async function completeGoal(id: number, completed: string, target: any) { // added target
+    if (target.dataset.goalcomplete == 'yes') {                             // added from here
+        target.parentElement.firstElementChild.src = "tikedfilled.svg";
+        target.parentElement.children[2].classList.add('goal-completed');
+    }
+    else if (target.dataset.goalcomplete == 'no') {
+        target.parentElement.firstElementChild.src = "tikbox.svg";
+        target.parentElement.children[2].classList.remove('goal-completed');
+    }                                                                       // to here
     try {
         const response = await fetch(`/api/goals/${id}`, {
             method: 'PATCH',
@@ -126,7 +134,7 @@ goalsSection.addEventListener('click',(ev) => {
     const id = Number(target.getAttribute('data-id'));
     if (target.classList.contains('complete-goal-button')) {
         const completed = target.getAttribute('data-goalcomplete');
-        completeGoal(id,completed);
+        completeGoal(id,completed,target); // added target
     }
     else if (target.classList.contains('delete-goal-button')) {
         deleteGoal(id);

@@ -87,6 +87,12 @@ function tikComplete(cbtn: any) {
     }
 }
 
+function hideGoal(id,target) {
+    // console.log(id,target);
+    // console.log(target.parentElement);
+    target.parentElement.style.display = 'none';
+}
+
 async function deleteGoal(id: number) {
     try {
         const response = await fetch(`/api/goals/${id}`, {
@@ -141,6 +147,7 @@ goalsSection.addEventListener('click',(ev) => {
         completeGoal(id,completed,target); // added target
     }
     else if (target.classList.contains('delete-goal-button')) {
+        hideGoal(id,target);
         deleteGoal(id);
     }
 });

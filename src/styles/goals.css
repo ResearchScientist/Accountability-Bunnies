@@ -117,7 +117,6 @@ input {
 .goal-text {
     justify-self: flex-start;
     font-family: "Pavanam",sans-serif;
-    /* text-wrap: wrap; */
 }
 
 .goal-completed {

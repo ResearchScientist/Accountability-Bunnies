@@ -87,9 +87,7 @@ function tikComplete(cbtn: any) {
     }
 }
 
-function hideGoal(id,target) {
-    // console.log(id,target);
-    // console.log(target.parentElement);
+function hideGoal(target) {
     target.parentElement.style.display = 'none';
 }
 
@@ -147,7 +145,7 @@ goalsSection.addEventListener('click',(ev) => {
         completeGoal(id,completed,target); // added target
     }
     else if (target.classList.contains('delete-goal-button')) {
-        hideGoal(id,target);
+        hideGoal(target);
         deleteGoal(id);
     }
 });

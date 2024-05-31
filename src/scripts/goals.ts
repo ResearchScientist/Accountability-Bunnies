@@ -41,51 +41,96 @@ async function populateGoals(inputGoal: HTMLInputElement) {
         dbtn.setAttribute('data-id',goal.id);
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
-        tikComplete(cbtn);
+        // tikComplete(cbtn); NEW commented out
     });
 }
 
-async function completeGoal(id: number, completed: string, target: any) { // added target
-    let originalSrc = target.parentElement.firstElementChild.src = "tikedfilled.svg";  // added from here
-    let originalClassList = [...target.parentElement.children[2].classList];
-    if (target.dataset.goalcomplete == 'yes') {
+// NEW added function
+function tikCompleteGoal(target: any, id: number, completed: string) {
+    if (completed == 'no') {
+        console.log('before click',target);
         target.parentElement.firstElementChild.src = "tikedfilled.svg";
         target.parentElement.children[2].classList.add('goal-completed');
+        target.setAttribute('data-goalcomplete','yes');
     }
-    else if (target.dataset.goalcomplete == 'no') {
+    else if (completed == 'yes') {
+        console.log('before click',target);
         target.parentElement.firstElementChild.src = "tikbox.svg";
         target.parentElement.children[2].classList.remove('goal-completed');
-    }                                                                       // to here
+        target.setAttribute('data-goalcomplete','no');
+    }
+    console.log('after click',target);
+    updateCompleteGoalDB(target,id,completed);
+}
+
+// NEW added function
+async function updateCompleteGoalDB(target: any, id: number, completed: string) {
+    let originalCompleted = completed;
+    let updatedCompleted = target.getAttribute('data-goalcomplete');
+    console.log('original completed',originalCompleted);
+    console.log(id,updatedCompleted);
     try {
+        console.log('patching');
         const response = await fetch(`/api/goals/${id}`, {
             method: 'PATCH',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ completed }),
+            body: JSON.stringify({ updatedCompleted }),
         });
         if (!response.ok) {
             throw new Error('Network response not ok');
         }
-        repopulateGoals();
+        // repopulateGoals();
     }
     catch (error) {
         console.error('Error: ', error);
-        target.parentElement.firstElementChild.src = originalSrc; // revert changes
-        target.parentElement.children[2].classList = originalClassList;
+        // revert changes
     }
 }
 
-function tikComplete(cbtn: any) {
-    if (cbtn.dataset.goalcomplete == 'yes') {
-        cbtn.parentElement.firstElementChild.src = "tikedfilled.svg";
-        cbtn.parentElement.children[2].classList.add('goal-completed');
-    }
-    else if (cbtn.dataset.goalcomplete == 'no') {
-        cbtn.parentElement.firstElementChild.src = "tikbox.svg";
-        cbtn.parentElement.children[2].classList.remove('goal-completed');
-    }
-}
+// NEW comment out
+// async function completeGoal(target: any, id: number, completed: string) { // added target
+//     let originalSrc = target.parentElement.firstElementChild.src = "tikedfilled.svg";  // added from here
+//     let originalClassList = [...target.parentElement.children[2].classList];
+//     if (target.dataset.goalcomplete == 'yes') {
+//         target.parentElement.firstElementChild.src = "tikedfilled.svg";
+//         target.parentElement.children[2].classList.add('goal-completed');
+//     }
+//     else if (target.dataset.goalcomplete == 'no') {
+//         target.parentElement.firstElementChild.src = "tikbox.svg";
+//         target.parentElement.children[2].classList.remove('goal-completed');
+//     }                                                                       // to here
+//     try {
+//         const response = await fetch(`/api/goals/${id}`, {
+//             method: 'PATCH',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//             },
+//             body: JSON.stringify({ completed }),
+//         });
+//         if (!response.ok) {
+//             throw new Error('Network response not ok');
+//         }
+//         repopulateGoals();
+//     }
+//     catch (error) {
+//         console.error('Error: ', error);
+//         target.parentElement.firstElementChild.src = originalSrc; // revert changes
+//         target.parentElement.children[2].classList = originalClassList;
+//     }
+// }
+
+// function tikComplete(cbtn: any) {
+//     if (cbtn.dataset.goalcomplete == 'yes') {
+//         cbtn.parentElement.firstElementChild.src = "tikedfilled.svg";
+//         cbtn.parentElement.children[2].classList.add('goal-completed');
+//     }
+//     else if (cbtn.dataset.goalcomplete == 'no') {
+//         cbtn.parentElement.firstElementChild.src = "tikbox.svg";
+//         cbtn.parentElement.children[2].classList.remove('goal-completed');
+//     }
+// }
 
 function hideGoal(target) {
     target.parentElement.style.display = 'none';
@@ -133,7 +178,7 @@ async function repopulateGoals() {
         dbtn.setAttribute('data-id',goal.id);
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
-        tikComplete(cbtn);
+        // tikComplete(cbtn); NEW commented out
     });
 }
 
@@ -142,7 +187,8 @@ goalsSection.addEventListener('click',(ev) => {
     const id = Number(target.getAttribute('data-id'));
     if (target.classList.contains('complete-goal-button')) {
         const completed = target.getAttribute('data-goalcomplete');
-        completeGoal(id,completed,target); // added target
+        tikCompleteGoal(target,id,completed); // NEW
+        // completeGoal(target,id,completed); // added target NEW commented out
     }
     else if (target.classList.contains('delete-goal-button')) {
         hideGoal(target);

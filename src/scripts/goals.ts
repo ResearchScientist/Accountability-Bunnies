@@ -41,7 +41,7 @@ async function populateGoals(inputGoal: HTMLInputElement) {
         dbtn.setAttribute('data-id',goal.id);
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
-        // tikComplete(cbtn); NEW commented out
+        tikComplete(cbtn);
     });
 }
 
@@ -121,16 +121,16 @@ async function updateCompleteGoalDB(target: any, id: number, completed: string) 
 //     }
 // }
 
-// function tikComplete(cbtn: any) {
-//     if (cbtn.dataset.goalcomplete == 'yes') {
-//         cbtn.parentElement.firstElementChild.src = "tikedfilled.svg";
-//         cbtn.parentElement.children[2].classList.add('goal-completed');
-//     }
-//     else if (cbtn.dataset.goalcomplete == 'no') {
-//         cbtn.parentElement.firstElementChild.src = "tikbox.svg";
-//         cbtn.parentElement.children[2].classList.remove('goal-completed');
-//     }
-// }
+function tikComplete(cbtn: any) {
+    if (cbtn.dataset.goalcomplete == 'yes') {
+        cbtn.parentElement.firstElementChild.src = "tikedfilled.svg";
+        cbtn.parentElement.children[2].classList.add('goal-completed');
+    }
+    else if (cbtn.dataset.goalcomplete == 'no') {
+        cbtn.parentElement.firstElementChild.src = "tikbox.svg";
+        cbtn.parentElement.children[2].classList.remove('goal-completed');
+    }
+}
 
 function hideGoal(target) {
     target.parentElement.style.display = 'none';
@@ -178,7 +178,7 @@ async function repopulateGoals() {
         dbtn.setAttribute('data-id',goal.id);
         li.append(img,cbtn,div,dbtn);
         goalsSection.appendChild(li);
-        // tikComplete(cbtn); NEW commented out
+        tikComplete(cbtn);
     });
 }
 

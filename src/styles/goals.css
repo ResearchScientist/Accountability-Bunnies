@@ -21,13 +21,13 @@ input {
 
 #input-goal {
     width: 100%;
-    height: 38px;
+    height: 25px;
     margin: 0 0 0 5px;
-    padding: 0 0 10px;
+    padding: 0 0 5px;
     grid-column: 2/-3;
     grid-row: 1;
     align-self: flex-start;
-    background-color: gray;
+    background-color: rgba(250,250,250,.1);
 }
 
 #goalLine {

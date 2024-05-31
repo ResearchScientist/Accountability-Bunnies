@@ -21,7 +21,7 @@ input {
 
 #input-goal {
     width: 100%;
-    height: 25px;
+    height: 30px;
     margin: 0 0 0 5px;
     padding: 0 0 5px;
     grid-column: 2/-3;
@@ -61,7 +61,6 @@ input {
     grid-column: 1/2;
     grid-row: 1;
     background-color: transparent;
-    /* background-color: rgba(250,250,250,.1); */
     cursor: pointer;
     z-index: 1;
 }
@@ -83,7 +82,7 @@ input {
 #input-goal-form {
     display: grid;
     grid-template-columns: 20px 30px 1fr 30px 20px;
-    grid-template-rows: 25px;
+    grid-template-rows: 30px;
 }
 
 #goals-section {

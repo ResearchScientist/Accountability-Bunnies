@@ -1,11 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { db, Goals } from 'astro:db';
-// import { db, Goals, Bunnies } from 'astro:db';
 
 const goalsDB = await db.select().from(Goals);
-// const bunniesDB = await db.select().from(Bunnies);
-// const allBunnies = bunniesDB[0].totalBunnies;
 
 if (Astro.request.method === 'POST') {
 	const formData = await Astro.request.formData();

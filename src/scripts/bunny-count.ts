@@ -239,7 +239,7 @@ function repopulateBunnies(totalBunniesDB: number) {
 }
 
 function makeBunnies(tasksCompleted: number) {
-    console.log('make bunnies',tasksCompleted);
+    console.log('make new bunnies',tasksCompleted);
 	for (let i: number = 0; i<tasksCompleted; i++) {
 		makeBunny(i);
 	}
@@ -292,10 +292,14 @@ function makeSleepingBunny(i : any) {
 
 function randomBunnyAnimation(e : any) {
     let randomAnimation = Math.random();
+    console.log(randomAnimation);
     if (randomAnimation <= .2) {
+        bunnyCount(bunnyArray);
+    }
+    else if ((randomAnimation > .2) && (randomAnimation <= .4)) {
         bunnyJoke();
     }
-    else if (randomAnimation >= .8) {
+    else if (randomAnimation >= .99) {
         bunnyRush();
     }
     else {
@@ -306,9 +310,29 @@ function randomBunnyAnimation(e : any) {
     };
 }
 
-function bunnyHop(e : any) {
-    e.target.classList.add("bunnyHop");
+function bunnyCount(bunnyArray) {
+    console.log('bunny count');
+    console.log(bunnyArray);
+    console.log(bunnyArray.length);
+    // setInterval(rollCall,200);
+    bunnyArray.forEach(bunny => {
+        bunny.classList.add("bunnyHop");
+        console.log(bunny);
+        bunny.onanimationend = () => {
+            bunny.classList.remove("bunnyHop");
+        }
+    });
 }
+
+// function rollCall() {
+//     bunnyArray.forEach(bunny => {
+//         bunny.classList.add("bunnyHop");
+//         console.log(bunny);
+//         bunny.onanimationend = () => {
+//             bunny.classList.remove("bunnyHop");
+//         }
+//     });
+// }
 
 function bunnyJoke() {
     bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random() * bunnyJokesArray.length)];
@@ -333,6 +357,10 @@ function bunnyRush() {
             penBunny.classList.remove("bunny-left","bunny-right");
         }, 1500);
     });
+}
+
+function bunnyHop(e : any) {
+    e.target.classList.add("bunnyHop");
 }
 
 window.addEventListener('load',populateBunnies);

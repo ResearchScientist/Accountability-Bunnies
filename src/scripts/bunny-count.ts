@@ -14,6 +14,7 @@ const dontTapFarmMsgsArray = ["Why?","Really?","bruh ...","aw come on","dude no"
 const countingGoalsMsgArray = ['parsing goals','gathering goals','counting completed goals','gathering bunnies','counting bunnies'];
 const bunnyJokesArray = ["How do you say bunny in Spanish?\nBunnito.","Why can't you hear bunnies having sex?\nBecause they have cotton balls.","I'm having a bad hare day.","Where do bunnies go for breakfast?\nI H O P","Read me a story with a hoppy ending.","Somebunny loves you.","I dance to hip hop."];
 const bunnyJokeBubble = document.querySelector('#bunny-joke-bubble') as HTMLElement;
+const bunnyRoll = document.querySelector('#bunny-roll') as HTMLElement;
 
 let taps: number = 0;
 let processGoals: any;
@@ -35,10 +36,10 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Wednesday') {
+    if (todayweekday == 'Saturday') {
         getUpdatedDBValue();
 	}
-    else if (todayweekday == 'Tuesday') {
+    else if (todayweekday == 'Sunday') {
         tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
         dontTapFarmMsg.style.display = "inline";
@@ -310,29 +311,29 @@ function randomBunnyAnimation(e : any) {
     };
 }
 
-function bunnyCount(bunnyArray) {
-    console.log('bunny count');
-    console.log(bunnyArray);
-    console.log(bunnyArray.length);
-    // setInterval(rollCall,200);
-    bunnyArray.forEach(bunny => {
+function bunnyCount(bunnyArray,delay=500) {
+    let index = 0;
+    const loopWithDelay = () => {
+        if (index >= bunnyArray.length) {
+            return;
+        }
+        const bunny = bunnyArray[index];
         bunny.classList.add("bunnyHop");
-        console.log(bunny);
+        console.log(index);
+        bunnyRoll.style.display = "inline";
+        bunnyRoll.textContent = `${index}`;
         bunny.onanimationend = () => {
             bunny.classList.remove("bunnyHop");
-        }
-    });
+            index++;
+            setTimeout(loopWithDelay,delay);
+            // bunnyRoll.style.display = "none";
+        };
+        // bunny[bunnyArray.length - 1].onanimationend = () => {
+        //     bunnyRoll.style.display = "none";
+        // }
+    };
+    loopWithDelay();
 }
-
-// function rollCall() {
-//     bunnyArray.forEach(bunny => {
-//         bunny.classList.add("bunnyHop");
-//         console.log(bunny);
-//         bunny.onanimationend = () => {
-//             bunny.classList.remove("bunnyHop");
-//         }
-//     });
-// }
 
 function bunnyJoke() {
     bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random() * bunnyJokesArray.length)];

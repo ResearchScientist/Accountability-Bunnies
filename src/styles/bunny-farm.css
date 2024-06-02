@@ -154,6 +154,17 @@
     100% {opacity: 1; transform: translate(0px,0px) rotate(0deg);}
 }
 
+#bunny-roll {
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+    justify-self: center;
+    align-self: center;
+    font-family: "Annie Use Your Telescope", cursive;
+    font-size: 128px;
+    display: none;
+    z-index: 1;
+}
+
 #bunny-joke-bubble {
     margin: -50px 0 0;
     padding: 50px 20px;

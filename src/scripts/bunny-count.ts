@@ -150,7 +150,6 @@ async function getUpdatedDBValue() {
 }
 
 function checkUpdatedValue(updatedValue) {
-    console.log('updated is',updatedValue);
     if (updatedValue == false) {
         tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
@@ -162,7 +161,6 @@ function checkUpdatedValue(updatedValue) {
        	tapFarmButton.style.display = "none";
         dontTapFarmMsg.style.display = "none";
         dontTapFarmButton.style.display = "none";
-        console.log('already updated');
     }
     else {
         console.log('value is something other than boolean');
@@ -296,6 +294,7 @@ function randomBunnyAnimation(e : any) {
     console.log(randomAnimation);
     if (randomAnimation <= .2) {
         bunnyCount(bunnyArray);
+        
     }
     else if ((randomAnimation > .2) && (randomAnimation <= .4)) {
         bunnyJoke();
@@ -311,18 +310,32 @@ function randomBunnyAnimation(e : any) {
     };
 }
 
+function dontTapBunnies(bunnyArray) {
+    for (const bunny of bunnyArray) {
+        bunny.style.pointerEvents = "none";
+        bunny.style.cursor = "none";
+    }
+}
+
+function tapBunnies(bunnyArray) {
+    for (const bunny of bunnyArray) {
+        bunny.style.pointerEvents = "auto";
+        bunny.style.cursor = "pointer";
+    }
+}
+
 function bunnyCount(bunnyArray: HTMLElement[],delay=500) {
     let index = 0;
+    dontTapBunnies(bunnyArray);
     const loopWithDelay = () => {
         if (index >= bunnyArray.length) {
-            console.log('done');
             bunnyRoll.style.display = "none";
+            tapBunnies(bunnyArray);
             return;
         }
         const bunny = bunnyArray[index];
         bunny.classList.add("bunnyHop");
         let bunnyNumber = index + 1;
-        console.log(bunnyNumber);
         bunnyRoll.style.display = "inline";
         bunnyRoll.textContent = `${bunnyNumber}`;
         bunny.onanimationend = () => {
@@ -335,6 +348,7 @@ function bunnyCount(bunnyArray: HTMLElement[],delay=500) {
 }
 
 function bunnyJoke() {
+    dontTapBunnies(bunnyArray);
     bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random() * bunnyJokesArray.length)];
     bunnyJokeBubble.style.display = "block";
     setTimeout(removeJoke,4000);
@@ -342,6 +356,7 @@ function bunnyJoke() {
 
 function removeJoke() {
     bunnyJokeBubble.style.display = "none";
+    tapBunnies(bunnyArray);
 }
 
 function bunnyRush() {

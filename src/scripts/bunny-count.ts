@@ -36,10 +36,10 @@ function sunSpin() {
 }
 
 function onSaturday() {
-    if (todayweekday == 'Saturday') {
+    if (todayweekday == 'Sunday') {
         getUpdatedDBValue();
 	}
-    else if (todayweekday == 'Sunday') {
+    else if (todayweekday == 'Monday') {
         tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
         dontTapFarmMsg.style.display = "inline";
@@ -311,26 +311,25 @@ function randomBunnyAnimation(e : any) {
     };
 }
 
-function bunnyCount(bunnyArray,delay=500) {
+function bunnyCount(bunnyArray: HTMLElement[],delay=500) {
     let index = 0;
     const loopWithDelay = () => {
         if (index >= bunnyArray.length) {
+            console.log('done');
+            bunnyRoll.style.display = "none";
             return;
         }
         const bunny = bunnyArray[index];
         bunny.classList.add("bunnyHop");
-        console.log(index);
+        let bunnyNumber = index + 1;
+        console.log(bunnyNumber);
         bunnyRoll.style.display = "inline";
-        bunnyRoll.textContent = `${index}`;
+        bunnyRoll.textContent = `${bunnyNumber}`;
         bunny.onanimationend = () => {
             bunny.classList.remove("bunnyHop");
             index++;
             setTimeout(loopWithDelay,delay);
-            // bunnyRoll.style.display = "none";
         };
-        // bunny[bunnyArray.length - 1].onanimationend = () => {
-        //     bunnyRoll.style.display = "none";
-        // }
     };
     loopWithDelay();
 }

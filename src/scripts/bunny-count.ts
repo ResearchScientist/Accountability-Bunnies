@@ -231,7 +231,6 @@ function removeAnnouncement() {
 }
 
 function repopulateBunnies(totalBunniesDB: number) {
-    console.log('repopulate bunnies',totalBunniesDB);
 	for (let i: number = 0; i<totalBunniesDB; i++) {
 		makeBunny(i);
 	}
@@ -257,6 +256,7 @@ function makeBunny(i : any) {
         bunnyArray.push(bunny);
         addIds(bunnyArray);
     },400*i);
+    return bunnyArray;
 }
 
 function addIds(bunnyArray : any) {
@@ -291,23 +291,39 @@ function makeSleepingBunny(i : any) {
 
 function randomBunnyAnimation(e : any) {
     let randomAnimation = Math.random();
-    console.log(randomAnimation);
-    if (randomAnimation <= .2) {
-        bunnyCount(bunnyArray);
-        
-    }
-    else if ((randomAnimation > .2) && (randomAnimation <= .4)) {
-        bunnyJoke();
-    }
-    else if (randomAnimation >= .99) {
-        bunnyRush();
-    }
+// bug when bunny in index 0 calls bunnyCount the function hangs
+// removed call to bunnyCount
+    if (e.target.id == 'bunny1') { // begin workaround
+        if ((randomAnimation > .2) && (randomAnimation <= .4)) {
+            bunnyJoke();
+        }
+        else if (randomAnimation >= .99) {
+            bunnyRush();
+        }
+        else {
+            bunnyHop(e);
+        }
+        e.target.onanimationend = () => {
+            e.target.classList.remove("bunnyAppear","bunnyHop");
+        };
+    }                             // end workaround
     else {
-        bunnyHop(e);
+        if (randomAnimation <= .2) {
+            bunnyCount();
+        }
+        else if ((randomAnimation > .2) && (randomAnimation <= .4)) {
+            bunnyJoke();
+        }
+        else if (randomAnimation >= .99) {
+            bunnyRush();
+        }
+        else {
+            bunnyHop(e);
+        }
+        e.target.onanimationend = () => {
+            e.target.classList.remove("bunnyAppear","bunnyHop");
+        };
     }
-    e.target.onanimationend = () => {
-        e.target.classList.remove("bunnyAppear","bunnyHop");
-    };
 }
 
 function dontTapBunnies(bunnyArray) {
@@ -324,9 +340,8 @@ function tapBunnies(bunnyArray) {
     }
 }
 
-function bunnyCount(bunnyArray: HTMLElement[],delay=500) {
+    function bunnyCount() {
     let index = 0;
-    dontTapBunnies(bunnyArray);
     const loopWithDelay = () => {
         if (index >= bunnyArray.length) {
             bunnyRoll.style.display = "none";
@@ -341,9 +356,10 @@ function bunnyCount(bunnyArray: HTMLElement[],delay=500) {
         bunny.onanimationend = () => {
             bunny.classList.remove("bunnyHop");
             index++;
-            setTimeout(loopWithDelay,delay);
+            setTimeout(loopWithDelay,500);
         };
     };
+    dontTapBunnies(bunnyArray);
     loopWithDelay();
 }
 

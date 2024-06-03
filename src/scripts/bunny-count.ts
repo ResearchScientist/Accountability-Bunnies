@@ -367,7 +367,7 @@ function bunnyJoke() {
     dontTapBunnies(bunnyArray);
     bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random() * bunnyJokesArray.length)];
     bunnyJokeBubble.style.display = "block";
-    setTimeout(removeJoke,4000);
+    setTimeout(removeJoke,2500);
 }
 
 function removeJoke() {

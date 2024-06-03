@@ -149,7 +149,7 @@ async function getUpdatedDBValue() {
     }
 }
 
-function checkUpdatedValue(updatedValue) {
+function checkUpdatedValue(updatedValue: any) {
     if (updatedValue == false) {
         tapFarmMsg.style.display = "inline";
     	tapFarmButton.style.display = "inline";
@@ -243,7 +243,7 @@ function makeBunnies(tasksCompleted: number) {
 	}
 }
 
-function makeBunny(i : any) {
+function makeBunny(i: any) {
 	setTimeout (function() {
     	const bunny = document.createElement("img");
         let randTopPosition = Math.random() * (86) + 15; // (101 - 15) + 15
@@ -259,7 +259,7 @@ function makeBunny(i : any) {
     return bunnyArray;
 }
 
-function addIds(bunnyArray : any) {
+function addIds(bunnyArray: any) {
     bunnyArray.forEach((bunnyObject : any,i : number) => {
         bunnyObject.setAttribute('class',`bunny`);
         bunnyObject.setAttribute('id',`bunny${i+1}`);
@@ -273,7 +273,7 @@ function makeSleepingBunnies(tasksNotCompleted: number) {
 	}
 }
 
-function makeSleepingBunny(i : any) {
+function makeSleepingBunny(i: any) {
     console.log(i);
 	// setTimeout (function() {
     // 	const bunny = document.createElement("img");
@@ -289,7 +289,7 @@ function makeSleepingBunny(i : any) {
     // },400*i);
 }
 
-function randomBunnyAnimation(e : any) {
+function randomBunnyAnimation(e: any) {
     let randomAnimation = Math.random();
 // bug when bunny in index 0 calls bunnyCount the function hangs
 // removed call to bunnyCount
@@ -326,14 +326,14 @@ function randomBunnyAnimation(e : any) {
     }
 }
 
-function dontTapBunnies(bunnyArray) {
+function dontTapBunnies(bunnyArray: any) {
     for (const bunny of bunnyArray) {
         bunny.style.pointerEvents = "none";
         bunny.style.cursor = "none";
     }
 }
 
-function tapBunnies(bunnyArray) {
+function tapBunnies(bunnyArray: any) {
     for (const bunny of bunnyArray) {
         bunny.style.pointerEvents = "auto";
         bunny.style.cursor = "pointer";
@@ -367,7 +367,27 @@ function bunnyJoke() {
     dontTapBunnies(bunnyArray);
     bunnyJokeBubble.textContent = bunnyJokesArray[Math.floor(Math.random() * bunnyJokesArray.length)];
     bunnyJokeBubble.style.display = "block";
-    setTimeout(removeJoke,2500);
+    setTimeout(bunnyLaughs,3000);
+    setTimeout(removeJoke,3500);
+    setTimeout(removeLaughs,5000);
+}
+
+function bunnyLaughs() {
+    bunnyArray.forEach((bunny: any) => {
+        bunny.classList.add("bunnyLaugh");
+    });
+    bunnyArray.forEach((bunny: any, index: number) => {
+        setTimeout( () => {
+            bunny.style.animationDelay = `${index * 0.05}s`;
+        },index);
+    });
+}
+
+function removeLaughs() {
+    bunnyArray.forEach((bunny: any) => {
+        bunny.classList.remove("bunnyLaugh");
+        bunny.style.animationDelay = null;
+    });
 }
 
 function removeJoke() {
@@ -390,7 +410,7 @@ function bunnyRush() {
     });
 }
 
-function bunnyHop(e : any) {
+function bunnyHop(e: any) {
     e.target.classList.add("bunnyHop");
 }
 

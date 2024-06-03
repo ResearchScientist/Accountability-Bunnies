@@ -19,6 +19,7 @@
     justify-self: flex-start;
     align-self: flex-start;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 #bunny-pen {
     width: 100%;
@@ -35,6 +36,7 @@
     opacity: 1;
     pointer-events: auto;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #tap-farm-button , #dont-tap-farm-button {

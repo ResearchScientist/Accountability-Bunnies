@@ -6,7 +6,7 @@ const goalsSection = document.querySelector('#goals-section');
 inputGoal.addEventListener('input',() => {
     const trimmedValue = inputGoal.value.trim();
     if (trimmedValue.length === 0 || !/^([a-zA-Z0-9 ]+)?$/.test(trimmedValue)) {
-        inputGoal.setCustomValidity("Please enter only letters and numbers.");
+        inputGoal.setCustomValidity("Please enter only letters and numbers.\nKeep on hoppin!");
     }
     else {
         inputGoal.setCustomValidity("");

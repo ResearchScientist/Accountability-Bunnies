@@ -16,12 +16,28 @@ export const GET: APIRoute = async () => {
     }
 };
 
+// export const POST: APIRoute = async ({ request }) => {
+//     try {
+//         const data = await request.json();
+//         const newGoal = { ...data};
+//         await db.insert(Goals).values(newGoal);
+//         return new Response(null, { status: 201 });
+//     }
+//     catch (error) {
+//         return new Response(`Error: ${error.message}`,{ status: 500 });
+//     }
+// };
+
 export const POST: APIRoute = async ({ request }) => {
     try {
         const data = await request.json();
         const newGoal = { ...data};
+        const regex = /^(?!\s*$)[a-zA-Z0-9 ]+/;
+        if (!regex.test(newGoal.description)) {
+            return new Response('invalid description',{ status: 400 });
+        }
         await db.insert(Goals).values(newGoal);
-        return new Response(null, { status: 201 });
+        return new Response(null,{ status: 201 });
     }
     catch (error) {
         return new Response(`Error: ${error.message}`,{ status: 500 });

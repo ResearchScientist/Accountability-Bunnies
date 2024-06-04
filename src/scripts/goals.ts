@@ -1,10 +1,20 @@
 const inputGoalForm = document.querySelector('#input-goal-form') as HTMLElement;
+const inputGoal = document.querySelector('#input-goal') as HTMLInputElement;
 const addGoalButton = document.querySelector('#add-goal-button');
 const goalsSection = document.querySelector('#goals-section');
 
+inputGoal.addEventListener('input',() => {
+    const trimmedValue = inputGoal.value.trim();
+    if (trimmedValue.length === 0 || !/^([a-zA-Z0-9 ]+)?$/.test(trimmedValue)) {
+        inputGoal.setCustomValidity("Please enter only letters and numbers.");
+    }
+    else {
+        inputGoal.setCustomValidity("");
+    }
+});
+
 inputGoalForm.addEventListener('submit', async function(e) {
     e.preventDefault();
-    let inputGoal = document.querySelector('#input-goal') as HTMLInputElement;
     var data = JSON.stringify({ description: inputGoal.value });
     const response = await fetch('/api/goals', {
         method: 'POST',

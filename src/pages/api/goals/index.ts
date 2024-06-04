@@ -12,21 +12,10 @@ export const GET: APIRoute = async () => {
         });
     }
     catch (error) {
-        return new Response(`Error: ${error.message}`,{ status: 500 });
+        console.error(error);
+        return new Response('Received an error',{ status: 500 });
     }
 };
-
-// export const POST: APIRoute = async ({ request }) => {
-//     try {
-//         const data = await request.json();
-//         const newGoal = { ...data};
-//         await db.insert(Goals).values(newGoal);
-//         return new Response(null, { status: 201 });
-//     }
-//     catch (error) {
-//         return new Response(`Error: ${error.message}`,{ status: 500 });
-//     }
-// };
 
 export const POST: APIRoute = async ({ request }) => {
     try {
@@ -40,6 +29,7 @@ export const POST: APIRoute = async ({ request }) => {
         return new Response(null,{ status: 201 });
     }
     catch (error) {
-        return new Response(`Error: ${error.message}`,{ status: 500 });
+        console.error(error);
+        return new Response('An error occurred.',{ status: 500 });
     }
 };

@@ -5,13 +5,14 @@ export const PATCH: APIRoute = async (ctx) => {
     try {
         const id = Number(ctx.params.id);
         const { newTotalBunnies,updated } = await ctx.request.json();
-        if (!id) {
-            return new Response('total id not foundl',{ status: 400 });
+        if (!id || id < 1 || !Number.isInteger(id)) {
+            return new Response('invalid id',{ status: 400 });
         }
         await db.update(Bunnies).set({ totalBunnies: newTotalBunnies, updated }).where(eq(Bunnies.id,id));
         return new Response('update successful',{ status: 200 });
     }
     catch (error) {
-        return new Response('something not right',{ status: 500 });
+        console.error(error);
+        return new Response('An error occurred',{ status: 500 });
     }
 }

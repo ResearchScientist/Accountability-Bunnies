@@ -15,6 +15,7 @@ export const GET: APIRoute = async () => {
         });
     }
     catch (error) {
-        return new Response(`Error: ${error.message}`,{ status: 500 });
+        console.error(error);
+        return new Response('Got an error',{ status: 500 });
     }
 };

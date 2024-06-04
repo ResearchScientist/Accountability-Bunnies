@@ -4,6 +4,9 @@ import { db, Bunnies } from 'astro:db';
 export const GET: APIRoute = async () => {
     try {
         const allBunnies = await db.select().from(Bunnies);
+        if (allBunnies.length === 0 || !('totalBunnies' in allBunnies[0])) {
+            return new Response('No bunnies found',{ status: 404 });
+        }
         let totalBunniesValue = allBunnies[0].totalBunnies;
         return new Response(JSON.stringify(totalBunniesValue), {
             status: 200,
@@ -13,6 +16,7 @@ export const GET: APIRoute = async () => {
         });
     }
     catch (error) {
-        return new Response(`Error: ${error.message}`,{ status: 500 });
+        console.error(error);
+        return new Response('Received an error',{ status: 500 });
     }
 };

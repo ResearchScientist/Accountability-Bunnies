@@ -22,10 +22,14 @@ export const PATCH: APIRoute = async (ctx) => {
         if (!id) {
             return new Response('goal id not foundl',{ status: 400 });
         }
+        if (typeof updatedCompleted !== 'string') {
+            return new Response('invalid completed value',{ status: 400 });
+        }
         await db.update(Goals).set({ completed: updatedCompleted }).where(eq(Goals.id,id));
         return new Response(null, { status: 204 });
     }
     catch (error) {
+        console.error(error);
         return new Response('somethings not right',{ status: 500 });
     }
 }

@@ -188,9 +188,16 @@
     border-radius: 50%;
     border: 1px solid black;
     font-family: "Annie Use Your Telescope", cursive;
-    font-size: 22px;
+    font-size: 18px;
     text-align: center;
     white-space: break-spaces;
     background-color: white;
+    animation: .2s ease-in-out forwards tellJoke;
     z-index: 1;
+}
+
+@keyframes tellJoke {
+    0% {transform: scale(0.1);}
+    80% {transform: scale(1.4);}
+    100% {transform: scale(1);}
 }

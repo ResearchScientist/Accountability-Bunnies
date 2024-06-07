@@ -124,7 +124,7 @@ async function updateCompleteGoalDB(target: any, id: number, completed: string) 
     }
 }
 
-function hideGoal(target) {
+function hideGoal(target: any) {
     target.parentElement.style.display = 'none';
 }
 

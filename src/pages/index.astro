@@ -33,7 +33,7 @@ if (Astro.request.method === 'POST') {
 			<h1>This Week's Goals</h1>
 			<form id="input-goal-form" action="/api/goals" method="POST">
 				<img id="goalLine" src="goalLine.svg" alt="hand drawn line"/>
-            	<input id="input-goal" type="text" name="description" placeholder="write your goal here" pattern="^(?!\s*$)[a-zA-Z0-9 ]+" required>
+            	<input id="input-goal" type="text" name="description" placeholder="write your goal here" pattern="^(?! *$)[a-zA-Z0-9 ]+$" required>
             	<button id="add-goal-button" type="submit">+</button>
 			</form>
             <ul id="goals-section">

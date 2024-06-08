@@ -58,6 +58,7 @@ async function populateGoals(inputGoal: HTMLInputElement) {
         div.classList.add('goal-text');
         div.textContent = goal.description;
         cbtn.classList.add('complete-goal-button');
+        cbtn.ariaLabel = "toggle goal complete";
         cbtn.setAttribute('data-goalcomplete',goal.completed);
         cbtn.setAttribute('data-id',goal.id);
         dbtn.textContent = "x";
@@ -165,6 +166,7 @@ async function repopulateGoals() {
         div.classList.add('goal-text');
         div.textContent = goal.description;
         cbtn.classList.add('complete-goal-button');
+        cbtn.ariaLabel = "toggle goal complete";
         cbtn.setAttribute('data-goalcomplete',goal.completed);
         cbtn.setAttribute('data-id',goal.id);
         dbtn.textContent = "x";

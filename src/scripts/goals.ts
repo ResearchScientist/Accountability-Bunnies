@@ -53,6 +53,7 @@ async function populateGoals(inputGoal: HTMLInputElement) {
         let dbtn = document.createElement('button');
         li.classList.add('goal-item');
         img.src = "tikbox.svg";
+        img.alt = "tikbox";
         img.classList.add('tikbox');
         div.classList.add('goal-text');
         div.textContent = goal.description;
@@ -159,6 +160,7 @@ async function repopulateGoals() {
         let dbtn = document.createElement('button');
         li.classList.add('goal-item');
         img.src = "tikbox.svg";
+        img.alt = "tikbox";
         img.classList.add('tikbox');
         div.classList.add('goal-text');
         div.textContent = goal.description;

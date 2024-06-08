@@ -249,6 +249,7 @@ function makeBunny(i: any) {
         let randTopPosition = Math.random() * (86) + 15; // (101 - 15) + 15
         let randLeftPosition = Math.random() * (85); // (85 - 0) + 0
         bunny.src = bunnyColours[i % bunnyColours.length];
+	bunny.alt = "bunny illustration";
         bunny.classList.add("bunnyAppear","bunny");
         bunny.style.top = `calc( ${randTopPosition}% - 108px)`;
         bunny.style.left = `${randLeftPosition}%`;

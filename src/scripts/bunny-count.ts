@@ -35,6 +35,8 @@ function sunSpin() {
     };
 }
 
+onSaturday();
+
 function onSaturday() {
     if (todayweekday == 'Monday') {
         getUpdatedDBValue();
@@ -52,82 +54,6 @@ function onSaturday() {
         dontTapFarmMsg.style.display = "inline";
         dontTapFarmButton.style.display = "inline";
 	}
-}
-
-onSaturday();
-
-function dontTapTheFarm() {
-    taps++;
-    if (taps == 1) {
-        dontTapFarmMsg.textContent = "It's not Saturday !";
-    }
-    else if (taps == 4) {
-        dontTapFarmMsg.textContent = "no mas";
-        dontTapFarmButton.style.display = "none";
-        setTimeout (function() {
-            dontTapFarmMsg.style.display = "none";
-        },2000);
-    }
-    else {
-        dontTapFarmMsg.textContent = dontTapFarmMsgsArray[Math.floor(Math.random() * dontTapFarmMsgsArray.length)];
-    }
-}
-
-function countBunnies() {
-    tapFarmMsg.style.display = "none";
-	tapFarmButton.style.display = "none";
-    countingBunniesMsg.style.display = "inline";
-    countingBunniesMsg.style.margin = "0 0 0";
-    countingBunniesMsg.style.color = "black";
-    countingBunniesMsg.style.fontFamily = "Pavanam";
-    countingBunniesMsg.style.fontSize = "14px";
-    tapFarmButton.removeEventListener('click',countBunnies);
-    setTimeout (function() {
-            countingBunniesMsg.textContent = 'querying database';
-    },200);
-    setTimeout (function() {
-        processGoals = setInterval(processingGoals,200);
-    },400);
-}
-
-function processingGoals() {
-    if (processingMsgCount < countingGoalsMsgArray.length) {
-        countingBunniesMsg.textContent = countingGoalsMsgArray[processingMsgCount];
-        processingMsgCount++;
-    }
-    else {
-        countingBunniesMsg.textContent = '';
-        clearInterval(processGoals);
-        updateTotalBunnies();
-    }
-}
-
-async function updateTotalBunnies() {
-    const values = await Promise.all([getTotalBunnies(),getCompletedGoalsCounts()]);
-    let nTotalBunnies = values[0];
-    let nCompletedGoals = values[1];
-    let newTotalBunnies = nTotalBunnies + nCompletedGoals;
-    const id = 1;
-    console.log('updated bunny count is',newTotalBunnies);
-    updateTotalBunniesDBValue(id,newTotalBunnies);
-}
-
-async function updateTotalBunniesDBValue(id: number,newTotalBunnies: number) {
-    try {
-        const response = await fetch(`/api/bunnies/${id}`, {
-            method: 'PATCH',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ newTotalBunnies, updated: true }),
-        });
-        if (!response.ok) {
-            throw new Error('Network response not ok');
-        }
-    }
-    catch (error) {
-        console.error('Error: ', error);
-    }
 }
 
 async function getUpdatedDBValue() {
@@ -186,10 +112,60 @@ async function resetUpdatedDBValue() {
     }
 }
 
-async function populateBunnies() {
-    const response = await fetch('/api/bunnies');
-    const totalBunniesDB:number = await response.json();
-    makeBunnies(totalBunniesDB);
+function dontTapTheFarm() {
+    taps++;
+    if (taps == 1) {
+        dontTapFarmMsg.textContent = "It's not Saturday !";
+    }
+    else if (taps == 4) {
+        dontTapFarmMsg.textContent = "no mas";
+        dontTapFarmButton.style.display = "none";
+        setTimeout (function() {
+            dontTapFarmMsg.style.display = "none";
+        },2000);
+    }
+    else {
+        dontTapFarmMsg.textContent = dontTapFarmMsgsArray[Math.floor(Math.random() * dontTapFarmMsgsArray.length)];
+    }
+}
+
+function countBunnies() {
+    tapFarmMsg.style.display = "none";
+	tapFarmButton.style.display = "none";
+    countingBunniesMsg.style.display = "inline";
+    countingBunniesMsg.style.margin = "0 0 0";
+    countingBunniesMsg.style.color = "black";
+    countingBunniesMsg.style.fontFamily = "Pavanam";
+    countingBunniesMsg.style.fontSize = "14px";
+    tapFarmButton.removeEventListener('click',countBunnies);
+    setTimeout (function() {
+            countingBunniesMsg.textContent = 'querying database';
+    },200);
+    setTimeout (function() {
+        processGoals = setInterval(processingGoals,200);
+    },400);
+}
+
+function processingGoals() {
+    if (processingMsgCount < countingGoalsMsgArray.length) {
+        countingBunniesMsg.textContent = countingGoalsMsgArray[processingMsgCount];
+        processingMsgCount++;
+    }
+    else {
+        countingBunniesMsg.textContent = '';
+        clearInterval(processGoals);
+        updateTotalBunnies();
+    }
+}
+
+async function updateTotalBunnies() {
+    const values = await Promise.all([getTotalBunnies(),getCompletedGoalsCounts()]);
+    let nTotalBunnies = values[0];
+    let nCompletedGoals = values[1];
+    let newTotalBunnies = nTotalBunnies + nCompletedGoals;
+    const id = 1;
+    console.log('updated bunny count is',newTotalBunnies);
+    updateTotalBunniesDBValue(id,newTotalBunnies);
 }
 
 async function getTotalBunnies() {
@@ -228,6 +204,30 @@ function bunnyAnnouncement(tasksCompleted: number) {
 
 function removeAnnouncement() {
     bunnyCountMsg.textContent = '';
+}
+
+async function updateTotalBunniesDBValue(id: number,newTotalBunnies: number) {
+    try {
+        const response = await fetch(`/api/bunnies/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ newTotalBunnies, updated: true }),
+        });
+        if (!response.ok) {
+            throw new Error('Network response not ok');
+        }
+    }
+    catch (error) {
+        console.error('Error: ', error);
+    }
+}
+
+async function populateBunnies() {
+    const response = await fetch('/api/bunnies');
+    const totalBunniesDB:number = await response.json();
+    makeBunnies(totalBunniesDB);
 }
 
 function repopulateBunnies(totalBunniesDB: number) {

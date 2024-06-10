@@ -218,10 +218,15 @@ async function updateTotalBunniesDBValue(id: number,newTotalBunnies: number) {
         if (!response.ok) {
             throw new Error('Network response not ok');
         }
+	await deleteCompletedGoals();
     }
     catch (error) {
         console.error('Error: ', error);
     }
+}
+
+async function deleteCompletedGoals() {
+	console.log('delete completed goals');
 }
 
 async function populateBunnies() {

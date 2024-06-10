@@ -180,15 +180,15 @@ async function getCompletedGoalsCounts() {
     let tasksCompleted: number = data.completedGoals;
     let tasksNotCompleted: number = data.notcompletedGoals;
     bunnyAnnouncement(tasksCompleted);
-    setTimeout(makeBunnies,1900,tasksCompleted);
-    setTimeout(makeSleepingBunnies,2500,tasksNotCompleted)
+    setTimeout(makeBunnies,2500,tasksCompleted);
+    setTimeout(makeSleepingBunnies,3000,tasksNotCompleted)
     // console.log(JSON.stringify(data,null,2));
     return tasksCompleted;
 }
 
 function bunnyAnnouncement(tasksCompleted: number) {
-    const oneBunnyMsg = ["Yipee! A cute little bunny !","One funny bunny.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?"];
-    const manyBunnyMsg = [`Yay! ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
+    const oneBunnyMsg = ["Yipee! You got a cute little bunny !","One funny bunny for you.","Who's the cutest bunny? Yes you are.","Is that a rabbit in your pocket?"];
+    const manyBunnyMsg = [`Yay! who braught ${tasksCompleted} bouncy bunnies`,`${tasksCompleted} more bunnies for you`, `${tasksCompleted} bunnies? yes, please`,`Oi! ${tasksCompleted} bunnies hopped in`,`${tasksCompleted} bunnies have joined the farm`];
     bunnyCountMsg.style.display = "inline";
     if (tasksCompleted == 0) {
         bunnyCountMsg.textContent = 'aww, no bunnies';
@@ -199,7 +199,7 @@ function bunnyAnnouncement(tasksCompleted: number) {
     else {
         bunnyCountMsg.textContent = manyBunnyMsg[Math.floor(Math.random() * manyBunnyMsg.length)];
     }
-    setTimeout(removeAnnouncement,1500);
+    setTimeout(removeAnnouncement,2000);
 }
 
 function removeAnnouncement() {

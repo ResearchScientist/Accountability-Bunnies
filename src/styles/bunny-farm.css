@@ -76,7 +76,7 @@
 
 #bunny-count-msg {
     grid-column: 1/-1;
-    grid-row: -2/-1;
+    grid-row: 1/-1;
     justify-self: center;
     align-self: center;
     text-align: center;

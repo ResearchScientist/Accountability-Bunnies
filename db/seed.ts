@@ -21,7 +21,7 @@ export default async function() {
     await db.insert(Bunnies).values([
         {
             id: 1,
-            updated: FALSE,
+            updated: false,
             totalBunnies: 5,
         }
     ])

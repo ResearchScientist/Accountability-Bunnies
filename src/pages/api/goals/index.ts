@@ -21,7 +21,7 @@ export const POST: APIRoute = async ({ request }) => {
     try {
         const data = await request.json();
         const newGoal = { ...data};
-        const regex = /^(?! *$)[a-zA-Z0-9 ]+$/;
+        const regex = /^(?! *$)[a-zA-Z0-9,. ]+$/;
         if (!regex.test(newGoal.description)) {
             return new Response('invalid description',{ status: 400 });
         }

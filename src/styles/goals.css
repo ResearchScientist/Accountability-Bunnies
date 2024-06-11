@@ -80,16 +80,6 @@ input {
     color: rgb(200,100,100);
 }
 
-.goal-item button.delete-goal-button:hover ~ .goal-text {
-    color: rgba(200,100,100,.5);
-}
-/* 
-goal-item > button:not(.delete-goal-button) + .goal-text ~ button.delete-goal-button:hover {
-    color: rgba(200,100,100,.5);
-} */
-
-
-
 #input-goal-form {
     display: grid;
     grid-template-columns: 20px 30px 1fr 30px 20px;
@@ -113,10 +103,6 @@ goal-item > button:not(.delete-goal-button) + .goal-text ~ button.delete-goal-bu
     grid-template-columns: 30px 1fr 20px;
     background-color: var(--background-colour);
 }
-
-/* .goal-item:hover .goal-text {
-    background-color: var(--deep-background-colour);
-} */
 
 .tikbox {
     width: 20px;

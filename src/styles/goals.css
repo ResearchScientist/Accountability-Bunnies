@@ -80,6 +80,10 @@ input {
     color: rgb(200,100,100);
 }
 
+.delete-goal-button:hover .goal-text {
+    color: rgba(200,100,100,.5);
+}
+
 #input-goal-form {
     display: grid;
     grid-template-columns: 20px 30px 1fr 30px 20px;
@@ -104,9 +108,9 @@ input {
     background-color: var(--background-colour);
 }
 
-.goal-item:hover .goal-text {
+/* .goal-item:hover .goal-text {
     background-color: var(--deep-background-colour);
-}
+} */
 
 .tikbox {
     width: 20px;

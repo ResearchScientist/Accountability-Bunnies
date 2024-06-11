@@ -1,3 +1,5 @@
+import { repopulateGoals } from "./goals";
+
 const date = new Date();
 const dateOptions = {weekday: "long" as const};
 let todayweekday = new Intl.DateTimeFormat("en-US",dateOptions).format(date);
@@ -226,7 +228,18 @@ async function updateTotalBunniesDBValue(id: number,newTotalBunnies: number) {
 }
 
 async function deleteCompletedGoals() {
-	console.log('delete completed goals');
+	console.log('deleting completed goals');
+    try {
+        const response = await fetch('/api/goals/completed',{ method: 'DELETE' });
+        if (!response.ok) {
+            throw new Error('network response not ok');
+        }
+        console.log('deleted completed goals');
+        repopulateGoals();
+    }
+    catch (error) {
+        console.error('Error ',error);
+    }
 }
 
 async function populateBunnies() {

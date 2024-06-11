@@ -83,8 +83,12 @@ input {
 /* .delete-goal-button:hover + .goal-text {
     color: rgba(200,100,100,.5);
 } */
-
+/* 
 goal-item > button:not(.delete-goal-button) + .goal-text ~ button.delete-goal-button:hover {
+    color: rgba(200,100,100,.5);
+} */
+
+.goal-text:has(+ .delete-goal-button:hover) {
     color: rgba(200,100,100,.5);
 }
 

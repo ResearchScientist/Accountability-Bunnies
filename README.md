@@ -20,4 +20,6 @@
 |`npx astro db push --force-reset`||
 |`npx @astrojs/upgrade`| Update Astro and official integrations |
 |`npx npm-check -u`| List of updates sorted by major,minor,patch |
+|`sudo apt update`|Update package list|
+|`sudo apt upgrade`|Upgrade packages on list|
 |`netstat -an \| grep LISTEN`| List of open ports |

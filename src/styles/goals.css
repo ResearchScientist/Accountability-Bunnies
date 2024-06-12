@@ -92,6 +92,7 @@ input {
     padding: 20px;
     grid-column: 1/-1;
     grid-row: 3;
+    overflow: hidden auto;
 }
 
 .goal-item {

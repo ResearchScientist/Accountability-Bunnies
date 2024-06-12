@@ -22,8 +22,8 @@ let taps: number = 0;
 let processGoals: any;
 let processingMsgCount = 0;
 let bunnyArray: any = [];
-let nTotalBunnies: number;
-let nCompletedGoals: number;
+// let nTotalBunnies: number;
+// let nCompletedGoals: number;
 
 sun.addEventListener('click',sunSpin);
 tapFarmButton.addEventListener('click',countBunnies);
@@ -248,11 +248,11 @@ async function populateBunnies() {
     makeBunnies(totalBunniesDB);
 }
 
-function repopulateBunnies(totalBunniesDB: number) {
-	for (let i: number = 0; i<totalBunniesDB; i++) {
-		makeBunny(i);
-	}
-}
+// function repopulateBunnies(totalBunniesDB: number) {
+// 	for (let i: number = 0; i<totalBunniesDB; i++) {
+// 		makeBunny(i);
+// 	}
+// }
 
 function makeBunnies(tasksCompleted: number) {
     console.log('make new bunnies',tasksCompleted);

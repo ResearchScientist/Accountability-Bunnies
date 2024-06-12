@@ -4,7 +4,7 @@ import { db, Goals } from 'astro:db';
 export const GET: APIRoute = async () => {
     try {
         const allGoals = await db.select().from(Goals);
-        const completedGoals =  allGoals.filter(goal => goal.completed === 'yes').length;
+        const completedGoals =  allGoals.filter((goal: any) => goal.completed === 'yes').length;
         const notcompletedGoals = allGoals.length - completedGoals;
         return new Response(JSON.stringify({ completedGoals , notcompletedGoals }),
         {

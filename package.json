@@ -11,9 +11,9 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.7.0",
-    "@astrojs/db": "^0.11.6",
-    "@astrojs/netlify": "^5.3.1",
-    "astro": "^4.10.3",
+    "@astrojs/db": "^0.11.7",
+    "@astrojs/netlify": "^5.3.3",
+    "astro": "^4.11.3",
     "sharp": "^0.33.4",
     "typescript": "^5.4.2"
   }

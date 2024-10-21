@@ -10,10 +10,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.3",
-    "@astrojs/db": "^0.13.2",
-    "@astrojs/netlify": "^5.5.1",
-    "astro": "^4.14.4",
+    "@astrojs/check": "^0.9.4",
+    "@astrojs/db": "^0.14.2",
+    "@astrojs/netlify": "^5.5.4",
+    "astro": "^4.16.6",
     "sharp": "^0.33.4",
     "typescript": "^5.5.4"
   }

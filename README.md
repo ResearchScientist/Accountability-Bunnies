@@ -14,5 +14,12 @@
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-|`sudo apt update`||
-|`sudo apt upgrade`||
+|`npx astro login`||
+|`npx astro link`||
+|`npx astro db push`||
+|`npx astro db push --force-reset`||
+|`npx @astrojs/upgrade`| Update Astro and official integrations |
+|`npx npm-check -u`| List of updates sorted by major,minor,patch |
+|`sudo apt update`|Update package list|
+|`sudo apt upgrade`|Upgrade packages on list|
+|`netstat -an \| grep LISTEN`| List of open ports |

@@ -1,9 +1,4 @@
 ---
-interface Props {
-	title: string;
-}
-
-const { title } = Astro.props;
 import "../styles/global.css";
 import "../styles/splash-screen.css";
 import "../styles/navigation.css";
@@ -23,11 +18,9 @@ import "../styles/bunny-farm.css";
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Annie+Use+Your+Telescope&family=Life+Savers:wght@400;700;800&family=Pavanam&display=swap" rel="stylesheet">
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>Accountability Bunnies</title>
 	</head>
 	<body>
-		<main>
-			<slot />
-		</main>
+		<slot />
 	</body>
 </html>

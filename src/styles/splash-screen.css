@@ -19,6 +19,7 @@
 }
 #bunny-face {
     width: 100px;
+    height: 131px;
     grid-column: 1/-1;
     grid-row: 3;
 }

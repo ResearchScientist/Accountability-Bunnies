@@ -2,15 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import { db, Goals } from 'astro:db';
 
+const goalsDB = await db.select().from(Goals);
+
 if (Astro.request.method === 'POST') {
 	const formData = await Astro.request.formData();
 	const description = formData.get('description');
-	if (typeof description === 'string') {
-		await db.insert(Goals).values({ description });
+	const completed = formData.get('completed');
+	if (typeof description === 'string' && typeof completed === 'string') {
+		await db.insert(Goals).values({ description , completed });
 	}
 }
-
-const goalsDB = await db.select().from(Goals);
 ---
 
 <Layout title="Accountability Bunnies">
@@ -21,7 +22,6 @@ const goalsDB = await db.select().from(Goals);
 				<h2>Ideal Scenario</h2>
             	<p class="check-ins-content">Imagine your ultimate goal. The location, the people, your role. Close your eyes and imagine the tastes and smells surrounding you. The temperature. The feeling of the air on your skin. And the feeling of the things you are touching. Imagine how you feel. Write it all down.</p>
                 <p class="check-ins-content">Keep it somewhere where you can easily find it, like a note on your night stand, or hidden between your matresses, or pinned up inside your closet. Find a place where you can easily glance at it when you feel overwhelmed and close your eyes.</p>
-                <p class="check-ins-content">Check in with it daily or as often as you want or not at all. I don't care do whatever you want.</p>
             	<h2>Weekly</h2>
             	<p class="check-ins-content">Each Saturday at 7pm send a text saying if goal was met and if not, why.</p>
             	<h2>Monthly</h2>
@@ -30,19 +30,19 @@ const goalsDB = await db.select().from(Goals);
 		</section>
 		<section id="goals" class="nav-section">
 			<h1>This Week's Goals</h1>
-			<form id="input-goal-form" method="POST">
-            	<input id="input-goal" type="text" name="goal" placeholder="write your goal here" required>
-            	<button id="add-goal-button" type="submit">+</button>
+			<form id="input-goal-form" action="/api/goals" method="POST">
 				<img id="goalLine" src="goalLine.svg" alt="hand drawn line"/>
+            	<input id="input-goal" type="text" name="description" placeholder="write your goal here" pattern="^(?! *$)[a-zA-Z0-9,. ]+$" required>
+            	<button id="add-goal-button" type="submit">+</button>
 			</form>
             <ul id="goals-section">
 				{
-					goalsDB.map(({ description }) => (
+					goalsDB.map(({ id , description , completed }) => (
 						<li class="goal-item">
 							<img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
-							<button class="complete-goal-button" type="button" data-goal-complete="no"></button>
+							<button class="complete-goal-button" type="button" aria-label="toggle complete goal" data-id={id} data-goalcomplete={completed}></button>
                     		<div class="goal-text">{description}</div>
-                    		<button id="delete-goal-button" class="delete-goal-button" type="button">x</button>
+                    		<button id="delete-goal-button" class="delete-goal-button" data-id={id} type="button">x</button>
 						</li>
 					))
 				}
@@ -57,7 +57,8 @@ const goalsDB = await db.select().from(Goals);
 			<button id="dont-tap-farm-button">don't tap</button>
 			<button id="tap-farm-button">tap here</button>
 			<div id="bunny-pen"></div>
-			<!-- <div id="bunny-count-msg">5</div> -->
+			<div id="bunny-count-msg">20 bunnies have joined the farm</div>
+			<div id="bunny-roll"></div>
 			<div id="bunny-joke-bubble"></div>
 		</section>
 		<section id="main-menu" class="main-menu">

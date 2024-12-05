@@ -11,13 +11,16 @@
     grid-row: 2/3;
     justify-self: center;
     align-self: flex-end;
+    -webkit-tap-highlight-color: transparent;
 }
 #sun {
-    margin: 10px 0 0 10px;
+    width: 90px;
+    height: 90px;
+    margin: 0 0 0 10px;
     grid-column: 1/-1;
     grid-row: 1/2;
-    justify-self: flex-start;
-    align-self: flex-start;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 #bunny-pen {
     width: 100%;
@@ -33,6 +36,8 @@
     transform-origin: center bottom;
     opacity: 1;
     pointer-events: auto;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 
 #tap-farm-button , #dont-tap-farm-button {
@@ -70,11 +75,16 @@
 }
 
 #bunny-count-msg {
-    margin: 0 0 50px -58px;
     grid-column: 1/-1;
-    grid-row: 2/3;
+    grid-row: 1/-1;
     justify-self: center;
-    align-self: flex-end;
+    align-self: center;
+    text-align: center;
+    font-family: "Annie Use Your Telescope", cursive;
+    font-size: 48px;
+    color: black;
+    z-index: 1;
+    display: none;
 }
 
 .sunSpin {
@@ -113,6 +123,11 @@
     }
 }
 
+.bunnyLaugh {
+    animation: .4s ease-in forwards bunnyHop;
+    animation-iteration-count: 4;
+}
+
 .bunnyHop {
     animation: .4s ease-in forwards bunnyHop;
 }
@@ -149,21 +164,40 @@
     100% {opacity: 1; transform: translate(0px,0px) rotate(0deg);}
 }
 
-#bunny-joke-bubble {
-    margin: -50px 0 0;
-    padding: 50px 20px;
-    grid-row: 2/-1;
+#bunny-roll {
+    grid-row: 1/-1;
     grid-column: 1/-1;
     justify-self: center;
-    align-self: flex-start;
+    align-self: center;
+    font-family: "Annie Use Your Telescope", cursive;
+    font-size: 128px;
+    display: none;
+    user-select: none;
+    z-index: 1;
+}
+
+#bunny-joke-bubble {
+    padding: 50px 20px;
+    grid-row: 1/-1;
+    grid-column: 1/-1;
+    justify-self: center;
+    align-self: center;
     display: none;
     align-items: center;
     justify-content: center;
     border-radius: 50%;
     border: 1px solid black;
     font-family: "Annie Use Your Telescope", cursive;
+    font-size: 18px;
     text-align: center;
     white-space: break-spaces;
     background-color: white;
+    animation: .2s ease-in-out forwards tellJoke;
     z-index: 1;
+}
+
+@keyframes tellJoke {
+    0% {transform: scale(0.1);}
+    80% {transform: scale(1.4);}
+    100% {transform: scale(1);}
 }

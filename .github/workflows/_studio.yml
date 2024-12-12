@@ -2,6 +2,7 @@ name: Astro Studio
 
 env:
   ASTRO_DB_APP_TOKEN: ${{secrets.ASTRO_DB_APP_TOKEN }}
+  ASTRO_DB_REMOTE_URL: ${{secrets.ASTRO_DB_REMOTE_URL }}
 
 on:
   push:

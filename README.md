@@ -1,6 +1,6 @@
 # Accountability Bunnies
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/7c8de534-ac34-40f4-be0b-e9bd0e8696d0/deploy-status)](https://app.netlify.com/sites/candid-taffy-58f09a/deploys)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7c8de534-ac34-40f4-be0b-e9bd0e8696d0/deploy-status)](https://app.netlify.com/sites/accountability-bunnies/deploys)
 
 # Live Site
 

@@ -2,7 +2,6 @@ name: Astro Studio
 
 env:
   ASTRO_DB_APP_TOKEN: ${{secrets.ASTRO_DB_APP_TOKEN }}
-  # ASTRO_STUDIO_APP_TOKEN: ${{secrets.ASTRO_STUDIO_APP_TOKEN }}
 
 on:
   push:

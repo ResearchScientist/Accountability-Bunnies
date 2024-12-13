@@ -17,6 +17,7 @@
 |`turso --version`||
 |`turso auth login --headless`||
 |`turso db show someDBname`||
+|`npx astro check`||
 |`npx astro login`||
 |`npx astro link`||
 |`npx astro db push`||

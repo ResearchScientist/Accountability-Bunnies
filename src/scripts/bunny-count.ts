@@ -38,7 +38,7 @@ function sunSpin() {
 onSaturday();
 
 function onSaturday() {
-    if (todayweekday == 'Saturday') {
+    if (todayweekday == 'Thursday') {
         getUpdatedDBValue();
 	}
     else if (todayweekday == 'Sunday') {

@@ -38,10 +38,10 @@ function sunSpin() {
 onSaturday();
 
 function onSaturday() {
-    if (todayweekday == 'Wednesday') {
+    if (todayweekday == 'Saturday') {
         getUpdatedDBValue();
 	}
-    else if (todayweekday == 'Thursday') {
+    else if (todayweekday == 'Sunday') {
         tapFarmMsg.style.display = "none";
        	tapFarmButton.style.display = "none";
         dontTapFarmMsg.style.display = "inline";

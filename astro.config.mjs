@@ -5,8 +5,5 @@ import netlify from "@astrojs/netlify";
 export default defineConfig({
   integrations: [db()],
   output: "server",
-  adapter: netlify(),
-  security: {
-    checkOrigin: true
-  }
+  adapter: netlify()
 });

@@ -1,0 +1,82 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { db, Goals } from 'astro:db';
+
+const goalsDB = await db.select().from(Goals);
+
+if (Astro.request.method === 'POST') {
+	const formData = await Astro.request.formData();
+	const description = formData.get('description');
+	const completed = formData.get('completed');
+	if (typeof description === 'string' && typeof completed === 'string') {
+		await db.insert(Goals).values({ description , completed });
+	}
+}
+---
+
+<Layout title="Accountability Bunnies">
+	<main>
+		<section id="check-ins" class="nav-section">
+			<h1>Check Ins</h1>
+            <div id=check-ins-content-section>
+				<h2>Ideal Scenario</h2>
+            	<p class="check-ins-content">Imagine your ultimate goal. The location, the people, your role. Close your eyes and imagine the tastes and smells surrounding you. The temperature. The feeling of the air on your skin. And the feeling of the things you are touching. Imagine how you feel. Write it all down.</p>
+                <p class="check-ins-content">Keep it somewhere where you can easily find it, like a note on your night stand, or hidden between your matresses, or pinned up inside your closet. Find a place where you can easily glance at it when you feel overwhelmed and close your eyes.</p>
+            	<h2>Weekly</h2>
+            	<p class="check-ins-content">Each Saturday at 7pm send a text saying if goal was met and if not, why.</p>
+            	<h2>Monthly</h2>
+            	<p class="check-ins-content">On last day of the month have a call to talk about how things are going.</p>
+			</div>
+		</section>
+		<section id="goals" class="nav-section">
+			<h1>This Week's Goals</h1>
+			<form id="input-goal-form" action="/api/goals" method="POST">
+				<img id="goalLine" src="goalLine.svg" alt="hand drawn line"/>
+            	<input id="input-goal" type="text" name="description" placeholder="write your goal here" pattern="^(?! *$)[a-zA-Z0-9,. ]+$" required>
+            	<button id="add-goal-button" type="submit">+</button>
+			</form>
+            <ul id="goals-section">
+				{
+					goalsDB.map(({ id , description , completed }) => (
+						<li class="goal-item">
+							<img class="tikbox" src="tikbox.svg" alt="hand drawn tikbox"/>
+							<button class="complete-goal-button" type="button" aria-label="toggle complete goal" data-id={id} data-goalcomplete={completed}></button>
+                    		<div class="goal-text">{description}</div>
+                    		<button id="delete-goal-button" class="delete-goal-button" data-id={id} type="button">x</button>
+						</li>
+					))
+				}
+            </ul>
+		</section>
+		<section id="bunny-farm" class="nav-section">
+			<img id="farm" src="/farm.svg" alt="Line illustration of a farm."/>
+			<img id="sun" src="/sun.svg" alt="Line illustration of a sun."/>
+			<p id="counting-bunnies-msg"></p>
+			<p id="dont-tap-farm-msg">Tap the farm on Saturday.</p>
+			<p id="tap-farm-msg">Tap the farm !</p>
+			<button id="dont-tap-farm-button">don't tap</button>
+			<button id="tap-farm-button">tap here</button>
+			<div id="bunny-pen"></div>
+			<div id="bunny-count-msg">20 bunnies have joined the farm</div>
+			<div id="bunny-roll"></div>
+			<div id="bunny-joke-bubble"></div>
+		</section>
+		<section id="main-menu" class="main-menu">
+			<nav id="main-navigation">
+				<button class="nav-button" data-menu="check-ins">check ins</button>
+				<button class="nav-button" data-menu="goals">goals</button>
+				<button class="nav-button" data-menu="bunny-farm">bunny farm</button>
+			</nav>
+		</section>
+		<section id="splash-screen" class="splash-screen">
+			<h1 id="app-title">Ac<span class="text-accent">count</span>ability</h1>
+			<h2 id="app-sub-title">Bunnies</h2>
+			<img id="bunny-face" src="/bunnyface.svg" alt="line art of a bunny"/>
+			<button id="lets-go-button">let's go</button>
+		</section>
+		<button id="show-menu-button">menu</button>
+	</main>
+</Layout>
+<script src="../scripts/navigation.ts"></script>
+<script src="../scripts/goals.ts"></script>
+<script src="../scripts/bunny-count.ts"></script>
